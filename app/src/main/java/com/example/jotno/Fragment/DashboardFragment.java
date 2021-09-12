@@ -20,8 +20,11 @@ import android.widget.Toast;
 
 import com.example.jotno.AppointmentsFragment;
 import com.example.jotno.AppointmentsRecyclerAdapter;
+import com.example.jotno.BillsFragment;
 import com.example.jotno.Models.Appointments;
+import com.example.jotno.PrescriptionsFragment;
 import com.example.jotno.R;
+import com.example.jotno.TestsFragment;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
@@ -57,6 +60,39 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         appointmentsCard.setOnClickListener(v -> {
 
             AppointmentsFragment fragment = new AppointmentsFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
+        prescriptionsCard.setOnClickListener(v -> {
+
+            PrescriptionsFragment fragment = new PrescriptionsFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
+        allTestsCard.setOnClickListener(v -> {
+
+            TestsFragment fragment = new TestsFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
+        billsCard.setOnClickListener(v -> {
+
+            BillsFragment fragment = new BillsFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
