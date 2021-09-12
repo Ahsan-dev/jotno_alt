@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.DashboardFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="100dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/dashboard_welcome_patient_txt_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome\n     Patient's Name"
+                    android:textSize="17sp"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/black"
+                    android:textStyle="italic"/>
+                <LinearLayout
+                    android:layout_below="@id/dashboard_welcome_patient_txt_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@drawable/dashboard_red_back_edt_fields"
+                    >
+                    <LinearLayout
+                        android:id="@+id/dashboard_statistics_linear"
+                        android:layout_width="match_parent"
+                        android:weightSum="3"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp"
+                        >
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/dashboard_light_red_back_edt_fields"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            >
+                            <TextView
+                                android:id="@+id/dashboard_statistics_appointments_txt_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="22"
+                                android:textColor="@color/white"
+                                android:textSize="25sp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Appointments"
+                                android:textColor="@color/white"
+                                android:textSize="9sp"
+                                android:layout_marginTop="10dp"
+
+                                />
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/dashboard_light_red_back_edt_fields"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            >
+                            <TextView
+                                android:id="@+id/dashboard_statistics_prescriptions_txt_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="22"
+                                android:textColor="@color/white"
+                                android:textSize="25sp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Prescriptions"
+                                android:textColor="@color/white"
+                                android:textSize="9sp"
+                                android:layout_marginTop="10dp"
+
+                                />
+
+
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/dashboard_light_red_back_edt_fields"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="20dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingBottom="15dp"
+                            >
+                            <TextView
+                                android:id="@+id/dashboard_statistics_tests_txt_id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="22"
+                                android:textColor="@color/white"
+                                android:textSize="25sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tests"
+                                android:textColor="@color/white"
+                                android:textSize="9sp"
+                                android:layout_marginTop="10dp"
+
+                                />
+
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2"
+                        android:background="@drawable/dashboard_white_back"
+                        android:orientation="vertical"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:weightSum="2"
+                            android:padding="5dp"
+                            android:gravity="center"
+                            >
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_appoints_card_id"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:elevation="1dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="15dp"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/dashboard_light_gray_back"
+                                    android:padding="10dp"
+                                    >
+                                    <ImageView
+                                        android:id="@+id/dashboard_appoints_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/appointments_icon"
+                                        android:background="@drawable/dashboard_white_back"
+                                        android:adjustViewBounds="true"
+                                        android:layout_centerHorizontal="true"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Appointments"
+                                        android:textSize="13sp"
+                                        android:layout_below="@id/dashboard_appoints_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@android:color/black"
+                                        android:layout_marginTop="10dp"
+                                        />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_prescriptions_card_id"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:elevation="1dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="30dp"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/dashboard_light_gray_back"
+                                    android:padding="10dp"
+                                    >
+                                    <ImageView
+                                        android:id="@+id/dashboard_prescriptions_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@drawable/dashboard_white_back"
+                                        android:src="@drawable/ic_prescription"
+                                        android:adjustViewBounds="true"
+                                        android:layout_centerHorizontal="true"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Prescriptions"
+                                        android:layout_below="@id/dashboard_prescriptions_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@android:color/black"
+                                        android:layout_marginTop="10dp"
+                                        android:textSize="13sp"
+                                        />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:padding="5dp"
+                            >
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_tests_card_id"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:elevation="1dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="15dp"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/dashboard_light_gray_back"
+                                    android:padding="10dp"
+                                    >
+                                    <ImageView
+                                        android:id="@+id/dashboard_test_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/testing_icon"
+                                        android:adjustViewBounds="true"
+                                        android:background="@drawable/dashboard_white_back"
+                                        android:layout_centerHorizontal="true"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="All tests"
+                                        android:textSize="13sp"
+                                        android:layout_below="@id/dashboard_test_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@android:color/black"
+                                        android:layout_marginTop="10dp"
+                                        />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_bills_card_id"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:elevation="1dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="30dp"
+
+                                >
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@drawable/dashboard_light_gray_back"
+                                    android:padding="10dp"
+                                    >
+                                    <ImageView
+                                        android:id="@+id/dashboard_bills_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:src="@drawable/invoice_icon"
+                                        android:adjustViewBounds="true"
+                                        android:background="@drawable/dashboard_white_back"
+                                        android:layout_centerHorizontal="true"
+                                        />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bills"
+                                        android:textSize="13sp"
+                                        android:layout_below="@id/dashboard_bills_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@android:color/black"
+                                        android:layout_marginTop="10dp"
+                                        />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+        android:id="@+id/dashboard_get_appointment_btn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" Get Appointment"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:paddingLeft="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="15dp"
+
+        />
+
+</RelativeLayout>

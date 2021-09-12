@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="20dp"
+    android:elevation="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/result_dialog_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green"
+        android:gravity="center"
+        android:padding="15dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/bmi_dialog_your_bmi_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="80sp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your BMI: "
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/bmi_dialog_your_bmi_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textSize="50sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/bmi_result_sign_img"
+            android:layout_below="@id/bmi_dialog_your_bmi_layout"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/correct"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="50sp"
+            />
+        <TextView
+            android:id="@+id/bmi_dialog_result_text"
+            android:layout_below="@id/bmi_result_sign_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You have a normal weight"
+            android:textSize="35sp"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/bmi_dialog_advice_txt"
+            android:layout_below="@id/bmi_dialog_result_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Here are some advices for you for keeping sound weight"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:id="@+id/bmi_dialog_all_advices_linear"
+            android:layout_below="@id/bmi_dialog_advice_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+
+                >
+                <ImageView
+                    android:id="@+id/bmi_dialog_first_advice_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/active"
+                    />
+
+                <TextView
+                    android:id="@+id/bmi_dialog_first_advice_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stay Active"
+                    android:textSize="30sp"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="40dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="50dp"
+                >
+                <ImageView
+                    android:id="@+id/bmi_dialog_second_advice_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/salad"
+                    />
+
+                <TextView
+                    android:id="@+id/bmi_dialog_second_advice_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose the right foods and cook by yourself "
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="40dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="50dp"
+                >
+                <ImageView
+                    android:id="@+id/bmi_dialog_third_advice_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/sleep"
+                    />
+
+                <TextView
+                    android:id="@+id/bmi_dialog_third_advice_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Focus on relaxation and sleep"
+                    android:textSize="30sp"
+                    android:gravity="start"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="40dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/bmi_dialog_ok_btn"
+            android:layout_below="@id/bmi_dialog_all_advices_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ok Thank You."
+            android:textSize="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:padding="20dp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

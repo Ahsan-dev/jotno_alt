@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.RegisterActivity">
+
+    <TextView
+        android:id="@+id/register_title_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register Yourself Here"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <LinearLayout
+        android:id="@+id/register_all_fields_linear"
+        android:layout_below="@id/register_title_text_id"
+        android:layout_above="@id/register_terms_policy_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:id="@+id/register_full_name_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_full_name_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Abdur Rehi"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_dob_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date of Birth"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_dob_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="01/01/2021"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_bld_grp_weight_linear"
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <LinearLayout
+                        android:id="@+id/register_bld_grp_linear"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="3dp"
+                        android:background="@drawable/register_edt_fields"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Blood Group"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/light_red"
+                            />
+                        <Spinner
+                            android:id="@+id/register_bld_grp_spinner_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColorHint="@color/black"
+                            android:textColor="@color/black"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="0dp"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light"
+                            android:paddingLeft="10dp"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/register_weight_linear"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="3dp"
+                        android:background="@drawable/register_edt_fields"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weight"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/light_red"
+                            />
+                        <EditText
+                            android:id="@+id/register_weight_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="82"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColorHint="@color/purple_200"
+                            android:inputType="numberSigned"
+                            android:textColor="@color/black"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="0dp"
+                            android:paddingLeft="10dp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_email_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email Address"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_email_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="xyz@example.com"
+                        android:inputType="textEmailAddress"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_mobile_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile Number"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_mobile_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="01775794472"
+                        android:inputType="numberSigned"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:maxLength="11"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_address_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_address_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="House, Road, Police Station"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_city_district_linear"
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <LinearLayout
+                        android:id="@+id/register_city_linear"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="3dp"
+                        android:background="@drawable/register_edt_fields"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="City"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/light_red"
+                            />
+                        <EditText
+                            android:id="@+id/register_city_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColorHint="@color/purple_200"
+                            android:textColor="@color/black"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="0dp"
+                            android:hint="My City"
+                            android:paddingLeft="10dp"
+                            />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/register_district_linear"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="3dp"
+                        android:background="@drawable/register_edt_fields"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="District"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="@color/light_red"
+                            />
+                        <EditText
+                            android:id="@+id/register_district_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="My District"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColorHint="@color/purple_200"
+                            android:textColor="@color/black"
+                            android:paddingBottom="5dp"
+                            android:paddingTop="0dp"
+
+                            android:paddingLeft="10dp"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_password_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Password"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_password_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="password"
+                        android:inputType="textPassword"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        android:drawableRight="@drawable/visibility_24"
+                        android:paddingRight="20dp"
+                        android:textIsSelectable="false"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/register_confirm_password_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Confirm Password"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/register_confirm_password_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="password"
+                        android:inputType="textPassword"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        android:drawableRight="@drawable/visibility_24"
+                        android:paddingRight="20dp"
+                        android:textIsSelectable="false"
+                        />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/register_terms_policy_linear"
+        android:layout_above="@id/register_register_now_btn_id"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/register_terms_policy_checker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+            android:text="I have read and accept"
+            android:textColor="@android:color/black"
+            android:buttonTint="@color/red"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="false" />
+        <TextView
+            android:id="@+id/register_our_policy_TxtBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Our Policies"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:layout_marginLeft="5dp"
+
+            />
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/register_register_now_btn_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/register_register_btn_back"
+        android:text="Register Now"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:elevation="8dp"
+        />
+
+
+
+</RelativeLayout>

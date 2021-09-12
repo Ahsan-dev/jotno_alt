@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.SplashScreenActivity">
+
+    <RelativeLayout
+        android:id="@+id/splash_screen_full_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/splash_screen_jotno_logo"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/jotno_logo"/>
+
+        <TextView
+            android:id="@+id/splash_screen_jonto_slogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/splash_screen_jotno_logo"
+            android:layout_centerInParent="true"
+            android:fontFamily="serif-monospace"
+            android:padding="5dp"
+            android:textSize="30dp"
+            android:text="Be Here Healthy"
+            android:textColor="@color/light_red"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/splash_screen_developer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="serif-monospace"
+            android:padding="5dp"
+            android:text="@string/developed_by_string"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:layout_marginBottom="45dp"
+            android:textStyle="bold" />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

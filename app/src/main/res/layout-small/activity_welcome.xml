@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F2F6"
+    tools:context=".Activity.WelcomeActivity">
+
+    <ImageView
+        android:id="@+id/welcome_logo_image_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/jotno_logo"
+        android:adjustViewBounds="true"
+        android:layout_margin="15dp"/>
+    <TextView
+        android:id="@+id/welcome_main_text1_id"
+        android:layout_below="@id/welcome_logo_image_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Be Hear Healthy"
+        android:textColor="@color/deep_blue"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/welcome_main_text2_id"
+        android:layout_below="@id/welcome_main_text1_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Find The Best"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:id="@+id/welcome_main_text3_id"
+        android:layout_below="@id/welcome_main_text2_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Medical Assistant Near By You."
+        android:textColor="@color/deep_blue"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:id="@+id/welcome_main_text_detail_id"
+        android:layout_below="@id/welcome_main_text3_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="We are always ready to give you medical home service, Contact now to get any of your medical services at you home."
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:padding="20dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/welcome_down_layout_back"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="50dp"
+        >
+        <Button
+            android:id="@+id/welcome_register_now_btn_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/register_btn_text"
+            android:background="@drawable/welcome_register_btn_back"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            />
+
+
+        <TextView
+            android:id="@+id/welcome_already_have_account_text_id"
+            android:layout_below="@id/welcome_register_now_btn_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="I already have an account"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp"
+            />
+        <TextView
+            android:id="@+id/welcome_login_txt_btn_id"
+            android:layout_below="@id/welcome_already_have_account_text_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_btn_text"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="20dp"/>
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</RelativeLayout>

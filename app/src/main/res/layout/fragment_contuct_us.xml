@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.ContuctUsFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/contact_us_get_in_touch_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/red"
+                        android:paddingBottom="10dp"
+                        >
+
+                        <TextView
+                            android:id="@+id/contact_us_get_in_touch_title_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Let's get in touch"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:layout_margin="20dp"
+                            android:textSize="20sp"
+                            android:layout_centerHorizontal="true"
+                            />
+                        <TextView
+                            android:id="@+id/contact_us_get_in_touch_detail_txt"
+                            android:layout_below="@id/contact_us_get_in_touch_title_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="We're open for any suggestion or just to have a chat"
+                            android:textStyle="italic"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="20sp"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            />
+
+                        <TextView
+                            android:id="@+id/contact_us_get_in_touch_location_txt"
+                            android:layout_below="@id/contact_us_get_in_touch_detail_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Suite No. D-5, 3rd Floor, Mukti Bhaban 2 No. Comrade Moni Singh Sarak 21/1 Purana Paltan, Dhaka-1000, Bangladesh"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="20sp"
+                            android:layout_centerHorizontal="true"
+                            android:drawableLeft="@drawable/location_icon"
+                            android:drawablePadding="10dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/contact_us_get_in_touch_email_txt"
+                            android:layout_below="@+id/contact_us_get_in_touch_location_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="info@jotno.com"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="20sp"
+                            android:layout_centerHorizontal="true"
+                            android:drawableLeft="@drawable/mail_icon"
+                            android:drawablePadding="10dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/contact_us_get_in_touch_mobile_txt"
+                            android:layout_below="@+id/contact_us_get_in_touch_email_txt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="+8801789568887"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="20sp"
+                            android:layout_centerHorizontal="true"
+                            android:drawableLeft="@drawable/phone_icon"
+                            android:drawablePadding="10dp"
+                            />
+
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/contact_us_message_us_text"
+                    android:layout_below="@id/contact_us_get_in_touch_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Message Us:"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:id="@+id/contact_us_full_name_linear"
+                    android:layout_below="@id/contact_us_message_us_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Full Name"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/contact_us_full_name_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Your full name"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contact_us_email_linear"
+                    android:layout_below="@id/contact_us_full_name_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/contact_us_email_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="xyz@example.com"
+                        android:inputType="textEmailAddress"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contact_us_subject_linear"
+                    android:layout_below="@id/contact_us_email_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Message Subject"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/contact_us_subject_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Your message subject"
+                        android:backgroundTint="@android:color/transparent"
+                        android:textColorHint="@color/purple_200"
+                        android:textColor="@color/black"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="0dp"
+                        android:paddingLeft="10dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contact_us_message_linear"
+                    android:layout_below="@id/contact_us_subject_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/register_edt_fields"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="15dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Message"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/light_red"
+                        />
+                    <EditText
+                        android:id="@+id/contact_us_message_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="10dp"
+                        android:ems="10"
+                        android:hint="Write Something about You"
+                        android:imeOptions="actionDone"
+                        android:lines="10"
+                        android:inputType="textMultiLine"
+                        android:isScrollContainer="true"
+                        android:textSize="14sp"
+                        android:maxLength="400"
+                        android:paddingBottom="10dp"
+                        android:gravity="start"
+                        android:singleLine="false"
+                        android:padding="5dp"
+                        android:scrollbars="vertical"
+                        android:overScrollMode="always"
+                        android:scrollbarStyle="insideInset"
+                        />
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/contact_us_send_message_btn_id"
+                    android:layout_below="@id/contact_us_message_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Send Message"
+                    android:layout_centerHorizontal="true"
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="20dp"
+                    />
+
+
+
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

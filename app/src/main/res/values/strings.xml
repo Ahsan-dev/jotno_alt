@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">Jotno</string>
+
+    <string name="welcome_text">
+
+
+
+
+    </string>
+
+    <string name="register_btn_text">
+
+
+        new on Jotno? \n
+        <b>Register Now</b>
+
+
+    </string>
+
+    <string name="login_btn_text">
+        <b><u>Login</u></b>
+    </string>
+
+    <string name="register_text_btn_text">
+        <b><u>Register</u></b>
+    </string>
+
+    <string name="forget_pass"><u>Forget Password?</u></string>
+
+
+    <string name="developed_by_string">
+
+        Developed By: \n
+        <a href="https://www.zaman-it.com/"> ZAMAN IT</a>
+
+
+    </string>
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+
+    <string name="low_bmi_string">You have an underweight!</string>
+
+
+    <string name="low_bmi_first_advice_string">Don\'t drink water before meals.</string>
+    <string name="low_bmi_second_advice_string">Use bigger plates.</string>
+    <string name="low_bmi_third_advice_string">Get quality sleep.</string>
+    <string name="normal_bmi_string">You have a normal weight.</string>
+
+
+    <string name="normal_bmi_first_advice_string">Stay active.</string>
+    <string name="normal_bmi_second_advice_string">Choose the right food and Cook by yourself.</string>
+    <string name="normal_bmi_third_advice_string">Focus on relaxation and sleep.</string>
+    <string name="high_bmi_string">You have an overweight!</string>
+
+
+    <string name="high_bmi_first_advice_string">Drink water a half hour before meals.</string>
+    <string name="high_bmi_second_advice_string">Eat only two meals per day and make sure that they contains a high protein.</string>
+    <string name="high_bmi_third_advice_string">Drink coffee or tea and Avoid sugary food.</string>
+    <string-array name="blood_grp">
+        <item>--Select--</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>O+</item>
+        <item>O-</item>
+
+    </string-array>
+
+</resources>
