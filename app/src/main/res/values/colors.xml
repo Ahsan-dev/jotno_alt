@@ -13,4 +13,6 @@
     <color name="green">#33B13F</color>
     <color name="dark_green">#054C0C</color>
     <color name="yello">#FFB300</color>
+
+    <color name="light_gray">#F1ECEC</color>
 </resources>

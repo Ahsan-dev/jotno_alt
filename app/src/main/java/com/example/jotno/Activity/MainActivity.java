@@ -82,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            if(item.getItemId()==R.id.drawer_nav_medicines){
+                Intent medicineIntent = new Intent(MainActivity.this, MedicinesActivity.class);
+                startActivity(medicineIntent);
+
+            }
+
             if(item.getItemId()==R.id.drawer_nav_profile_settings){
                 toolTitle.setText("Profile Settings");
                 fragment = null;

@@ -167,7 +167,7 @@
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:weightSum="2"
-                            android:padding="5dp"
+                            android:padding="10dp"
                             android:gravity="center"
                             >
                             <androidx.cardview.widget.CardView
@@ -175,15 +175,16 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
-                                android:elevation="1dp"
                                 android:layout_marginLeft="30dp"
                                 android:layout_marginRight="15dp"
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp"
+                                android:layout_marginBottom="5dp"
 
                                 >
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/dashboard_light_gray_back"
                                     android:padding="10dp"
                                     >
                                     <ImageView
@@ -191,7 +192,6 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:src="@drawable/appointments_icon"
-                                        android:background="@drawable/dashboard_white_back"
                                         android:adjustViewBounds="true"
                                         android:layout_centerHorizontal="true"
                                         />
@@ -216,22 +216,21 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
-                                android:elevation="1dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="30dp"
-
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp"
+                                android:layout_marginBottom="5dp"
                                 >
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/dashboard_light_gray_back"
                                     android:padding="10dp"
                                     >
                                     <ImageView
                                         android:id="@+id/dashboard_prescriptions_icon"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:background="@drawable/dashboard_white_back"
                                         android:src="@drawable/ic_prescription"
                                         android:adjustViewBounds="true"
                                         android:layout_centerHorizontal="true"
@@ -261,7 +260,7 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:layout_marginTop="5dp"
-                            android:padding="5dp"
+                            android:padding="10dp"
                             >
 
                             <androidx.cardview.widget.CardView
@@ -269,15 +268,16 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
-                                android:elevation="1dp"
                                 android:layout_marginLeft="30dp"
                                 android:layout_marginRight="15dp"
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp"
+                                android:layout_marginBottom="5dp"
 
                                 >
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/dashboard_light_gray_back"
                                     android:padding="10dp"
                                     >
                                     <ImageView
@@ -286,7 +286,6 @@
                                         android:layout_height="wrap_content"
                                         android:src="@drawable/testing_icon"
                                         android:adjustViewBounds="true"
-                                        android:background="@drawable/dashboard_white_back"
                                         android:layout_centerHorizontal="true"
                                         />
                                     <TextView
@@ -311,15 +310,15 @@
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
                                 android:layout_height="match_parent"
-                                android:elevation="1dp"
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginRight="30dp"
-
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp"
+                                android:layout_marginBottom="5dp"
                                 >
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:background="@drawable/dashboard_light_gray_back"
                                     android:padding="10dp"
                                     >
                                     <ImageView
@@ -328,7 +327,6 @@
                                         android:layout_height="wrap_content"
                                         android:src="@drawable/invoice_icon"
                                         android:adjustViewBounds="true"
-                                        android:background="@drawable/dashboard_white_back"
                                         android:layout_centerHorizontal="true"
                                         />
                                     <TextView
