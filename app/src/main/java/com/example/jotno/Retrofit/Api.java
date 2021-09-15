@@ -36,7 +36,7 @@ public interface Api {
     );
 
 
-    @POST("login")
+    @POST("api/login")
     Call<ResponseBody> loginUser(@Body LoginUser userCredentials);
 //
 //

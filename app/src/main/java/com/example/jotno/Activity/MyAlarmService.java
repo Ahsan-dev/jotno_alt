@@ -47,6 +47,7 @@ public class MyAlarmService extends Service {
         builder.setContentText("");
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setContentIntent(pendingIntent);
+        builder.setPriority(Notification.PRIORITY_HIGH);
         builder.setDefaults(Notification.DEFAULT_SOUND)
                 .setDefaults(Notification.DEFAULT_ALL).setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
 

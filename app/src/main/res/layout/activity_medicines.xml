@@ -29,6 +29,7 @@
         android:onClick="setAlarm"
         android:clickable="true"
         android:focusable="true"
+        android:visibility="gone"
         />
     <RelativeLayout
         android:id="@+id/prescriptions_prescriptions_relative_id"

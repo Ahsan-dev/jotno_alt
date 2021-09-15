@@ -63,10 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,new DashboardFragment()).commit();
 
-        }else {
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout, fragment).commit();
-
         }
 
         drawerNavView.setNavigationItemSelectedListener(item -> {
