@@ -148,6 +148,13 @@ public class MedicinesActivity extends AppCompatActivity {
     public void setAlarm(View view) {
 
         notifyMeTxt.setVisibility(View.GONE);
+        setNotification();
+
+
+    }
+
+    public void setNotification(){
+
 
         if(morningCount>0){
 
@@ -162,7 +169,7 @@ public class MedicinesActivity extends AppCompatActivity {
             }
             Paper.book().write(AlarmPaper.morningMessage,morningMessage);
 
-            setNotification(17,55,morningMessage,10);
+            setNotification(12,5,morningMessage,10);
 
         }
 
@@ -180,7 +187,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(17,56,noonMessage,11);
+            setNotification(12,7,noonMessage,11);
 
         }
 
@@ -197,9 +204,11 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.nightMessage,nightMessage);
 
-            setNotification(17,57,nightMessage,12);
+            setNotification(12,8,nightMessage,12);
 
         }
+
+
 
 
     }
