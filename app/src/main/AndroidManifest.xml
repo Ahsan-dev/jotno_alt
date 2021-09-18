@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/jotno_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Jotno">
-        <activity android:name=".ViewAppointmentActivity"></activity>
         <activity android:name=".Activity.MedicinesActivity" />
         <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.SplashScreenActivity">

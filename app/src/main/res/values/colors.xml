@@ -15,4 +15,6 @@
     <color name="yello">#FFB300</color>
 
     <color name="light_gray">#F1ECEC</color>
+
+    <color name="gray">#373737</color>
 </resources>

@@ -7,11 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.jotno.Fragment.AppointmentViewFragment;
 import com.example.jotno.Models.Appointments;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class AppointmentsRecyclerAdapter extends RecyclerView.Adapter<AppointmentViewHolder> {
@@ -73,7 +77,12 @@ public class AppointmentsRecyclerAdapter extends RecyclerView.Adapter<Appointmen
 
         holder.viewBtn.setOnClickListener(v -> {
 
-            Toast.makeText(v.getContext(), "It will be viewed...", Toast.LENGTH_SHORT).show();
+            AppointmentViewFragment fragment = new AppointmentViewFragment();
+            FragmentManager fragmentManager = ((AppCompatActivity)v.getContext()).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         });
 
