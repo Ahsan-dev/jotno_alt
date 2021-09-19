@@ -22,6 +22,7 @@ import com.example.jotno.Fragment.ContuctUsFragment;
 import com.example.jotno.Fragment.BMICalculatorFragment;
 import com.example.jotno.Fragment.DashboardFragment;
 import com.example.jotno.Fragment.ProfileSettingsFragment;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.google.android.material.navigation.NavigationView;
 
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView drawerBtn;
     private Toolbar toolbar;
     private TextView toolTitle;
+    private TextView drawerPatientNameTxt;
 
 
 
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Paper.init(this);
 
         drawerBtn = findViewById(R.id.drawer_btn);
         toolbar = findViewById(R.id.main_toolbar_layout);
@@ -51,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
         drawerNavView.bringToFront();
         drawerNavView.setCheckedItem(R.id.drawer_nav_dashboard);
         drawerNavView.setItemIconTintList(null);
+
+        View header = drawerNavView.getHeaderView(0);
+        drawerPatientNameTxt = (TextView) header.findViewById(R.id.nav_header_user_name_id);
+        drawerPatientNameTxt.setText(Paper.book().read(PermanentPatient.userNameString));
 
         drawerBtn.setOnClickListener(v -> {
                 drawer = findViewById(R.id.drawer_layout_id);
@@ -158,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_layout);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 TextView message = (TextView) dialog.findViewById(R.id.alertDialogMessageId);
-                message.setText("Do you want to logout?");
+                message.setText("Do you want to logout?\nIf you logout you will not be eligible for our services!");
 
                 TextView yesBtn = dialog.findViewById(R.id.alert_positive_btn_id);
                 TextView noBtn = dialog.findViewById(R.id.alert_negative_btn_id);

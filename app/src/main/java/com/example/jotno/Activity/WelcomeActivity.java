@@ -10,7 +10,9 @@ import retrofit2.Response;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PatternMatcher;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +20,9 @@ import android.widget.Toast;
 
 import com.example.jotno.Activity.RegisterActivity;
 import com.example.jotno.Models.LoginUser;
+import com.example.jotno.Models.RegisterResponse;
 import com.example.jotno.Models.SliderItem;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.Prevalent;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
@@ -27,6 +31,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -38,6 +43,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private Api api;
     private String email, password;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,11 +103,12 @@ public class WelcomeActivity extends AppCompatActivity {
         });
 
         email = Paper.book().read(Prevalent.userEmailKey);
-        password  = Paper.book().read(Prevalent.userPassKey);
+        
 
-        if(email != "" && password != ""){
-            if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
-                allowDirectAccessToLogIn(email,password);
+
+        if(email != ""){
+            if(!TextUtils.isEmpty(email)){
+                allowDirectAccessToLogIn(email);
 
                 //loadingBar.setTitle("Already logged in...");
                 loadingBar.setMessage("Loading. Wait...");
@@ -116,47 +123,56 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
-    private void allowDirectAccessToLogIn(String email, String password) {
+    private void allowDirectAccessToLogIn(String email) {
 
 
-        LoginUser user = new LoginUser();
-        user.setEmail(email);
-        user.setPassword(password);
-        Call<ResponseBody> loginCall = api.loginUser(user);
+//        LoginUser user = new LoginUser();
+//        user.setEmail(email);
+//        user.setPassword(password);
+//        Call<RegisterResponse> loginCall = api.loginUser(user);
+//
+//        loginCall.enqueue(new Callback<RegisterResponse>() {
+//            @Override
+//            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+//
+//
+//                if(response.isSuccessful()){
+//                    if(!response.body().toString().equals("failed")){
+//                        loadingBar.dismiss();
+//                        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        startActivity(intent);
+//                    }else{
+//                        loadingBar.dismiss();
+//                        Toast.makeText(WelcomeActivity.this, "Incorrect email or password!", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                }else {
+//                    loadingBar.dismiss();
+//                    Toast.makeText(getApplicationContext(),"Response is null !!",Toast.LENGTH_LONG).show();
+//
+//                }
+//
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+//                loadingBar.dismiss();
+//                Toast.makeText(WelcomeActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
 
-        loginCall.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
 
+            loadingBar.dismiss();
+            Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
 
-                if(response.isSuccessful()){
-                    if(!response.body().toString().equals("failed")){
-                        loadingBar.dismiss();
-                        Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    }else{
-                        loadingBar.dismiss();
-                        Toast.makeText(WelcomeActivity.this, "Incorrect email or password!", Toast.LENGTH_SHORT).show();
-                    }
-
-                }else {
-                    loadingBar.dismiss();
-                    Toast.makeText(getApplicationContext(),"Response is null !!",Toast.LENGTH_LONG).show();
-
-                }
-
-
-
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                loadingBar.dismiss();
-                Toast.makeText(WelcomeActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        }
 
     }
 

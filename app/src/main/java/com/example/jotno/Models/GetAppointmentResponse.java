@@ -3,10 +3,10 @@ package com.example.jotno.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterResponse {
+public class GetAppointmentResponse {
 
-    @Expose
     @SerializedName("status")
+    @Expose
     private String status;
     @SerializedName("body")
     @Expose

@@ -2,6 +2,7 @@ package com.example.jotno.Retrofit;
 
 
 
+import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.LoginUser;
 import com.example.jotno.Models.RegisterResponse;
 
@@ -24,7 +25,7 @@ public interface Api {
             @Field("name") String name,
             @Field("date_of_birth") String date_of_birth,
             @Field("blood_group") String blood_group,
-            @Field("weight") String weight,
+            @Field("gender") String gender,
             @Field("email") String email,
             @Field("phone") String phone,
             @Field("address") String address,
@@ -36,8 +37,19 @@ public interface Api {
     );
 
 
-    @POST("api/login")
-    Call<ResponseBody> loginUser(@Body LoginUser userCredentials);
+    @POST("login")
+    Call<RegisterResponse> loginUser(@Body LoginUser userCredentials);
+
+    @FormUrlEncoded
+    @POST("appoinment-get")
+    Call<GetAppointmentResponse> getAppointment(
+
+            @Field("id") int id
+
+    );
+
+
+
 //
 //
 //    @GET("getpostfeed")

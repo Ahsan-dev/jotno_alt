@@ -1,5 +1,6 @@
 package com.example.jotno.Fragment;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,21 +23,33 @@ import com.example.jotno.AppointmentsFragment;
 import com.example.jotno.AppointmentsRecyclerAdapter;
 import com.example.jotno.BillsFragment;
 import com.example.jotno.Models.Appointments;
+import com.example.jotno.Models.GetAppointmentResponse;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.PrescriptionsFragment;
 import com.example.jotno.R;
+import com.example.jotno.Retrofit.Api;
+import com.example.jotno.Retrofit.RetroClient;
 import com.example.jotno.TestsFragment;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.paperdb.Paper;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class DashboardFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private ExtendedFloatingActionButton getAppointmentBtn;
     private CardView appointmentsCard, prescriptionsCard, allTestsCard, billsCard;
-    private TextView appointmentTxt, prescriptionsTxt, allTestsTxt, billsTxt;
+    private TextView appointmentTxt, prescriptionsTxt, allTestsTxt, billsTxt, welcomeTxt;
     private Fragment fragment;
+    private ProgressDialog loadingBar;
+    private Api api;
 
 
     @Override
@@ -44,6 +57,11 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        Paper.init(view.getContext());
+        loadingBar = new ProgressDialog(view.getContext());
+
+        api = RetroClient.getClient().create(Api.class);
 
         getAppointmentBtn = view.findViewById(R.id.dashboard_get_appointment_btn_id);
         getAppointmentBtn.setOnClickListener(this);
@@ -54,6 +72,9 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         billsCard = view.findViewById(R.id.dashboard_bills_card_id);
 
         appointmentTxt = view.findViewById(R.id.dashboard_statistics_appointments_txt_id);
+        welcomeTxt = view.findViewById(R.id.dashboard_welcome_patient_txt_id);
+        welcomeTxt.setText("Welcome\n     "+Paper.book().read(PermanentPatient.userNameString));
+
         prescriptionsTxt = view.findViewById(R.id.dashboard_statistics_prescriptions_txt_id);
         billsTxt = view.findViewById(R.id.dashboard_statistics_tests_txt_id);
 
@@ -109,7 +130,48 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         if(v.getId()==R.id.dashboard_get_appointment_btn_id){
 
-            Toast.makeText(v.getContext(), "You have got Appointment...", Toast.LENGTH_SHORT).show();
+            loadingBar.setTitle("Getting an appointment...");
+            loadingBar.setMessage("Plz wait, while we are checking the credentials");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+
+            api.getAppointment(Paper.book().read(PermanentPatient.userIdString))
+                    .enqueue(new Callback<GetAppointmentResponse>() {
+                        @Override
+                        public void onResponse(Call<GetAppointmentResponse> call, Response<GetAppointmentResponse> response) {
+                            if(response.isSuccessful()){
+
+                                if(response.body().getStatus().equals("success")){
+
+                                    loadingBar.dismiss();
+                                    Toast.makeText(v.getContext(), "You have got Appointment...", Toast.LENGTH_SHORT).show();
+
+                                }else{
+
+                                    loadingBar.dismiss();
+                                    Toast.makeText(v.getContext(), "Something wrong!!!", Toast.LENGTH_SHORT).show();
+
+
+                                }
+
+                            }else{
+
+                                loadingBar.dismiss();
+                                Toast.makeText(v.getContext(), "Response not found!!!", Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<GetAppointmentResponse> call, Throwable t) {
+                            loadingBar.dismiss();
+                            Toast.makeText(v.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
+
 
         }
 

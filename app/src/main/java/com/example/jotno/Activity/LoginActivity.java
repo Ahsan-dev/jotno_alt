@@ -24,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jotno.Models.LoginUser;
+import com.example.jotno.Models.RegisterResponse;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.Prevalent;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
@@ -111,8 +113,8 @@ public class LoginActivity extends AppCompatActivity {
         password = passEdt.getText().toString().trim();
         rememberChecked = rememberChecker.isChecked();
 
-        emailEdt.setText("");
-        passEdt.setText("");
+//        emailEdt.setText("");
+//        passEdt.setText("");
 
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -121,14 +123,14 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        else if(TextUtils.isEmpty(password)){
-            passEdt.setError("Plz enter your password.");
+        else if(TextUtils.isEmpty(password) || password.length()<6){
+            passEdt.setError("Plz enter your password of minimum 6 characters");
             passEdt.requestFocus();
             return;
         }
 
         else{
-            loadingBar.setTitle("Login to your Account");
+            loadingBar.setTitle("Logging in to your Account...");
             loadingBar.setMessage("Plz wait, while we are checking the credentials");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
@@ -150,31 +152,30 @@ public class LoginActivity extends AppCompatActivity {
         user.setEmail(email);
         user.setPassword(password);
 
-        Call<ResponseBody> loginCall = api.loginUser(user);
+        Call<RegisterResponse> loginCall = api.loginUser(user);
 
-        loginCall.enqueue(new Callback<ResponseBody>() {
+        loginCall.enqueue(new Callback<RegisterResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
 
                 if(response.isSuccessful()){
-                    if(!response.body().toString().equals("failed")){
+                    if(response.body().getStatus().equals("success")){
                         loadingBar.dismiss();
                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
 
-//                        String bg = loginResponse.getBloodGroup();
-//                        Paper.book().write(Permanent.uid,loginResponse.getUserId());
-//                        Paper.book().write(Permanent.userName,loginResponse.getUserName());
-//                        Paper.book().write(Permanent.days,loginResponse.getDays());
-//                        Paper.book().write(Permanent.bloodGrp,bg);
-//                        Paper.book().write(Permanent.sameBlood,loginResponse.getSameBlood());
-//                        Paper.book().write(Permanent.gender,loginResponse.getGender());
-//                        Paper.book().write(Permanent.image,loginResponse.getImage());
-//                        Paper.book().write(Permanent.policeStation,loginResponse.getPoliceStation());
-//                        Paper.book().write(Permanent.district,loginResponse.getDistrict());
-//                        Paper.book().write(Permanent.detailsAbout,loginResponse.getDetails());
+                        Paper.book().write(PermanentPatient.userIdString,response.body().getBody().getId());
+                        Paper.book().write(PermanentPatient.patientIdString,response.body().getBody().getPatientId());
+                        Paper.book().write(PermanentPatient.userNameString,response.body().getBody().getName());
+                        Paper.book().write(PermanentPatient.userDateOfBirthString,response.body().getBody().getDateOfBirth());
+                        Paper.book().write(PermanentPatient.userBloodGrpString,response.body().getBody().getBloodGroup());
+                        Paper.book().write(PermanentPatient.userGenderString,response.body().getBody().getGender());
+                        Paper.book().write(PermanentPatient.userEmailString,response.body().getBody().getEmail());
+                        Paper.book().write(PermanentPatient.userMobileString,response.body().getBody().getPhone());
+                        Paper.book().write(PermanentPatient.userCityString,response.body().getBody().getCity());
+                        Paper.book().write(PermanentPatient.userDistrictString,response.body().getBody().getDistrict());
+                        Paper.book().write(PermanentPatient.userAddressString,response.body().getBody().getAddress());
 
-//                        Log.d("bg",bg);
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -197,7 +198,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<RegisterResponse> call, Throwable t) {
                 loadingBar.dismiss();
                 Toast.makeText(LoginActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 

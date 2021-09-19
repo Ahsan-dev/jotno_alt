@@ -1,19 +1,24 @@
 package com.example.jotno.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import io.paperdb.Paper;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,19 +29,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jotno.Models.RegisterResponse;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Spinner bldGrpSpinner;
-    private String[] bloodGrpArray;
-    private ArrayAdapter<String> bloodGrpAdapter;
+    private Spinner bldGrpSpinner, genderSpinner;
+    private String[] bloodGrpArray, genderArray;
+    private ArrayAdapter<String> bloodGrpAdapter, genderAdapter ;
     private EditText fullNameEdt, dobEdt, weightEdt, emailEdt, mobileEdt, addressEdt, cityEdt, districtEdt, passEdt, confirmPassEdt;
     private boolean eyeState = true;
     private boolean confirmEyeState = true;
-    private String fullName, dob, bloodGroup, weight, email, mobile, address, city, district, password, confirmPass;
+    private String fullName, dob, bloodGroup, gender, email, mobile, address, city, district, password, confirmPass;
     private DatePickerDialog dobPicker;
     private StringBuilder dobString;
     private int bDay, bMonth, bYear;
@@ -45,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button registerNowBtn;
     private Api api;
     private TextView loginTxtBtn;
+    private ProgressDialog loadingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         bldGrpSpinner = findViewById(R.id.register_bld_grp_spinner_id);
+        genderSpinner = findViewById(R.id.register_gender_spinner_id);
         fullNameEdt = findViewById(R.id.register_full_name_edt);
         dobEdt = findViewById(R.id.register_dob_edt);
         weightEdt = findViewById(R.id.register_weight_edt);
@@ -68,11 +76,66 @@ public class RegisterActivity extends AppCompatActivity {
 
         api = RetroClient.getClient().create(Api.class);
 
+        Paper.init(this);
+        loadingBar = new ProgressDialog(this);
 
         bloodGrpArray = getResources().getStringArray(R.array.blood_grp);
-        bloodGrpAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_layout, R.id.spinner_item_text_id,bloodGrpArray);
+        genderArray = getResources().getStringArray(R.array.gender);
+
+        bloodGrpAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_layout, R.id.spinner_item_text_id,bloodGrpArray){
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent).findViewById(R.id.spinner_item_text_id);
+
+                ((TextView) v).setTextColor(getResources().getColor(R.color.purple_200));
+
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView,ViewGroup parent) {
+
+                View v = super.getDropDownView(position, convertView,parent).findViewById(R.id.spinner_item_text_id);
+
+                ((TextView) v).setGravity(Gravity.CENTER);
+
+                return v;
+
+            }
+
+
+
+        };
         bloodGrpAdapter.setDropDownViewResource(R.layout.spinner_item_layout);
         bldGrpSpinner.setAdapter(bloodGrpAdapter);
+
+        genderAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item_layout, R.id.spinner_item_text_id,genderArray){
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+
+                View v = super.getView(position, convertView, parent).findViewById(R.id.spinner_item_text_id);
+
+                ((TextView) v).setTextColor(getResources().getColor(R.color.purple_200));
+
+                return v;
+
+            }
+
+            public View getDropDownView(int position, View convertView,ViewGroup parent) {
+
+                View v = super.getDropDownView(position, convertView,parent).findViewById(R.id.spinner_item_text_id);
+
+                ((TextView) v).setGravity(Gravity.CENTER);
+
+                return v;
+
+            }
+
+
+        };
+        genderAdapter.setDropDownViewResource(R.layout.spinner_item_layout);
+        genderSpinner.setAdapter(genderAdapter);
 
         dobEdt.setOnClickListener(v -> {
             dobMaker();
@@ -147,7 +210,10 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         registerNowBtn.setOnClickListener(v -> {
-
+            loadingBar.setTitle("Registering your Account....");
+            loadingBar.setMessage("Plz wait, while we are registering you to our platform.");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
             validateFields();
 
 
@@ -204,7 +270,7 @@ public class RegisterActivity extends AppCompatActivity {
         fullName = fullNameEdt.getText().toString();
         dob = dobEdt.getText().toString();
         bloodGroup = bldGrpSpinner.getSelectedItem().toString();
-        weight = weightEdt.getText().toString();
+        gender = genderSpinner.getSelectedItem().toString();
         email = emailEdt.getText().toString();
         mobile = mobileEdt.getText().toString();
         address = addressEdt.getText().toString();
@@ -226,12 +292,13 @@ public class RegisterActivity extends AppCompatActivity {
             return;
 
         }else if(bloodGroup.equals("--Select--")) {
+
             Toast.makeText(this, "Select blood group", Toast.LENGTH_SHORT).show();
 
-        }else if(weight.equals("")){
-            weightEdt.setError("Enter your weight");
-            weightEdt.requestFocus();
-            return;
+        }else if(gender.equals("--Select--")) {
+
+            Toast.makeText(this, "Select Gender", Toast.LENGTH_SHORT).show();
+
         }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             emailEdt.setError("Enter your email with proper format");
             emailEdt.requestFocus();
@@ -270,19 +337,40 @@ public class RegisterActivity extends AppCompatActivity {
 
         } else{
 
-            api.registerUser(fullName,dob,bloodGroup,weight,email,mobile,address,city,district,password,confirmPass)
+            api.registerUser(fullName,dob,bloodGroup,gender,email,mobile,address,city,district,password,confirmPass)
                     .enqueue(new Callback<RegisterResponse>() {
                         @Override
                         public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                             if(response.isSuccessful()){
+                            loadingBar.dismiss();
+                                if(response.body().getStatus().equals("success")){
+                                    Toast.makeText(RegisterActivity.this,response.body().getStatus()+"\n Registration Successfully done.",Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(RegisterActivity.this,response.body().getSuccess(),Toast.LENGTH_SHORT).show();
-                                Intent homeIntent = new Intent(RegisterActivity.this,MainActivity.class);
-                                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(homeIntent);
+                                    Paper.book().write(PermanentPatient.userIdString,response.body().getBody().getId());
+                                    Paper.book().write(PermanentPatient.patientIdString,response.body().getBody().getPatientId());
+                                    Paper.book().write(PermanentPatient.userNameString,response.body().getBody().getName());
+                                    Paper.book().write(PermanentPatient.userDateOfBirthString,response.body().getBody().getDateOfBirth());
+                                    Paper.book().write(PermanentPatient.userBloodGrpString,response.body().getBody().getBloodGroup());
+                                    Paper.book().write(PermanentPatient.userGenderString,response.body().getBody().getGender());
+                                    Paper.book().write(PermanentPatient.userEmailString,response.body().getBody().getEmail());
+                                    Paper.book().write(PermanentPatient.userMobileString,response.body().getBody().getPhone());
+                                    Paper.book().write(PermanentPatient.userCityString,response.body().getBody().getCity());
+                                    Paper.book().write(PermanentPatient.userDistrictString,response.body().getBody().getDistrict());
+                                    Paper.book().write(PermanentPatient.userAddressString,response.body().getBody().getAddress());
+
+                                    Intent homeIntent = new Intent(RegisterActivity.this,MainActivity.class);
+                                    homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(homeIntent);
+
+                                }else{
+                                    loadingBar.dismiss();
+                                    Toast.makeText(RegisterActivity.this,response.body().getStatus()+"\n Email or Mobile already exists!",Toast.LENGTH_SHORT).show();
+
+                                }
+
 
                             }else{
-
+                                loadingBar.dismiss();
                                 Toast.makeText(RegisterActivity.this,"Response not found!",Toast.LENGTH_SHORT).show();
 
 
@@ -291,7 +379,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<RegisterResponse> call, Throwable t) {
-
+                            loadingBar.dismiss();
                             Toast.makeText(RegisterActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                         }

@@ -1,5 +1,6 @@
 package com.example.jotno;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,10 +14,19 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.jotno.Models.Appointments;
+import com.example.jotno.Models.GetAppointmentResponse;
+import com.example.jotno.PaperDB.PermanentPatient;
+import com.example.jotno.Retrofit.Api;
+import com.example.jotno.Retrofit.RetroClient;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.paperdb.Paper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class AppointmentsFragment extends Fragment implements View.OnClickListener {
@@ -27,12 +37,18 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
     private RecyclerView appointmentRecycler;
     private List<Appointments> appointmentList;
     private AppointmentsRecyclerAdapter appoAdapter;
+    private ProgressDialog loadingBar;
+    private Api api;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_appointments, container, false);
+
+        loadingBar = new ProgressDialog(view.getContext());
+
+        api = RetroClient.getClient().create(Api.class);
 
         todayBtn = view.findViewById(R.id.appointments_today_option_btn_id);
         allBtn = view.findViewById(R.id.appointments_all_option_btn_id);
@@ -129,7 +145,47 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
 
         if(v.getId()==R.id.appointments_get_appointment_btn_id){
 
-            Toast.makeText(v.getContext(), "You have got Appointment...", Toast.LENGTH_SHORT).show();
+            loadingBar.setTitle("Getting an appointment...");
+            loadingBar.setMessage("Plz wait, while we are checking the credentials");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+
+            api.getAppointment(Paper.book().read(PermanentPatient.userIdString))
+                    .enqueue(new Callback<GetAppointmentResponse>() {
+                        @Override
+                        public void onResponse(Call<GetAppointmentResponse> call, Response<GetAppointmentResponse> response) {
+                            if(response.isSuccessful()){
+
+                                if(response.body().getStatus().equals("success")){
+
+                                    loadingBar.dismiss();
+                                    Toast.makeText(v.getContext(), "You have got Appointment...", Toast.LENGTH_SHORT).show();
+
+                                }else{
+
+                                    loadingBar.dismiss();
+                                    Toast.makeText(v.getContext(), "Something wrong!!!", Toast.LENGTH_SHORT).show();
+
+
+                                }
+
+                            }else{
+
+                                loadingBar.dismiss();
+                                Toast.makeText(v.getContext(), "Response not found!!!", Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<GetAppointmentResponse> call, Throwable t) {
+                            loadingBar.dismiss();
+                            Toast.makeText(v.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    });
 
         }
 

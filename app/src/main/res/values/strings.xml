@@ -59,6 +59,7 @@
     <string name="high_bmi_first_advice_string">Drink water a half hour before meals.</string>
     <string name="high_bmi_second_advice_string">Eat only two meals per day and make sure that they contains a high protein.</string>
     <string name="high_bmi_third_advice_string">Drink coffee or tea and Avoid sugary food.</string>
+
     <string-array name="blood_grp">
         <item>--Select--</item>
         <item>A+</item>
@@ -69,6 +70,16 @@
         <item>B-</item>
         <item>O+</item>
         <item>O-</item>
+
+    </string-array>
+
+
+    <string-array name="gender">
+
+        <item>--Select--</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Others</item>
 
     </string-array>
 

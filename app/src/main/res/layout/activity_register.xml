@@ -152,37 +152,36 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/register_weight_linear"
+                        android:id="@+id/register_gender_linear"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
                         android:background="@drawable/register_edt_fields"
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Weight"
+                            android:text="Gender"
                             android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
                             android:textSize="12sp"
+                            android:layout_marginTop="5dp"
                             android:textColor="@color/light_red"
                             />
-                        <EditText
-                            android:id="@+id/register_weight_edt"
+                        <Spinner
+                            android:id="@+id/register_gender_spinner_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Your weight in number"
                             android:backgroundTint="@android:color/transparent"
-                            android:textColorHint="@color/purple_200"
-                            android:inputType="numberSigned"
+                            android:textColorHint="@color/black"
                             android:textColor="@color/black"
                             android:paddingBottom="5dp"
                             android:paddingTop="0dp"
-                            android:textSize="13sp"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light"
                             android:paddingLeft="10dp"
                             />
+
 
                     </LinearLayout>
 
