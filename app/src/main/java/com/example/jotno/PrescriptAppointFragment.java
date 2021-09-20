@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.jotno.Models.TestsOnPrescript;
 
@@ -23,6 +24,7 @@ public class PrescriptAppointFragment extends Fragment {
     private List<Medicines> medicinesList;
     private PrescriptTestItemRecyclerAdapter prescriptTestsAdapter;
     private PrescriptMedicinesItemRecyclerAdapter prescriptMedicinesItemRecyclerAdapter;
+    private Button downloadBtn, billBtn, reportBtn, addReportBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

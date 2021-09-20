@@ -23,6 +23,7 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
     private View view;
     private TextView detailsTxtBtn, prescriptionTxtBtn, appointmentNo;
     private RelativeLayout mainRelativeScreen;
+    private int position = -1;
 
 
     @Override
@@ -30,6 +31,8 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_appointment_view, container, false);
+
+        position = getArguments().getInt("position",0);
 
         appointmentNo = view.findViewById(R.id.view_appointment_appointment_no_text);
         detailsTxtBtn = view.findViewById(R.id.view_appointment_appointment_details_text_id);
@@ -47,6 +50,9 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
         AppointmentDetailsFragment fragment = new AppointmentDetailsFragment();
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Bundle bundles = new Bundle();
+        bundles.putInt("position",position);
+        fragment.setArguments(bundles);
         fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -67,6 +73,9 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
             AppointmentDetailsFragment fragment = new AppointmentDetailsFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Bundle bundles = new Bundle();
+            bundles.putInt("position",position);
+            fragment.setArguments(bundles);
             fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();

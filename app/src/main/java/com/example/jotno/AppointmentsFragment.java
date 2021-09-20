@@ -13,8 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.jotno.Models.AppointmentBody;
+import com.example.jotno.Models.AppointmentResponse;
 import com.example.jotno.Models.Appointments;
+import com.example.jotno.Models.Datum;
 import com.example.jotno.Models.GetAppointmentResponse;
+import com.example.jotno.PaperDB.AppointmentPermanent;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
@@ -35,7 +39,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
     private Button todayBtn, allBtn;
     private ExtendedFloatingActionButton getAppointmentBtn;
     private RecyclerView appointmentRecycler;
-    private List<Appointments> appointmentList;
+    private List<Datum> appointmentList;
     private AppointmentsRecyclerAdapter appoAdapter;
     private ProgressDialog loadingBar;
     private Api api;
@@ -49,6 +53,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
         loadingBar = new ProgressDialog(view.getContext());
 
         api = RetroClient.getClient().create(Api.class);
+        Paper.init(view.getContext());
 
         todayBtn = view.findViewById(R.id.appointments_today_option_btn_id);
         allBtn = view.findViewById(R.id.appointments_all_option_btn_id);
@@ -61,19 +66,40 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
         allBtn.setTextColor(getResources().getColor(R.color.red));
 
         appointmentList = new ArrayList<>();
-        appointmentList.clear();
-        appointmentList.add(new Appointments("E-12356","completed","12/01/2021"));
-        appointmentList.add(new Appointments("A-12356","pending","12/01/2021"));
-        appointmentList.add(new Appointments("D-12356","confirm","12/01/2021"));
-        appointmentList.add(new Appointments("G-12356","pending","12/01/2021"));
-        appointmentList.add(new Appointments("K-12356","completed","12/01/2021"));
-        appointmentList.add(new Appointments("L-12356","cancelled","12/01/2021"));
 
-        appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
-        appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        appointmentRecycler.hasFixedSize();
-        appointmentRecycler.setAdapter(appoAdapter);
-        appoAdapter.notifyDataSetChanged();
+
+        api.getTodayAppointmentList(Paper.book().read(PermanentPatient.userIdString))
+                .enqueue(new Callback<AppointmentResponse>() {
+                    @Override
+                    public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+
+                        if(response.isSuccessful()){
+
+                            appointmentList = response.body().getBody().getData();
+                            Paper.book().write(AppointmentPermanent.appointmentListString,appointmentList);
+                            appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
+                            appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                            appointmentRecycler.hasFixedSize();
+                            appointmentRecycler.setAdapter(appoAdapter);
+                            appoAdapter.notifyDataSetChanged();
+
+                        }else{
+
+                            Toast.makeText(view.getContext(), "Response Null!!", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+
+                        Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
 
         todayBtn.setOnClickListener(this);
         allBtn.setOnClickListener(this);
@@ -94,19 +120,39 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
             todayBtn.setTextColor(getResources().getColor(android.R.color.white));
             allBtn.setBackgroundColor(getResources().getColor(android.R.color.transparent));
             allBtn.setTextColor(getResources().getColor(R.color.red));
-            appointmentList.clear();
-            appointmentList.add(new Appointments("E-12356","completed","12/01/2021"));
-            appointmentList.add(new Appointments("A-12356","pending","12/01/2021"));
-            appointmentList.add(new Appointments("D-12356","confirm","12/01/2021"));
-            appointmentList.add(new Appointments("G-12356","pending","12/01/2021"));
-            appointmentList.add(new Appointments("K-12356","completed","12/01/2021"));
-            appointmentList.add(new Appointments("L-12356","cancelled","12/01/2021"));
 
-            appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
-            appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-            appointmentRecycler.hasFixedSize();
-            appointmentRecycler.setAdapter(appoAdapter);
-            appoAdapter.notifyDataSetChanged();
+
+            api.getTodayAppointmentList(Paper.book().read(PermanentPatient.userIdString))
+                    .enqueue(new Callback<AppointmentResponse>() {
+                        @Override
+                        public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+
+                            if(response.isSuccessful()){
+
+                                appointmentList = response.body().getBody().getData();
+                                Paper.book().write(AppointmentPermanent.appointmentListString,appointmentList);
+                                appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
+                                appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                                appointmentRecycler.hasFixedSize();
+                                appointmentRecycler.setAdapter(appoAdapter);
+                                appoAdapter.notifyDataSetChanged();
+
+                            }else{
+
+                                Toast.makeText(view.getContext(), "Response Null!!", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+
+                            Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
 
 
 
@@ -120,26 +166,39 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
             allBtn.setBackgroundColor(getResources().getColor(R.color.red));
             allBtn.setTextColor(getResources().getColor(android.R.color.white));
 
-            appointmentList.clear();
-            appointmentList.add(new Appointments("E-12356","completed","12/01/2021"));
-            appointmentList.add(new Appointments("A-12356","pending","12/01/2021"));
-            appointmentList.add(new Appointments("D-12356","confirm","12/01/2021"));
-            appointmentList.add(new Appointments("G-12356","pending","12/01/2021"));
-            appointmentList.add(new Appointments("K-12356","completed","12/01/2021"));
-            appointmentList.add(new Appointments("L-12356","cancelled","12/01/2021"));
 
-            appointmentList.add(new Appointments("E-12356","completed","13/01/2021"));
-            appointmentList.add(new Appointments("A-12356","pending","15/01/2021"));
-            appointmentList.add(new Appointments("D-12356","confirm","10/01/2021"));
-            appointmentList.add(new Appointments("G-12356","pending","10/01/2021"));
-            appointmentList.add(new Appointments("K-12356","completed","22/01/2021"));
-            appointmentList.add(new Appointments("L-12356","cancelled","12/01/2021"));
 
-            appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
-            appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-            appointmentRecycler.hasFixedSize();
-            appointmentRecycler.setAdapter(appoAdapter);
-            appoAdapter.notifyDataSetChanged();
+            api.getAllAppointmentList(Paper.book().read(PermanentPatient.userIdString))
+                    .enqueue(new Callback<AppointmentResponse>() {
+                        @Override
+                        public void onResponse(Call<AppointmentResponse> call, Response<AppointmentResponse> response) {
+
+                            if(response.isSuccessful()){
+
+                                appointmentList = response.body().getBody().getData();
+                                Paper.book().write(AppointmentPermanent.appointmentListString,appointmentList);
+                                appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
+                                appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                                appointmentRecycler.hasFixedSize();
+                                appointmentRecycler.setAdapter(appoAdapter);
+                                appoAdapter.notifyDataSetChanged();
+
+                            }else{
+
+                                Toast.makeText(view.getContext(), "Response Null!!", Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<AppointmentResponse> call, Throwable t) {
+
+                            Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
 
         }
 

@@ -8,6 +8,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/drawable/bill_info_back.xml" value="0.32290076335877865" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/drawable/person_icon_black.xml" value="0.32290076335877865" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/activity_register.xml" value="0.153125" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/dialog_layout.xml" value="0.1" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
@@ -15,9 +17,9 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/dialog_layout.xml" value="0.12239583333333333" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointment_details.xml" value="0.22" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointment_view.xml" value="0.2" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointments.xml" value="0.225" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointments.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_dashboard.xml" value="0.17291666666666666" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.225" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.33" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescriptions.xml" value="0.21" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_vew_appointment.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/nav_header_layout.xml" value="0.20416666666666666" />

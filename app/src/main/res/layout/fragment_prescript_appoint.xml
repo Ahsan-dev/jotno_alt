@@ -6,296 +6,682 @@
     android:orientation="vertical"
     tools:context=".PrescriptAppointFragment">
 
-    <ScrollView
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:id="@+id/prescript_appointment_tab_txt_btns_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
+            >
+
+        <Button
+            android:id="@+id/prescript_appointment_download_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Download"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            />
+
+        <Button
+            android:id="@+id/prescript_appointment_bill_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bill"
+            android:gravity="center"
+            android:textSize="10sp"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+
+            />
+        <Button
+            android:id="@+id/prescript_appointment_report_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:textAllCaps="false"
+            android:layout_marginRight="10dp"
+            />
+        <Button
+            android:id="@+id/prescript_appointment_add_report_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Report"
+            android:textSize="10sp"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_marginRight="20dp"
+            />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/prescript_appointment_prescription_view_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
-        <RelativeLayout
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/prescript_appointment_prescript_header_linear"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/edt_field_color"
-                android:paddingBottom="8dp"
-                >
+                android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/prescript_appointment_doctor_name_id_deg_linear"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/prescript_appointment_prescript_header_linear"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="vertical">
+                    android:background="@color/edt_field_color"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
 
-                    <TextView
-                        android:id="@+id/prescript_appointment_doctor_name"
+                    <LinearLayout
+                        android:id="@+id/prescript_appointment_doctor_name_id_deg_linear"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="Doctor's Name"
-                        android:textColor="@color/black" />
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/prescript_appointment_doctor_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Doctor's Name"
+                            android:textColor="@color/black" />
+
+
+                        <TextView
+                            android:id="@+id/prescript_appointment_doctor_designation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cardiologist"
+                            android:textColor="@color/purple_200" />
+
+
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/prescript_appointment_doctor_designation"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/prescript_appointment_doctor_mobile"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cardiologist"
-                        android:textColor="@color/purple_200" />
+                        android:layout_below="@id/prescript_appointment_doctor_name_id_deg_linear"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:drawableLeft="@drawable/call_icon"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="0177856665*" />
+
+                    <TextView
+                        android:id="@+id/prescript_appointment_doctor_hospital"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/prescript_appointment_doctor_mobile"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="6dp"
+                        android:drawableLeft="@drawable/hospital_icon"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="Doctor's Hospital" />
+
+                    <TextView
+                        android:id="@+id/prescript_appointment_doctor_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/prescript_appointment_doctor_hospital"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="6dp"
+                        android:drawableLeft="@drawable/location_icon"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="Doctor's Address" />
+
+                    <TextView
+                        android:id="@+id/prescript_appointment_doctor_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/prescript_appointment_doctor_address"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="6dp"
+                        android:drawableLeft="@drawable/time_icon"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="8.30 am to 10.30 am, SUN, MON, TUE" />
 
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/prescript_appointment_doctor_mobile"
-                    android:layout_below="@id/prescript_appointment_doctor_name_id_deg_linear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="0177856665*"
-                    android:drawableLeft="@drawable/call_icon"
-                    android:drawablePadding="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"/>
-
-                <TextView
-                    android:id="@+id/prescript_appointment_doctor_hospital"
-                    android:layout_below="@id/prescript_appointment_doctor_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="6dp"
-                    android:text="Doctor's Hospital"
-                    android:drawableLeft="@drawable/hospital_icon"
-                    android:drawablePadding="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"/>
-
-                <TextView
-                    android:id="@+id/prescript_appointment_doctor_address"
-                    android:layout_below="@id/prescript_appointment_doctor_hospital"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="6dp"
-                    android:text="Doctor's Address"
-                    android:drawableLeft="@drawable/location_icon"
-                    android:drawablePadding="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"/>
-
-                <TextView
-                    android:id="@+id/prescript_appointment_doctor_time"
-                    android:layout_below="@id/prescript_appointment_doctor_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="6dp"
-                    android:text="8.30 am to 10.30 am, SUN, MON, TUE"
-                    android:drawableLeft="@drawable/time_icon"
-                    android:drawablePadding="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center_vertical"/>
-
-
-
-            </LinearLayout>
-
-            <HorizontalScrollView
-                android:id="@+id/prescript_appointment_patient_info"
-                android:layout_below="@id/prescript_appointment_prescript_header_linear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/light_gray"
-                android:scrollbars="none"
-                >
-                <LinearLayout
+                <HorizontalScrollView
+                    android:id="@+id/prescript_appointment_patient_info"
+                    android:layout_below="@id/prescript_appointment_prescript_header_linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
+                    android:background="@color/light_gray"
+                    android:scrollbars="none"
+                    >
                     <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        >
+                        android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Patient ID: "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            />
-                        <TextView
-                            android:id="@+id/prescript_appointment_patient_id_txt"
-                            android:layout_width="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Patient ID: "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                />
+                            <TextView
+                                android:id="@+id/prescript_appointment_patient_id_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="P-256987"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="P-256987"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            />
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Patient Name: "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                />
+                            <TextView
+                                android:id="@+id/prescript_appointment_patient_name_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Patient's Name"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Patient's Age: "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                />
+                            <TextView
+                                android:id="@+id/prescript_appointment_patient_age_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Age"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Patient's Gender: "
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                />
+                            <TextView
+                                android:id="@+id/prescript_appointment_patient_gender_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Patient's Gender"
+                                android:layout_marginLeft="5dp"
+                                android:textColor="@color/black"
+                                android:textStyle="bold"
+                                />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
+                </HorizontalScrollView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/prescript_appointment_tests_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/prescript_appointment_patient_info"
+                    android:background="@color/light_gray"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp" />
+
+                <LinearLayout
+                    android:id="@+id/prescript_appointment_main_prescription_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/prescript_appointment_tests_recycler"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+
+                    >
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
                         >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Patient Name: "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/prescript_appointment_advice_findings_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+
                             />
-                        <TextView
-                            android:id="@+id/prescript_appointment_patient_name_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Patient's Name"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            />
+
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
                         android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-
                         >
 
-                        <TextView
+                        <ImageView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Patient's Age: "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            />
-                        <TextView
-                            android:id="@+id/prescript_appointment_patient_age_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Age"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            />
+                            android:layout_height="30dp"
+                            android:src="@drawable/rx"
+                            android:adjustViewBounds="true"
+                            android:layout_margin="5dp"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/prescript_appointment_medicines_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Patient's Gender: "
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            />
-                        <TextView
-                            android:id="@+id/prescript_appointment_patient_gender_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Patient's Gender"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/black"
-                            android:textStyle="bold"
-                            />
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
-            </HorizontalScrollView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/prescript_appointment_tests_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/prescript_appointment_patient_info"
-                android:background="@color/light_gray"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="5dp" />
 
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/prescript_appointment_bill_view_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
             <LinearLayout
-                android:id="@+id/prescript_appointment_main_prescription_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/prescript_appointment_tests_recycler"
-                android:orientation="horizontal"
-                android:weightSum="2"
-
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
                 >
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download Bill Invoice"
+                    android:textSize="10sp"
+                    android:textAllCaps="false"/>
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:layout_marginTop="20dp"
                     >
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/prescript_appointment_advice_findings_recycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
+                    <TextView
+                        android:id="@+id/prescript_appointment_bill_title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prescription To:"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/prescript_appointment_bill_patient_name_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Admond Henry"
+                        android:drawableLeft="@drawable/person_icon_black"
+                        android:textColor="@color/black"
                         android:layout_marginLeft="10dp"
-
+                        />
+                    <TextView
+                        android:id="@+id/prescript_appointment_bill_patient_location_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uttara, Dhaka"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/location_icon"
+                        />
+                    <TextView
+                        android:id="@+id/prescript_appointment_bill_patient_mobile_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0169*******"
+                        android:textColor="@color/black"
+                        android:drawableLeft="@drawable/call_icon"
+                        android:layout_marginLeft="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/prescript_appointment_bill_patient_email_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="some@example.com"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="10dp"
+                        android:drawableLeft="@drawable/email_icon"
                         />
 
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:weightSum="2"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bill_info_back"
+                        android:padding="3dp"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Prescription No: "
+                            android:background="@color/light_gray"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="P-256987"
+                            android:gravity="right"
+                            android:paddingRight="10dp"
+                            />
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:weightSum="2"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bill_info_back"
+                        android:padding="3dp"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Status: "
+                            android:background="@color/light_gray"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="paid"
+                            android:gravity="right"
+                            android:paddingRight="10dp"
+                            />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:weightSum="2"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bill_info_back"
+                        android:padding="3dp"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Invoice Date: "
+                            android:background="@color/light_gray"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="12/02/2021"
+                            android:gravity="right"
+                            android:paddingRight="10dp"
+                            />
+
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:weightSum="2"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bill_info_back"
+                        android:padding="3dp"
+                        >
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Amount: "
+                            android:background="@color/light_gray"
+                            android:paddingLeft="10dp"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="BDT 5201 Taka"
+                            android:gravity="right"
+                            android:paddingRight="10dp"
+                            android:textStyle="bold"
+                            />
+
+
+
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:src="@drawable/rx"
-                    android:adjustViewBounds="true"
-                    android:layout_margin="5dp"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="25dp"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:weightSum="2"
+                        android:background="@color/green"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        >
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Test Name"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Bill"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/light_red"/>
+
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/prescript_appointment_medicines_recycler"
+                        android:id="@+id/prescript_appointment_bill_details_recycler"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/red"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        android:weightSum="2">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Total Bill"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="5201"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
+
 
 
             </LinearLayout>
-
-
-
-        </RelativeLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>
