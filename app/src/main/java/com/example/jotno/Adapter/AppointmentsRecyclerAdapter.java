@@ -1,18 +1,15 @@
-package com.example.jotno;
+package com.example.jotno.Adapter;
 
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.jotno.Fragment.AppointmentViewFragment;
-import com.example.jotno.Models.AppointmentResponse;
-import com.example.jotno.Models.Appointments;
 import com.example.jotno.Models.Datum;
+import com.example.jotno.R;
+import com.example.jotno.ViewHolder.AppointmentViewHolder;
 
 import java.util.List;
 

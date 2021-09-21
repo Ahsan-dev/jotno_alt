@@ -2,28 +2,18 @@ package com.example.jotno.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.paperdb.Paper;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PatternMatcher;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.example.jotno.Activity.RegisterActivity;
-import com.example.jotno.Models.LoginUser;
-import com.example.jotno.Models.RegisterResponse;
 import com.example.jotno.Models.SliderItem;
-import com.example.jotno.PaperDB.PermanentPatient;
-import com.example.jotno.Prevalent;
+import com.example.jotno.PaperDB.Prevalent;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
@@ -31,7 +21,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class WelcomeActivity extends AppCompatActivity {
 

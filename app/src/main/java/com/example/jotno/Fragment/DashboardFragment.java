@@ -1,42 +1,27 @@
 package com.example.jotno.Fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jotno.AppointmentsFragment;
-import com.example.jotno.AppointmentsRecyclerAdapter;
-import com.example.jotno.BillsFragment;
-import com.example.jotno.Models.Appointments;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.PaperDB.PermanentPatient;
-import com.example.jotno.PrescriptionsFragment;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
-import com.example.jotno.TestsFragment;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.paperdb.Paper;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

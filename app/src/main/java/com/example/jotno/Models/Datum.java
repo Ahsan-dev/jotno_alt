@@ -5,8 +5,11 @@ package com.example.jotno.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 
 public class Datum {
+
 
     @SerializedName("id")
     @Expose
@@ -35,6 +38,9 @@ public class Datum {
     @SerializedName("prescription_id")
     @Expose
     private Integer prescriptionId;
+    @SerializedName("initial_tests")
+    @Expose
+    private InitialTests initialTests;
 
     public Integer getId() {
         return id;
@@ -106,5 +112,13 @@ public class Datum {
 
     public void setPrescriptionId(Integer prescriptionId) {
         this.prescriptionId = prescriptionId;
+    }
+
+    public InitialTests getInitialTests() {
+        return initialTests;
+    }
+
+    public void setInitialTests(InitialTests initialTests) {
+        this.initialTests = initialTests;
     }
 }

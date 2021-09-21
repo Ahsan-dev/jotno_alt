@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.jotno.Models.AppointmentBody;
+import com.example.jotno.Adapter.AppointmentsRecyclerAdapter;
 import com.example.jotno.Models.AppointmentResponse;
-import com.example.jotno.Models.Appointments;
 import com.example.jotno.Models.Datum;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.PaperDB.AppointmentPermanent;
 import com.example.jotno.PaperDB.PermanentPatient;
+import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;

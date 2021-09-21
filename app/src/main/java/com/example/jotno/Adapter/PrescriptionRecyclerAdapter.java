@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.jotno.Models.Prescriptions;
+import com.example.jotno.R;
+import com.example.jotno.ViewHolder.PrescriptionItemViewHolder;
 
 import java.util.List;
 

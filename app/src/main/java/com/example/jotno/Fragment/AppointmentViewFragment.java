@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.jotno.AppointmentDetailsFragment;
-import com.example.jotno.PrescriptAppointFragment;
-import com.example.jotno.PrescriptionsFragment;
+import com.example.jotno.Models.Datum;
+import com.example.jotno.PaperDB.AppointmentPermanent;
 import com.example.jotno.R;
+
+import java.util.List;
+
+import io.paperdb.Paper;
 
 
 public class AppointmentViewFragment extends Fragment implements View.OnClickListener {
@@ -24,6 +27,7 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
     private TextView detailsTxtBtn, prescriptionTxtBtn, appointmentNo;
     private RelativeLayout mainRelativeScreen;
     private int position = -1;
+    private List<Datum> appoList;
 
 
     @Override
@@ -33,11 +37,15 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
         view = inflater.inflate(R.layout.fragment_appointment_view, container, false);
 
         position = getArguments().getInt("position",0);
+        appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
 
         appointmentNo = view.findViewById(R.id.view_appointment_appointment_no_text);
         detailsTxtBtn = view.findViewById(R.id.view_appointment_appointment_details_text_id);
         prescriptionTxtBtn = view.findViewById(R.id.view_appointment_prescription_text_id);
         mainRelativeScreen = view.findViewById(R.id.view_appointment_relative);
+
+
+        appointmentNo.setText("Appointment No : "+appoList.get(position).getAppoinmentNo());
 
         detailsTxtBtn.setOnClickListener(this);
         prescriptionTxtBtn.setOnClickListener(this);
@@ -92,6 +100,9 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
             PrescriptAppointFragment fragment = new PrescriptAppointFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Bundle bundles = new Bundle();
+            bundles.putInt("position",position);
+            fragment.setArguments(bundles);
             fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();

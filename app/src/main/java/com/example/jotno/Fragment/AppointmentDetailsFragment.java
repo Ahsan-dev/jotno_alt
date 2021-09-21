@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Fragment;
 
 import android.os.Bundle;
 
@@ -15,7 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.jotno.Models.Datum;
+import com.example.jotno.Models.Datum__1;
 import com.example.jotno.PaperDB.AppointmentPermanent;
+import com.example.jotno.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +33,7 @@ public class AppointmentDetailsFragment extends Fragment implements View.OnClick
     private ImageView doctorImage;
     private TextView doctorNameTxt, doctorDesignationTxt, doctorIdTxt, doctorMobileTxt, doctorEmailTxt, doctorHospitalTxt, doctorAddressTxt, doctorTimeTxt, noDoctorTxt;
     private ListView testsListView;
+    private int testListSize = 0;
     private View view;
     private List<String> testsList;
     private ArrayAdapter<String> testAdapter;
@@ -104,9 +107,15 @@ public class AppointmentDetailsFragment extends Fragment implements View.OnClick
 
 
         testsList = new ArrayList<>();
-        testsList.add("Height: 50cm");
-        testsList.add("Weight: 70kg");
-        testsList.add("BMI: 21");
+
+        testListSize = appoList.get(position).getInitialTests().getData().size();
+
+        for(int i=0;i<testListSize;i++){
+
+            testsList.add(appoList.get(position).getInitialTests().getData().get(i).getName()+" : "+appoList.get(position).getInitialTests().getData().get(i).getValue());
+
+        }
+
         testsListView = view.findViewById(R.id.appointment_details_tests_list);
         testAdapter = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_list_item_1,android.R.id.text1,testsList);
         testsListView.setAdapter(testAdapter);

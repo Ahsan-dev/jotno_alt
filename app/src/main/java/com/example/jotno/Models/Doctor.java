@@ -1,6 +1,7 @@
 
 package com.example.jotno.Models;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

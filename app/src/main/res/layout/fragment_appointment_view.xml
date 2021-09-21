@@ -9,13 +9,12 @@
         android:id="@+id/view_appointment_appointment_no_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Appointment No: A-569874"
         android:layout_centerHorizontal="true"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:layout_marginTop="20dp"
-        />
+        android:text="Appointment No: A-569874"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:id="@+id/view_appointment_main_option_tab_linear"

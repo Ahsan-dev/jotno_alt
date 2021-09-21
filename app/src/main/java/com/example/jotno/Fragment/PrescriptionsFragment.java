@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Fragment;
 
 import android.os.Bundle;
 
@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.jotno.Adapter.PrescriptionRecyclerAdapter;
 import com.example.jotno.Models.Prescriptions;
+import com.example.jotno.R;
 
 import java.util.ArrayList;
 import java.util.List;

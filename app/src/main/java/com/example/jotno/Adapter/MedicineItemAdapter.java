@@ -1,10 +1,12 @@
-package com.example.jotno;
+package com.example.jotno.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.jotno.R;
 import com.example.jotno.Room.Entity.Medicine;
+import com.example.jotno.ViewHolder.MedicineItemViewHolder;
 
 import org.jetbrains.annotations.NotNull;
 

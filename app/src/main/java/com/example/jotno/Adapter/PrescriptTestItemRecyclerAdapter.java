@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -6,15 +6,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jotno.Models.InitialTest;
 import com.example.jotno.Models.TestsOnPrescript;
+import com.example.jotno.R;
+import com.example.jotno.ViewHolder.PrescriptTestsItemViewHolder;
 
 import java.util.List;
 
 public class PrescriptTestItemRecyclerAdapter extends RecyclerView.Adapter<PrescriptTestsItemViewHolder> {
 
-    private List<TestsOnPrescript> testsList;
+    private List<InitialTest> testsList;
 
-    public PrescriptTestItemRecyclerAdapter(List<TestsOnPrescript> testsList) {
+    public PrescriptTestItemRecyclerAdapter(List<InitialTest> testsList) {
         this.testsList = testsList;
     }
 
@@ -27,10 +30,10 @@ public class PrescriptTestItemRecyclerAdapter extends RecyclerView.Adapter<Presc
     @Override
     public void onBindViewHolder(@NonNull PrescriptTestsItemViewHolder holder, int position) {
 
-        TestsOnPrescript tests = testsList.get(position);
+        InitialTest tests = testsList.get(position);
 
-        holder.prescriptTestNameTxt.setText(tests.getTestName());
-        holder.prescriptTestValueTxt.setText(tests.getTestValue());
+        holder.prescriptTestNameTxt.setText(tests.getName());
+        holder.prescriptTestValueTxt.setText(tests.getResult());
 
     }
 

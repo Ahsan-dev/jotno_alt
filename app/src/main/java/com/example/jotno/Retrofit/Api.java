@@ -5,6 +5,7 @@ package com.example.jotno.Retrofit;
 import com.example.jotno.Models.AppointmentResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.LoginUser;
+import com.example.jotno.Models.PrescriptionResponse;
 import com.example.jotno.Models.RegisterResponse;
 
 import java.util.List;
@@ -62,6 +63,14 @@ public interface Api {
 
     @GET("appoinment-all")
     Call<AppointmentResponse> getAllAppointmentList(
+
+            @Query("id") int id
+
+    );
+
+
+    @GET("prescription-get")
+    Call<PrescriptionResponse> getPrescriptionData(
 
             @Query("id") int id
 

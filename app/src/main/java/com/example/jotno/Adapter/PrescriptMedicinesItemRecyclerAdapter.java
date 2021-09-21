@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -6,13 +6,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.jotno.Medicines;
+import com.example.jotno.Models.Medicine;
+import com.example.jotno.R;
+import com.example.jotno.ViewHolder.PrescriptMedicinesRecyclerItemViewHolder;
+
 import java.util.List;
 
 public class PrescriptMedicinesItemRecyclerAdapter extends RecyclerView.Adapter<PrescriptMedicinesRecyclerItemViewHolder> {
 
-    private List<Medicines> medicinesList;
+    private List<Medicine> medicinesList;
 
-    public PrescriptMedicinesItemRecyclerAdapter(List<Medicines> medicinesList) {
+    public PrescriptMedicinesItemRecyclerAdapter(List<Medicine> medicinesList) {
         this.medicinesList = medicinesList;
     }
 
@@ -25,18 +30,18 @@ public class PrescriptMedicinesItemRecyclerAdapter extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(@NonNull PrescriptMedicinesRecyclerItemViewHolder holder, int position) {
 
-        Medicines medicines = medicinesList.get(position);
+        Medicine medicines = medicinesList.get(position);
 
-        holder.medicineNameTxt.setText(medicines.getMedicineName());
-        if(medicines.getMedicineType().equals("OR")){
+        holder.medicineNameTxt.setText(medicines.getName());
+        if(medicines.getType().equals("OR")){
 
-            holder.medicineThreeTimesStatusTxt.setText(medicines.getMedicineTime());
+            holder.medicineThreeTimesStatusTxt.setText(medicines.getTiming());
 
         }else{
 
-            holder.medicineNameTxt.setText(medicines.getMedicineName());
-            holder.medicineThreeTimesStatusTxt.setText(medicines.getMedicineTime());
-            holder.medicineMealStatusSpanTxt.setText(medicines.getMedicineMeal()+", "+medicines.getMedicineSpan());
+            holder.medicineNameTxt.setText(medicines.getName());
+            holder.medicineThreeTimesStatusTxt.setText(medicines.getTiming());
+            holder.medicineMealStatusSpanTxt.setText(medicines.getMeal()+", "+medicines.getSpan());
 
 
         }

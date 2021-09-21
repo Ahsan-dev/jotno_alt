@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.PaperDB;
 
 public class Prevalent {
 

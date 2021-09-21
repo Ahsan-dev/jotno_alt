@@ -1,7 +1,6 @@
 package com.example.jotno.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +14,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.jotno.MedicineItemAdapter;
+import com.example.jotno.Adapter.MedicineItemAdapter;
 import com.example.jotno.PaperDB.AlarmPaper;
 import com.example.jotno.R;
 import com.example.jotno.Room.Entity.Medicine;
@@ -23,7 +22,6 @@ import com.example.jotno.ViewModel.MedicinesViewModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MedicinesActivity extends AppCompatActivity {

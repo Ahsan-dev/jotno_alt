@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.ViewHolder;
 
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.jotno.R;
 
 public class AppointmentViewHolder extends RecyclerView.ViewHolder {
 
