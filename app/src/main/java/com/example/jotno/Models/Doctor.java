@@ -26,48 +26,21 @@ public class Doctor {
     @SerializedName("location")
     @Expose
     private String location;
-    @SerializedName("email")
-    @Expose
-    private String email;
     @SerializedName("phone")
     @Expose
     private String phone;
-    @SerializedName("image")
+    @SerializedName("email")
     @Expose
-    private String image;
-    @SerializedName("password")
-    @Expose
-    private String password;
-    @SerializedName("gender")
-    @Expose
-    private String gender;
+    private String email;
     @SerializedName("in")
     @Expose
     private String in;
     @SerializedName("out")
     @Expose
     private String out;
-    @SerializedName("is_available")
+    @SerializedName("days")
     @Expose
-    private String isAvailable;
-    @SerializedName("is_active")
-    @Expose
-    private String isActive;
-    @SerializedName("month")
-    @Expose
-    private String month;
-    @SerializedName("year")
-    @Expose
-    private String year;
-    @SerializedName("remember_token")
-    @Expose
-    private String rememberToken;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
+    private Days days;
 
     public Integer getId() {
         return id;
@@ -117,14 +90,6 @@ public class Doctor {
         this.location = location;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -133,28 +98,12 @@ public class Doctor {
         this.phone = phone;
     }
 
-    public String getImage() {
-        return image;
+    public String getEmail() {
+        return email;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getIn() {
@@ -173,60 +122,12 @@ public class Doctor {
         this.out = out;
     }
 
-    public String getIsAvailable() {
-        return isAvailable;
+    public Days getDays() {
+        return days;
     }
 
-    public void setIsAvailable(String isAvailable) {
-        this.isAvailable = isAvailable;
-    }
-
-    public String getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(String isActive) {
-        this.isActive = isActive;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(String month) {
-        this.month = month;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
-
-    public String getRememberToken() {
-        return rememberToken;
-    }
-
-    public void setRememberToken(String rememberToken) {
-        this.rememberToken = rememberToken;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setDays(Days days) {
+        this.days = days;
     }
 
 }

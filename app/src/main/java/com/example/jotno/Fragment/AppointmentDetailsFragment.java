@@ -88,7 +88,20 @@ public class AppointmentDetailsFragment extends Fragment implements View.OnClick
             doctorMobileTxt.setText(appoList.get(position).getDoctor().getPhone());
             doctorHospitalTxt.setText(appoList.get(position).getDoctor().getChamber());
             doctorAddressTxt.setText(appoList.get(position).getDoctor().getLocation());
-            doctorTimeTxt.setText(appoList.get(position).getDoctor().getIsAvailable());
+
+            StringBuffer daysBuffer = new StringBuffer();
+            int daysSize = appoList.get(position).getDoctor().getDays().getData().size();
+
+            for(int i=0;i<daysSize-1;i++){
+
+                daysBuffer.append(appoList.get(position).getDoctor().getDays().getData().get(i).getName());
+                daysBuffer.append(", ");
+
+            }
+            daysBuffer.append(appoList.get(position).getDoctor().getDays().getData().get(daysSize-1).getName());
+
+
+            doctorTimeTxt.setText("Time: "+daysBuffer.toString()+", "+appoList.get(position).getDoctor().getIn()+" to "+appoList.get(position).getDoctor().getOut());
             noDoctorTxt.setVisibility(View.GONE);
         }else{
             doctorImage.setVisibility(View.GONE);

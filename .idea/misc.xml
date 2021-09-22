@@ -21,15 +21,18 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointment_view.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointments.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_dashboard.xml" value="0.17291666666666666" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.33" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescriptions.xml" value="0.21" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_vew_appointment.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/nav_header_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescriction_complains_findings_layout.xml" value="0.30625" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescript_report_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescript_tests_recycler_item_layout.xml" value="0.225" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescription_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescription_medicines_recycler_item_layout.xml" value="0.225" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/single_text_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/spinner_item_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/test_item_layout.xml" value="0.30625" />
       </map>
     </option>
   </component>

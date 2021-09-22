@@ -12,7 +12,7 @@ import com.example.jotno.R;
 public class PrescriptionComplainsFindingsViewHolder extends RecyclerView.ViewHolder {
 
     public TextView itemTypeTxt;
-    public ListView itemDetailList;
+    public RecyclerView itemDetailList;
 
     public PrescriptionComplainsFindingsViewHolder(@NonNull View itemView) {
         super(itemView);

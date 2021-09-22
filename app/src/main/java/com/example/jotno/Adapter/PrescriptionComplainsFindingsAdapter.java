@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jotno.Models.MainTest;
@@ -23,6 +24,7 @@ public class PrescriptionComplainsFindingsAdapter extends RecyclerView.Adapter<P
     private Context context;
     private ArrayAdapter<String> mainTestAdapter;
     private List<String> leftList;
+    private SingleTextItemViewAdapter singleTextItemViewAdapter;
 
     private String[] listString ;
 
@@ -56,10 +58,12 @@ public class PrescriptionComplainsFindingsAdapter extends RecyclerView.Adapter<P
 
         }
 
-        listString = new String[leftList.size()];
-        listString = leftList.toArray(listString);
-        mainTestAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1,android.R.id.text1,listString);
-        holder.itemDetailList.setAdapter(mainTestAdapter);
+        singleTextItemViewAdapter = new SingleTextItemViewAdapter(leftList);
+        holder.itemDetailList.setHasFixedSize(true);
+        holder.itemDetailList.setLayoutManager(new LinearLayoutManager(context));
+        holder.itemDetailList.setAdapter(singleTextItemViewAdapter);
+        singleTextItemViewAdapter.notifyDataSetChanged();
+
 
     }
 

@@ -77,6 +77,14 @@ public interface Api {
     );
 
 
+    @GET("prescription-get")
+    Call getPrescriptionPdf(
+
+            @Query("id") int id
+
+    );
+
+
 
 //
 //

@@ -1,8 +1,10 @@
 package com.example.jotno.Fragment;
 
 
+import android.content.Intent;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -15,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,7 +55,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PrescriptAppointFragment extends Fragment {
+public class PrescriptAppointFragment extends Fragment implements View.OnClickListener {
 
     private View view;
     private RecyclerView testsRecycler, medicinesRecycler, billsRecycler, prescriptLeftSideRecycler;
@@ -72,7 +75,10 @@ public class PrescriptAppointFragment extends Fragment {
     private TextView doctorNameTxt, doctorDesignationTxt, doctorMobileTxt, doctorEmailTxt, doctorAddressTxt, doctorHospitalTxt,  doctorAvailableTxt;
     private TextView patientNameTxt, patientLocationTxt, patientMobileTxt, patientEmailTxt, prescriptionNoTxt, statusTxt, invoiceDateTxt, amountTxt, totalBillTxt;
     private TextView patientIdTxt, patientPrescriptNameTxt, patientAgeTxt, patientGenderTxt, prescriptFooterTxt;
+    private TextView adviceTxt;
+    private LinearLayout prescriptionLinear, billLinear, reportLinear, addReportLinear;
     String age = " ";
+    private int prescriptionId = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -90,6 +96,21 @@ public class PrescriptAppointFragment extends Fragment {
         reportBtn = view.findViewById(R.id.prescript_appointment_report_btn);
         addReportBtn = view.findViewById(R.id.prescript_appointment_add_report_btn);
 
+        downloadBtn.setOnClickListener(this);
+        billBtn.setOnClickListener(this);
+        reportBtn.setOnClickListener(this);
+        addReportBtn.setOnClickListener(this);
+
+        prescriptionLinear = view.findViewById(R.id.prescript_appointment_prescription_view_linear);
+        billLinear = view.findViewById(R.id.prescript_appointment_bill_view_linear);
+        reportLinear = view.findViewById(R.id.prescript_appointment_all_report_view_linear);
+        addReportLinear = view.findViewById(R.id.prescript_appointment_add_report_view_linear);
+
+        prescriptionLinear.setVisibility(View.VISIBLE);
+        billLinear.setVisibility(View.GONE);
+        reportLinear.setVisibility(View.GONE);
+        addReportLinear.setVisibility(View.GONE);
+
         patientNameTxt = view.findViewById(R.id.prescript_appointment_bill_patient_name_text);
         patientLocationTxt = view.findViewById(R.id.prescript_appointment_bill_patient_location_text);
         patientMobileTxt = view.findViewById(R.id.prescript_appointment_bill_patient_mobile_text);
@@ -100,6 +121,7 @@ public class PrescriptAppointFragment extends Fragment {
         amountTxt = view.findViewById(R.id.prescript_appointment_bill_total_amount_text);
         totalBillTxt = view.findViewById(R.id.prescript_appointment_bill_total_bill_invoice_txt);
         prescriptFooterTxt = view.findViewById(R.id.prescript_appointment_prescription_footer_text);
+        adviceTxt = view.findViewById(R.id.prescript_appointment_advice_text_id);
 
         patientIdTxt = view.findViewById(R.id.prescript_appointment_patient_id_txt);
         patientPrescriptNameTxt = view.findViewById(R.id.prescript_appointment_patient_name_txt);
@@ -167,12 +189,15 @@ public class PrescriptAppointFragment extends Fragment {
 
                         if(response.isSuccessful()){
 
+                            prescriptionId = response.body().getPrescription().getId();
                             //Prescription No
                             prescriptionNo = response.body().getPrescription().getPrescriptionNo();
                             prescriptionNoTxt.setText(prescriptionNo);
 
                             age = response.body().getAge();
                             patientAgeTxt.setText(age);
+
+                            adviceTxt.setText(response.body().getPrescription().getAdvice());
 
                             //Initial Tests
                             testsList = response.body().getInitialTests();
@@ -194,7 +219,7 @@ public class PrescriptAppointFragment extends Fragment {
 
                             mainTestList = response.body().getMainTest();
                             prescriptionComplainsFindingsAdapter = new PrescriptionComplainsFindingsAdapter(mainTestList);
-                            prescriptLeftSideRecycler.hasFixedSize();
+                            prescriptLeftSideRecycler.setHasFixedSize(true);
                             prescriptLeftSideRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
                             prescriptLeftSideRecycler.setAdapter(prescriptionComplainsFindingsAdapter);
                             prescriptionComplainsFindingsAdapter.notifyDataSetChanged();
@@ -245,4 +270,41 @@ public class PrescriptAppointFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View view) {
+
+        if(view.getId() == R.id.prescript_appointment_download_btn){
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://jotno.beautyclinicbd.com/api/prescription-pdf/5"));
+            startActivity(browserIntent);
+        }
+
+        if(view.getId() == R.id.prescript_appointment_bill_btn){
+
+            prescriptionLinear.setVisibility(View.GONE);
+            billLinear.setVisibility(View.VISIBLE);
+            reportLinear.setVisibility(View.GONE);
+            addReportLinear.setVisibility(View.GONE);
+
+        }
+
+        if(view.getId() == R.id.prescript_appointment_report_btn){
+
+            prescriptionLinear.setVisibility(View.GONE);
+            billLinear.setVisibility(View.GONE);
+            reportLinear.setVisibility(View.VISIBLE);
+            addReportLinear.setVisibility(View.GONE);
+
+        }
+
+        if(view.getId() == R.id.prescript_appointment_add_report_btn){
+
+            prescriptionLinear.setVisibility(View.GONE);
+            billLinear.setVisibility(View.GONE);
+            reportLinear.setVisibility(View.GONE);
+            addReportLinear.setVisibility(View.VISIBLE);
+
+        }
+
+    }
 }
