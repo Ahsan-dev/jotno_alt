@@ -11,14 +11,15 @@ import com.example.jotno.R;
 
 public class PrescriptionComplainsFindingsViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView itemTypeTxt;
+    public TextView itemTypeTxt, itemTypeListTxt;
     public RecyclerView itemDetailList;
 
     public PrescriptionComplainsFindingsViewHolder(@NonNull View itemView) {
         super(itemView);
 
         itemTypeTxt = itemView.findViewById(R.id.prescript_complain_findings_item_type_text);
-        itemDetailList = itemView.findViewById(R.id.prescript_complain_findings_item_type_details_list);
+//        itemDetailList = itemView.findViewById(R.id.prescript_complain_findings_item_type_details_list);
+        itemTypeListTxt = itemView.findViewById(R.id.prescript_complain_findings_item_type_list_txt_view);
 
     }
 }

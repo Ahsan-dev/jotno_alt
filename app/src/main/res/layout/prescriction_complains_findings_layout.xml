@@ -15,18 +15,31 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
+        android:textSize="13sp"
 
         />
-    <androidx.recyclerview.widget.RecyclerView
+<!--    <androidx.recyclerview.widget.RecyclerView-->
 
-        android:id="@+id/prescript_complain_findings_item_type_details_list"
-        android:layout_width="match_parent"
+<!--        android:id="@+id/prescript_complain_findings_item_type_details_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:scrollbars="none"-->
+<!--        android:nestedScrollingEnabled="false"-->
+
+<!--        />-->
+
+    <TextView
+
+        android:id="@+id/prescript_complain_findings_item_type_list_txt_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
-        android:scrollbars="none"
-        android:nestedScrollingEnabled="false"
+        android:text="Chief Complaints"
+        android:textColor="@color/black"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="20dp"
+        android:textSize="10sp"
 
         />
-
 </LinearLayout>

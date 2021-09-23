@@ -33,17 +33,25 @@
                 />
 
             <LinearLayout
-                android:id="@+id/prescript_report_item_report_img_id"
+
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
                 >
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+
+                    android:id="@+id/prescript_report_item_report_img_id"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/email_icon"/>
+                    android:src="@drawable/email_icon"
+                    android:padding="3dp"
+                    android:background="@color/light_gray"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+
+                    />
 
 
             </LinearLayout>

@@ -25,7 +25,7 @@ public class PrescriptionComplainsFindingsAdapter extends RecyclerView.Adapter<P
     private ArrayAdapter<String> mainTestAdapter;
     private List<String> leftList;
     private SingleTextItemViewAdapter singleTextItemViewAdapter;
-
+    private StringBuffer buffer;
     private String[] listString ;
 
     public PrescriptionComplainsFindingsAdapter(List<MainTest> mainTestList) {
@@ -51,18 +51,24 @@ public class PrescriptionComplainsFindingsAdapter extends RecyclerView.Adapter<P
 
         int size = test.getTestTypeList().size();
         leftList = new ArrayList<>();
+        buffer = new StringBuffer();
 
-        for(int i=0;i<size;i++){
-
-            leftList.add(test.getTestTypeList().get(i).getName());
+        for(int i=0;i<size-1;i++){
+            buffer.append("->");
+            buffer.append(test.getTestTypeList().get(i).getName());
+            buffer.append("\n");
 
         }
+        buffer.append("->");
+        buffer.append(test.getTestTypeList().get(size-1).getName());
 
-        singleTextItemViewAdapter = new SingleTextItemViewAdapter(leftList);
-        holder.itemDetailList.setHasFixedSize(true);
-        holder.itemDetailList.setLayoutManager(new LinearLayoutManager(context));
-        holder.itemDetailList.setAdapter(singleTextItemViewAdapter);
-        singleTextItemViewAdapter.notifyDataSetChanged();
+//        singleTextItemViewAdapter = new SingleTextItemViewAdapter(leftList);
+//        holder.itemDetailList.setHasFixedSize(true);
+//        holder.itemDetailList.setLayoutManager(new LinearLayoutManager(context));
+//        holder.itemDetailList.setAdapter(singleTextItemViewAdapter);
+//        singleTextItemViewAdapter.notifyDataSetChanged();
+
+        holder.itemTypeListTxt.setText(buffer.toString());
 
 
     }

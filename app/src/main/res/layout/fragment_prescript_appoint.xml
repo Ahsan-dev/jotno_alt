@@ -82,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -205,7 +205,9 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:paddingTop="5dp"
+                            >
 
                             <LinearLayout
                                 android:orientation="vertical"
@@ -337,7 +339,8 @@
                         android:orientation="horizontal"
                         android:weightSum="2"
                         android:layout_marginBottom="20dp"
-                        android:layout_marginTop="5dp"
+                        android:paddingTop="5dp"
+
                         >
 
                         <LinearLayout
@@ -345,6 +348,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
+                            android:background="#F8F6F6"
                             >
 
                             <androidx.recyclerview.widget.RecyclerView
@@ -368,6 +372,7 @@
                                 android:textColor="@color/black"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginLeft="10dp"
+                                android:textSize="13sp"
                                 />
                             <TextView
                                 android:id="@+id/prescript_appointment_advice_text_id"
@@ -377,6 +382,7 @@
                                 android:textColor="@color/black"
                                 android:layout_marginTop="10dp"
                                 android:layout_marginLeft="20dp"
+                                android:textSize="10sp"
                                 />
 
 
@@ -413,15 +419,15 @@
 
                     <TextView
                         android:id="@+id/prescript_appointment_prescription_footer_text"
-                        android:layout_below="@+id/prescript_appointment_main_prescription_linear"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="ETC HOSPITAL, DHAKA METRO"
-                        android:gravity="center"
+                        android:layout_below="@+id/prescript_appointment_main_prescription_linear"
                         android:background="@color/light_red"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:text="ETC HOSPITAL, DHAKA METRO"
                         android:textColor="@color/white"
                         android:textSize="11sp"
-                        android:padding="10dp"
 
                         />
 
@@ -455,6 +461,7 @@
                 >
 
                 <Button
+                    android:id="@+id/prescript_appointment_bill_invoice_download_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Download Bill Invoice"
@@ -817,7 +824,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:visibility="gone"
+    android:visibility="visible"
 
     >
 
@@ -844,6 +851,7 @@
                     android:textColor="@color/black"
                     />
                 <EditText
+                    android:id="@+id/prescript_appointment_add_report_test_name_edt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:foregroundTint="@android:color/transparent"
@@ -866,6 +874,7 @@
                     >
 
                     <EditText
+                        android:id="@+id/prescript_appointment_add_report_resource_edt"
                         android:layout_width="0dp"
                         android:layout_weight="5"
                         android:layout_height="wrap_content"
@@ -875,6 +884,7 @@
                         android:layout_marginRight="10dp"
                         />
                     <ImageView
+                        android:id="@+id/prescript_appointment_add_report_image_btn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/attach_file_icon"
@@ -883,19 +893,19 @@
                         />
 
                 </LinearLayout>
-
-
-
             </LinearLayout>
-
-
-
-
-
         </androidx.cardview.widget.CardView>
 
-
-
+        <Button
+            android:id="@+id/prescript_appointment_add_report_send_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:layout_marginRight="20dp"
+            />
 
     </LinearLayout>
 </LinearLayout>

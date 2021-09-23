@@ -5,18 +5,23 @@ package com.example.jotno.Retrofit;
 import com.example.jotno.Models.AppointmentResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.LoginUser;
+import com.example.jotno.Models.PrescriptionReportResponse;
 import com.example.jotno.Models.PrescriptionResponse;
 import com.example.jotno.Models.RegisterResponse;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface Api {
@@ -77,10 +82,20 @@ public interface Api {
     );
 
 
-    @GET("prescription-get")
-    Call getPrescriptionPdf(
+    @GET("prescription-report")
+    Call<PrescriptionReportResponse> getPrescriptionReports(
 
             @Query("id") int id
+
+    );
+
+    @Multipart
+    @POST("report-create")
+    Call<ResponseBody> uploadReport(
+
+            @Part("description") RequestBody description,
+            @Part MultipartBody.Part image
+
 
     );
 
