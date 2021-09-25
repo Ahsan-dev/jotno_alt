@@ -1,6 +1,7 @@
 package com.example.jotno.Fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -14,12 +15,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jotno.Activity.LoginActivity;
+import com.example.jotno.Activity.WelcomeActivity;
 import com.example.jotno.Models.GetAppointmentResponse;
+import com.example.jotno.Models.SliderItem;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
+import com.example.jotno.WelcomeSliderAdapter;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.paperdb.Paper;
 import retrofit2.Call;
@@ -35,6 +45,8 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private Fragment fragment;
     private ProgressDialog loadingBar;
     private Api api;
+    private List<SliderItem> imageList;
+    private SliderView sliderView;
 
 
     @Override
@@ -55,13 +67,34 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         prescriptionsCard = view.findViewById(R.id.dashboard_prescriptions_card_id);
         allTestsCard = view.findViewById(R.id.dashboard_tests_card_id);
         billsCard = view.findViewById(R.id.dashboard_bills_card_id);
+        sliderView = view.findViewById(R.id.imageSlider);
 
-        appointmentTxt = view.findViewById(R.id.dashboard_statistics_appointments_txt_id);
-        welcomeTxt = view.findViewById(R.id.dashboard_welcome_patient_txt_id);
-        welcomeTxt.setText("Welcome\n     "+Paper.book().read(PermanentPatient.userNameString));
 
-        prescriptionsTxt = view.findViewById(R.id.dashboard_statistics_prescriptions_txt_id);
-        billsTxt = view.findViewById(R.id.dashboard_statistics_tests_txt_id);
+        imageList = new ArrayList<>();
+
+        imageList.add(new SliderItem(R.drawable.imgslider3));
+        imageList.add(new SliderItem(R.drawable.imgslider4));
+        imageList.add(new SliderItem(R.drawable.imgslider7));
+        imageList.add(new SliderItem(R.drawable.imgslider5));
+        imageList.add(new SliderItem(R.drawable.imgslider3));
+        imageList.add(new SliderItem(R.drawable.imgslider8));
+
+
+        WelcomeSliderAdapter adapter = new WelcomeSliderAdapter(view.getContext(),imageList);
+
+
+
+        //sliderView.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+        //sliderView.setIndicatorSelectedColor(Color.BLACK);
+        //sliderView.setIndicatorUnselectedColor(Color.GRAY);
+        sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
+        sliderView.startAutoCycle();
+
+        sliderView.setSliderAdapter(adapter);
+
+
 
         appointmentsCard.setOnClickListener(v -> {
 

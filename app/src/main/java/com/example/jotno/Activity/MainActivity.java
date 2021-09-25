@@ -2,28 +2,41 @@ package com.example.jotno.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.TooltipCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import io.paperdb.Paper;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jotno.Fragment.ChangePassFragment;
 import com.example.jotno.Fragment.ContuctUsFragment;
 import com.example.jotno.Fragment.BMICalculatorFragment;
 import com.example.jotno.Fragment.DashboardFragment;
 import com.example.jotno.Fragment.ProfileSettingsFragment;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView toolTitle;
     private TextView drawerPatientNameTxt;
+    private ImageButton toolCallusBtn;
+    private RelativeLayout toolCallBtnBack, toolCallBtnBackBack;
+    private String phone = "01715050507";
 
 
 
@@ -48,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         drawerBtn = findViewById(R.id.drawer_btn);
         toolbar = findViewById(R.id.main_toolbar_layout);
         toolTitle = findViewById(R.id.toolbar_title_txt);
+        toolCallusBtn = findViewById(R.id.toolbar_call_btn);
+        toolCallBtnBack = findViewById(R.id.tool_call_btn_back);
+        toolCallBtnBackBack = findViewById(R.id.tool_call_btn_back_back);
         toolTitle.setText("Dashboard");
         setSupportActionBar(toolbar);
 
@@ -66,6 +85,32 @@ public class MainActivity extends AppCompatActivity {
                 else drawer.closeDrawer(Gravity.RIGHT);
 
         });
+
+        final Animation animation = new AlphaAnimation(1, 0); // Change alpha from fully visible to invisible
+        animation.setDuration(500); // duration - half a second
+        animation.setInterpolator(new LinearInterpolator()); // do not alter animation rate
+        animation.setRepeatCount(Animation.INFINITE); // Repeat animation infinitely
+        animation.setRepeatMode(Animation.REVERSE); // Reverse animation at the end so the button will fade back in
+        toolCallBtnBack.startAnimation(animation);
+        toolCallBtnBackBack.startAnimation(animation);
+
+        toolCallusBtn.setOnClickListener(view -> {
+
+            view.clearAnimation();
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.CALL_PHONE ) != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.CALL_PHONE},1);
+            }else{
+                String s = "tel:+88"+phone;
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse(s));
+                startActivity(intent);
+            }
+
+
+        });
+
+        TooltipCompat.setTooltipText(toolCallusBtn, "Contact Us");
 
         if(savedInstanceState == null){
 
@@ -93,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(item.getItemId()==R.id.drawer_nav_profile_settings){
-                toolTitle.setText("Profile Settings");
+                toolTitle.setText("Settings");
                 fragment = null;
                 fragment = new ProfileSettingsFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -102,15 +147,17 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(item.getItemId()==R.id.drawer_nav_change_password){
-                toolTitle.setText("Change your Password");
-                Toast.makeText(this, "Change Password fragment", Toast.LENGTH_SHORT).show();
+                toolTitle.setText("Password");
+                fragment = null;
+                fragment = new ChangePassFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
 
             if(item.getItemId()==R.id.drawer_nav_bmi_calculator){
 
-                toolTitle.setText("Body Mass Index");
+                toolTitle.setText("BMI");
                 fragment = null;
                 fragment = new BMICalculatorFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -129,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_contact_us){
 
-                toolTitle.setText("Contact Us");
+                toolTitle.setText("Contact");
                 fragment = null;
                 fragment = new ContuctUsFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -138,14 +185,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(item.getItemId()==R.id.drawer_nav_about_us){
-                toolTitle.setText("About Us");
+                toolTitle.setText("About");
                 Toast.makeText(this, "About us fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
             if(item.getItemId()==R.id.drawer_nav_terms_and_conditions){
 
-                toolTitle.setText("Terms and Conditions");
+                toolTitle.setText("Terms & Conditions");
                 Toast.makeText(this, "Terms and Conditions fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -153,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_our_policies){
 
-                toolTitle.setText("Our Policies");
+                toolTitle.setText("Policies");
                 Toast.makeText(this, "Our Policies fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -164,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 final Dialog dialog = new Dialog(this);
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.dialog_layout);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 TextView message = (TextView) dialog.findViewById(R.id.alertDialogMessageId);
                 message.setText("Do you want to logout?\nIf you logout you will not be eligible for our services!");
 

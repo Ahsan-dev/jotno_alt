@@ -30,6 +30,42 @@
             android:textSize="17sp"
             android:textColor="@color/black"
             android:textStyle="bold" />
+        <RelativeLayout
+            android:id="@+id/tool_call_btn_back_back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/contct_us_back_back"
+            android:padding="8dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            />
+        <RelativeLayout
+            android:id="@+id/tool_call_btn_back"
+            android:layout_width="37dp"
+            android:layout_height="37dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/contct_us_back_back"
+            android:padding="8dp"
+
+            android:layout_centerVertical="true"
+            android:layout_marginRight="9dp"
+            />
+
+
+        <ImageButton
+            android:id="@+id/toolbar_call_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/contct_us_back"
+            android:padding="10dp"
+            android:scaleType="center"
+            android:src="@drawable/call_icon_white"
+            android:tooltipText="Contact Us" />
+
     </RelativeLayout>
 
 

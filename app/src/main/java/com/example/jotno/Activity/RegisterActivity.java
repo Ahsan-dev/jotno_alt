@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,6 +34,7 @@ import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -106,7 +108,32 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
+
+
         };
+
+        bldGrpSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                TextView spinnerTxt = (TextView)view.findViewById(R.id.spinner_item_text_id);
+
+                if(i==0){
+
+                    spinnerTxt.setTextColor(view.getContext().getResources().getColor(R.color.purple_200));
+                }else
+                    spinnerTxt.setTextColor(view.getContext().getResources().getColor(R.color.black));
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
         bloodGrpAdapter.setDropDownViewResource(R.layout.spinner_item_layout);
         bldGrpSpinner.setAdapter(bloodGrpAdapter);
 
@@ -136,6 +163,29 @@ public class RegisterActivity extends AppCompatActivity {
         };
         genderAdapter.setDropDownViewResource(R.layout.spinner_item_layout);
         genderSpinner.setAdapter(genderAdapter);
+
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                TextView spinnerTxt = (TextView)view.findViewById(R.id.spinner_item_text_id);
+
+                if(i==0){
+
+                    spinnerTxt.setTextColor(view.getContext().getResources().getColor(R.color.purple_200));
+                }else
+                    spinnerTxt.setTextColor(view.getContext().getResources().getColor(R.color.black));
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+
+
+            }
+        });
 
         dobEdt.setOnClickListener(v -> {
             dobMaker();

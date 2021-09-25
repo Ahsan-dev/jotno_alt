@@ -8,6 +8,7 @@ import com.example.jotno.Models.LoginUser;
 import com.example.jotno.Models.PrescriptionReportResponse;
 import com.example.jotno.Models.PrescriptionResponse;
 import com.example.jotno.Models.RegisterResponse;
+import com.example.jotno.Models.ResponseModel;
 
 import java.util.List;
 
@@ -41,6 +42,24 @@ public interface Api {
             @Field("district") String district,
             @Field("password") String password,
             @Field("password_confirmation") String password_confirmation
+
+    );
+
+    @FormUrlEncoded
+    @POST("profile_settings")
+    Call<ResponseBody> customiseProfile(
+
+            @Field("name") String name,
+            @Field("date_of_birth") String date_of_birth,
+            @Field("blood_group") String blood_group,
+            @Field("gender") String gender,
+            @Field("email") String email,
+            @Field("phone") String phone,
+            @Field("address") String address,
+            @Field("city") String city,
+            @Field("district") String district,
+            @Field("image") String image
+
 
     );
 
@@ -89,15 +108,15 @@ public interface Api {
 
     );
 
-    @Multipart
-    @POST("report-create")
-    Call<ResponseBody> uploadReport(
-
-            @Part("description") RequestBody description,
-            @Part MultipartBody.Part image
-
-
-    );
+//    @Multipart
+//    @POST("report-create")
+//    Call<ResponseModel> uploadReport(
+//
+//            @Part("sender") RequestBody description,
+//            @Part MultipartBody.Part file);
+//
+//
+//    );
 
 
 

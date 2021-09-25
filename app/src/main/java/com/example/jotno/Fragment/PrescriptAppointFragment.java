@@ -413,37 +413,37 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 // MultipartBody.Part is used to send also the actual file name
                 MultipartBody.Part body = MultipartBody.Part.createFormData("image", reportImageFile.getName(), requestFile);
 
-                api.uploadReport(description,body)
-                        .enqueue(new Callback<ResponseBody>() {
-                            @Override
-                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                if(response.isSuccessful()){
-
-                                    try {
-                                        Log.d("responses",response.body().string());
-                                        Toast.makeText(view1.getContext(), response.body().string(), Toast.LENGTH_SHORT).show();
-
-
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }else{
-
-                                    Toast.makeText(view.getContext(), "response not found!!!", Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                                Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-
-            });
+//                api.uploadReport(description,body)
+//                        .enqueue(new Callback<ResponseBody>() {
+//                            @Override
+//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                                if(response.isSuccessful()){
+//
+//                                    try {
+//                                        Log.d("responses",response.body().string());
+//                                        Toast.makeText(view1.getContext(), response.body().string(), Toast.LENGTH_SHORT).show();
+//
+//
+//                                    } catch (IOException e) {
+//                                        e.printStackTrace();
+//                                    }
+//
+//                                }else{
+//
+//                                    Toast.makeText(view.getContext(), "response not found!!!", Toast.LENGTH_SHORT).show();
+//
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//
+//                                Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//
+//                            }
+//                        });
+//
+           });
 
 
 
