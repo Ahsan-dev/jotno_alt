@@ -1,36 +1,38 @@
 package com.example.jotno.Models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Tests {
 
-    private String prescriptionNo, testName, testDate;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("body")
+    @Expose
+    private TestsBody body;
 
-    public Tests(String prescriptionNo, String testName, String testDate) {
-        this.prescriptionNo = prescriptionNo;
-        this.testName = testName;
-        this.testDate = testDate;
+    public String getStatus() {
+        return status;
     }
 
-    public String getPrescriptionNo() {
-        return prescriptionNo;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public void setPrescriptionNo(String prescriptionNo) {
-        this.prescriptionNo = prescriptionNo;
+    public TestsBody getBody() {
+        return body;
     }
 
-    public String getTestName() {
-        return testName;
+    public void setBody(TestsBody body) {
+        this.body = body;
     }
 
-    public void setTestName(String testName) {
-        this.testName = testName;
-    }
-
-    public String getTestDate() {
-        return testDate;
-    }
-
-    public void setTestDate(String testDate) {
-        this.testDate = testDate;
+    @Override
+    public String toString() {
+        return "Tests{" +
+                "status='" + status + '\'' +
+                ", body=" + body +
+                '}';
     }
 }

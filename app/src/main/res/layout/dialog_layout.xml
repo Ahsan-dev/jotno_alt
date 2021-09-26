@@ -30,13 +30,15 @@
         android:id="@+id/alertDialogMessageId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Do you want to logout?"
         android:layout_centerInParent="true"
-        android:textSize="18sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:layout_margin="10dp"
+        android:text="Do you want to logout?"
         android:textColor="@android:color/black"
-        />
+        android:textSize="13sp" />
     <View
         android:id="@+id/horizontal_line_id"
         android:layout_above="@id/btn_linear_id"

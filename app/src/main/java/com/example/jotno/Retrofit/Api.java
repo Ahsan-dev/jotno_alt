@@ -9,6 +9,7 @@ import com.example.jotno.Models.PrescriptionReportResponse;
 import com.example.jotno.Models.PrescriptionResponse;
 import com.example.jotno.Models.RegisterResponse;
 import com.example.jotno.Models.ResponseModel;
+import com.example.jotno.Models.Tests;
 
 import java.util.List;
 
@@ -92,6 +93,13 @@ public interface Api {
 
     );
 
+    @GET("all-test")
+    Call<Tests> getAllTests(
+
+            @Query("id") int id
+
+    );
+
 
     @GET("prescription-get")
     Call<PrescriptionResponse> getPrescriptionData(
@@ -108,15 +116,60 @@ public interface Api {
 
     );
 
-//    @Multipart
-//    @POST("report-create")
-//    Call<ResponseModel> uploadReport(
-//
-//            @Part("sender") RequestBody description,
-//            @Part MultipartBody.Part file);
-//
-//
-//    );
+
+
+    @Multipart
+    @POST("report-create")
+    Call<ResponseBody> uploadReport2(
+
+            @Part("description") RequestBody description,
+            @Part("prescription_id") RequestBody prescription_id,
+            @Part MultipartBody.Part file
+
+
+    );
+
+    @Multipart
+    @POST("report-edit")
+    Call<ResponseBody> uploadReport3(
+
+            @Part("description") RequestBody description,
+            @Part("report_id") RequestBody report_id,
+            @Part MultipartBody.Part file
+
+
+    );
+
+    @FormUrlEncoded
+    @POST("report-delete")
+    Call<ResponseBody> deleteReport(
+
+            @Field("report_id") int report_id
+
+    );
+
+    @FormUrlEncoded
+    @POST("password-reset")
+    Call<ResponseBody> resetPassword(
+
+            @Field("id") int id,
+            @Field("old_password") String old_password,
+            @Field("password") String password,
+            @Field("password_confirmation") String password_confirmation
+
+    );
+
+
+    @FormUrlEncoded
+    @POST("patient-forget-password")
+    Call<ResponseBody> forgetPassword(
+
+            @Field("email") String email
+
+    );
+
+
+
 
 
 

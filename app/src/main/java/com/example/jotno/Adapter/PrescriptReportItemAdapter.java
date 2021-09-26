@@ -3,6 +3,7 @@ package com.example.jotno.Adapter;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.jotno.Activity.WelcomeActivity;
+import com.example.jotno.Fragment.AppointmentViewFragment;
+import com.example.jotno.Fragment.PrescriptAppointFragment;
 import com.example.jotno.Models.ReportDatum;
+import com.example.jotno.NetworkCall;
 import com.example.jotno.R;
 import com.example.jotno.ViewHolder.PrescriptReportItemViewHolder;
 import com.squareup.picasso.Picasso;
@@ -85,6 +92,30 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
             });
 
             dialog.show();
+
+        });
+
+        holder.editReportBtn.setOnClickListener(view -> {
+
+            PrescriptAppointFragment fragment = new PrescriptAppointFragment();
+            FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            Bundle bundles = new Bundle();
+            bundles.putInt("id",report.getId());
+            bundles.putString("action","edit");
+            bundles.putString("name",report.getName());
+            fragment.setArguments(bundles);
+
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
+        holder.deleteReportBtn.setOnClickListener(view -> {
+
+            NetworkCall.deleteReport(report.getId());
 
         });
 

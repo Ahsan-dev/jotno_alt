@@ -17,11 +17,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jotno.Activity.RegisterActivity;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
 
+import java.io.IOException;
+
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ChangePassFragment extends Fragment {
@@ -191,8 +198,31 @@ public class ChangePassFragment extends Fragment {
 
         } {
 
+            api.resetPassword(Paper.book().read(PermanentPatient.userIdString),oldPassword,newPassword,confirmPass)
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if(response.isSuccessful()){
 
-            Toast.makeText(view.getContext(), "Password changed successfully..", Toast.LENGTH_SHORT).show();
+                                try {
+                                    Toast.makeText(view.getContext(), response.body().string(), Toast.LENGTH_SHORT).show();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }else{
+
+                                Toast.makeText(view.getContext(), "Response not found!!!", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
 
         }
     }

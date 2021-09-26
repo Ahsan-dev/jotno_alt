@@ -2,12 +2,15 @@ package com.example.jotno.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
@@ -18,6 +21,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +33,9 @@ import com.example.jotno.PaperDB.Prevalent;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -98,6 +106,64 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent registerIntent = new Intent(this, RegisterActivity.class);
             startActivity(registerIntent);
+
+        });
+
+        forgetPassTextBtn.setOnClickListener(view -> {
+
+            Dialog dialog = new Dialog(view.getContext());
+            dialog.setCancelable(true);
+            dialog.setContentView(R.layout.forget_password_layout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            EditText emailEdt = dialog.findViewById(R.id.forget_pass_email_edt);
+            Button sendBtn = dialog.findViewById(R.id.forget_pass_send_btn);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCancelable(false);
+
+            sendBtn.setOnClickListener(view1 -> {
+
+                String email = emailEdt.getText().toString();
+
+                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+
+                    emailEdt.setError("Enter valid email address");
+                }else{
+
+                    api.forgetPassword(email)
+                            .enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                    if(response.isSuccessful()){
+
+                                        try {
+                                            Toast.makeText(view1.getContext(), response.body().string(), Toast.LENGTH_SHORT).show();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }else{
+
+                                        Toast.makeText(view1.getContext(), "Response not found!!", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                    Toast.makeText(view1.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                }
+
+
+                dialog.dismiss();
+
+
+            });
+
+            dialog.show();
 
         });
 

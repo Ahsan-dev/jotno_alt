@@ -50,6 +50,8 @@ import com.example.jotno.Adapter.PrescriptTestItemRecyclerAdapter;
 import com.example.jotno.Adapter.PrescriptionComplainsFindingsAdapter;
 import com.example.jotno.Medicines;
 import com.example.jotno.Models.Datum;
+import com.example.jotno.Models.EventModel;
+import com.example.jotno.Models.ImageSenderInfo;
 import com.example.jotno.Models.InitialTest;
 import com.example.jotno.Models.InitialTests;
 import com.example.jotno.Models.MainTest;
@@ -59,11 +61,17 @@ import com.example.jotno.Models.PrescriptionResponse;
 import com.example.jotno.Models.ReportDatum;
 import com.example.jotno.Models.TestType;
 import com.example.jotno.Models.TestsOnPrescript;
+import com.example.jotno.NetworkCall;
 import com.example.jotno.PaperDB.AppointmentPermanent;
+import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
 
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -121,6 +129,12 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
     private File reportImageFile;
     private int prescriptionId = 0;
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
+    private String imagePath;
+    private String action = "upload";
+    private int report_id = -1;
+
+
+
 
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -129,6 +143,9 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_prescript_appoint, container, false);
+
+        action = String.valueOf(getArguments().getString("action"));
+
 
 
         api = RetroClient.getClient().create(Api.class);
@@ -186,6 +203,19 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         addReportResourceEdt = view.findViewById(R.id.prescript_appointment_add_report_resource_edt);
         addReportImgBtn = view.findViewById(R.id.prescript_appointment_add_report_image_btn);
         addReportASendBtn = view.findViewById(R.id.prescript_appointment_add_report_send_btn);
+
+
+        if(action.equals("edit")){
+
+            report_id = getArguments().getInt("id",-1);
+            prescriptionLinear.setVisibility(View.GONE);
+            billLinear.setVisibility(View.GONE);
+            reportLinear.setVisibility(View.GONE);
+            addReportLinear.setVisibility(View.VISIBLE);
+
+            addReportTestEdt.setText(getArguments().getString("name"));
+
+        }
 
 
         doctorNameTxt.setText(appoList.get(position).getDoctor().getName());
@@ -322,12 +352,84 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         });
 
 
+        addReportImgBtn.setOnClickListener(view1 -> {
 
+
+            if(checkAndRequestPermissions(view1.getContext())){
+                selectImage(view1.getContext());
+            }
+
+        });
+
+        addReportASendBtn.setOnClickListener(view1 -> {
+
+            String testName = addReportTestEdt.getText().toString();
+            String imageTxt = addReportResourceEdt.getText().toString();
+
+            if(testName.equals("")){
+
+                addReportTestEdt.setError("Enter a test name");
+                addReportTestEdt.requestFocus();
+                return;
+
+            }else if(imageTxt.equals("")){
+
+                Toast.makeText(view1.getContext(), "Report must be attached", Toast.LENGTH_SHORT).show();
+
+            }else{
+
+                if(action.equals("upload"))
+
+                    NetworkCall.fileUpload2(imagePath,testName,prescriptionId);
+
+                else {
+                    report_id = getArguments().getInt("id", -1);
+                    NetworkCall.fileUpload3(imagePath, testName, report_id);
+                }
+
+            }
+
+
+
+        });
 
 
 
 
         return view;
+    }
+
+    private  void  showReportApi(){
+
+        api.getPrescriptionReports(prescriptionId)
+                .enqueue(new Callback<PrescriptionReportResponse>() {
+                    @Override
+                    public void onResponse(Call<PrescriptionReportResponse> call, Response<PrescriptionReportResponse> response) {
+                        if(response.isSuccessful()){
+
+                            prescriptReportList = response.body().getBody().getData();
+                            prescriptReportItemAdapter = new PrescriptReportItemAdapter(prescriptReportList);
+                            prescriptReportRecycler.setHasFixedSize(true);
+                            prescriptReportRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                            prescriptReportRecycler.setAdapter(prescriptReportItemAdapter);
+                            prescriptReportItemAdapter.notifyDataSetChanged();
+
+
+                        }else{
+
+                            Toast.makeText(view.getContext(), "Response not found!!!", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PrescriptionReportResponse> call, Throwable t) {
+
+                        Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
     }
 
 
@@ -356,34 +458,8 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             reportLinear.setVisibility(View.VISIBLE);
             addReportLinear.setVisibility(View.GONE);
 
-            api.getPrescriptionReports(prescriptionId)
-                    .enqueue(new Callback<PrescriptionReportResponse>() {
-                        @Override
-                        public void onResponse(Call<PrescriptionReportResponse> call, Response<PrescriptionReportResponse> response) {
-                            if(response.isSuccessful()){
+            showReportApi();
 
-                                prescriptReportList = response.body().getBody().getData();
-                                prescriptReportItemAdapter = new PrescriptReportItemAdapter(prescriptReportList);
-                                prescriptReportRecycler.setHasFixedSize(true);
-                                prescriptReportRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-                                prescriptReportRecycler.setAdapter(prescriptReportItemAdapter);
-                                prescriptReportItemAdapter.notifyDataSetChanged();
-
-
-                            }else{
-
-                                Toast.makeText(view.getContext(), "Response not found!!!", Toast.LENGTH_SHORT).show();
-
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<PrescriptionReportResponse> call, Throwable t) {
-
-                            Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
 
         }
 
@@ -393,62 +469,39 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             billLinear.setVisibility(View.GONE);
             reportLinear.setVisibility(View.GONE);
             addReportLinear.setVisibility(View.VISIBLE);
-
-
-            addReportImgBtn.setOnClickListener(view1 -> {
-
-
-                if(checkAndRequestPermissions(view1.getContext())){
-                    selectImage(view1.getContext());
-                }
-
-            });
-
-            addReportASendBtn.setOnClickListener(view1 -> {
-
-                String descriptionString = "hello, this is description speaking";
-                RequestBody description = RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
-                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), reportImageFile);
-
-// MultipartBody.Part is used to send also the actual file name
-                MultipartBody.Part body = MultipartBody.Part.createFormData("image", reportImageFile.getName(), requestFile);
-
-//                api.uploadReport(description,body)
-//                        .enqueue(new Callback<ResponseBody>() {
-//                            @Override
-//                            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                                if(response.isSuccessful()){
-//
-//                                    try {
-//                                        Log.d("responses",response.body().string());
-//                                        Toast.makeText(view1.getContext(), response.body().string(), Toast.LENGTH_SHORT).show();
-//
-//
-//                                    } catch (IOException e) {
-//                                        e.printStackTrace();
-//                                    }
-//
-//                                }else{
-//
-//                                    Toast.makeText(view.getContext(), "response not found!!!", Toast.LENGTH_SHORT).show();
-//
-//                                }
-//                            }
-//
-//                            @Override
-//                            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//
-//                                Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        });
-//
-           });
-
-
-
+            action = "upload";
 
         }
+    }
+
+
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventModel event) throws ClassNotFoundException {
+        if (event.isTagMatchWith("response")) {
+            String responseMessage = event.getMessage();
+            Toast.makeText(view.getContext(), "Message: "+responseMessage, Toast.LENGTH_SHORT).show();
+            addReportTestEdt.setText("");
+            addReportResourceEdt.setText("");
+        }
+
+        if (event.isTagMatchWith("delete_response")) {
+
+            showReportApi();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
     }
 
     public boolean checkAndRequestPermissions(final Context context) {
@@ -533,22 +586,17 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-//                        capturedImg.setImageBitmap(selectedImage);
-                        File imageFile = bitmapToFile(view.getContext(),selectedImage,selectedImage.toString());
-                        reportImageFile = imageFile;
-                        addReportResourceEdt.setText(imageFile.getName());
+                        Uri cameraUri = data.getData();
+                        imagePath = getPath(cameraUri);
+                        addReportResourceEdt.setText(imagePath);
                         addReportResourceEdt.setEnabled(false);
                     }
                     break;
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
                         Uri selectedImage = data.getData();
-                        try {
-                            reportImageFile = getFile(view.getContext(),selectedImage);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        addReportResourceEdt.setText(reportImageFile.getName());
+                        imagePath = getPath(selectedImage);
+                        addReportResourceEdt.setText(imagePath);
                         addReportResourceEdt.setEnabled(false);
 
                     }
@@ -558,64 +606,12 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
     }
 
 
-    public static File bitmapToFile(Context context, Bitmap bitmap, String fileNameToSave) { // File name like "image.png"
-        //create a file to write bitmap data
-        File file = null;
-        try {
-            file = new File(Environment.getExternalStorageDirectory() + File.separator + fileNameToSave);
-            file.createNewFile();
-
-//Convert bitmap to byte array
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 0 , bos); // YOU can also save it in JPEG
-            byte[] bitmapdata = bos.toByteArray();
-
-//write the bytes in file
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-            return file;
-        }catch (Exception e){
-            e.printStackTrace();
-            return file; // it will return null
-        }
-    }
-
-    public static File getFile(Context context, Uri uri) throws IOException {
-        File destinationFilename = new File(context.getFilesDir().getPath() + File.separatorChar + queryName(context, uri));
-        try (InputStream ins = context.getContentResolver().openInputStream(uri)) {
-            createFileFromStream(ins, destinationFilename);
-        } catch (Exception ex) {
-            Log.e("Save File", ex.getMessage());
-            ex.printStackTrace();
-        }
-        return destinationFilename;
-    }
-
-    public static void createFileFromStream(InputStream ins, File destination) {
-        try (OutputStream os = new FileOutputStream(destination)) {
-            byte[] buffer = new byte[4096];
-            int length;
-            while ((length = ins.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-            os.flush();
-        } catch (Exception ex) {
-            Log.e("Save File", ex.getMessage());
-            ex.printStackTrace();
-        }
-    }
-
-    private static String queryName(Context context, Uri uri) {
-        Cursor returnCursor =
-                context.getContentResolver().query(uri, null, null, null, null);
-        assert returnCursor != null;
-        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-        returnCursor.moveToFirst();
-        String name = returnCursor.getString(nameIndex);
-        returnCursor.close();
-        return name;
+    private String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
 

@@ -9,21 +9,33 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.jotno.Adapter.TestItemRecyclerAdapter;
 import com.example.jotno.Models.Tests;
+import com.example.jotno.Models.TestsDatum;
+import com.example.jotno.PaperDB.PermanentPatient;
+import com.example.jotno.PaperDB.TestsPermanent;
 import com.example.jotno.R;
+import com.example.jotno.Retrofit.Api;
+import com.example.jotno.Retrofit.RetroClient;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.paperdb.Paper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class TestsFragment extends Fragment {
 
     private View view;
     private RecyclerView testsRecycler;
-    private List<Tests> testList;
+    private List<TestsDatum> testList;
     private TestItemRecyclerAdapter testItemRecyclerAdapter;
+    private Api api;
 
 
     @Override
@@ -32,24 +44,49 @@ public class TestsFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_tests, container, false);
 
+        api = RetroClient.getClient().create(Api.class);
+        testsRecycler = view.findViewById(R.id.tests_fragment_tests_recycler_id);
+
         testList = new ArrayList<>();
 
-        testList.add(new Tests("P-123698","Urine Test","01/02/2021"));
-        testList.add(new Tests("P-123598","Blood Test","08/02/2021"));
-        testList.add(new Tests("P-127698","Urine Test","01/03/2021"));
-        testList.add(new Tests("P-133698","Blood Test","09/02/2021"));
-        testList.add(new Tests("P-123690","Urine Test","01/02/2021"));
+        api.getAllTests(Paper.book().read(PermanentPatient.userIdString))
+                .enqueue(new Callback<Tests>() {
+                    @Override
+                    public void onResponse(Call<Tests> call, Response<Tests> response) {
+                        if(response.isSuccessful()){
 
+                            if(response.body().getStatus().equals("success")){
 
-        testsRecycler = view.findViewById(R.id.tests_fragment_tests_recycler_id);
-        testsRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        testItemRecyclerAdapter = new TestItemRecyclerAdapter(testList);
-        testsRecycler.hasFixedSize();
-        testItemRecyclerAdapter.notifyDataSetChanged();
-        testsRecycler.setAdapter(testItemRecyclerAdapter);
+                                testList = response.body().getBody().getData();
+                                Paper.book().write(TestsPermanent.testsListString,testList);
+                                testsRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                                testItemRecyclerAdapter = new TestItemRecyclerAdapter(testList);
+                                testsRecycler.hasFixedSize();
+                                testItemRecyclerAdapter.notifyDataSetChanged();
+                                testsRecycler.setAdapter(testItemRecyclerAdapter);
+
+                            }else{
+
+                                Toast.makeText(view.getContext(), response.body().getStatus(), Toast.LENGTH_SHORT).show();
+
+                            }
+
+                        }else{
+
+                            Toast.makeText(view.getContext(), "Response null!!", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Tests> call, Throwable t) {
+
+                        Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
         return view;
-
 
     }
 }

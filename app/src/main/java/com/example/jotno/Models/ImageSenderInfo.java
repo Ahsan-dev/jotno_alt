@@ -7,17 +7,15 @@ import com.google.gson.annotations.SerializedName;
 
 public class ImageSenderInfo implements Parcelable {
 
-    @SerializedName("sender_name")
-    private String sender;
-    @SerializedName("sender_age")
-    private int age;
+    @SerializedName("test_name")
+    private String testName;
+
 
     public ImageSenderInfo() {
     }
 
-    public ImageSenderInfo(String sender, int age) {
-        this.sender = sender;
-        this.age = age;
+    public ImageSenderInfo(String testName) {
+        this.testName = testName;
     }
 
     public final static Parcelable.Creator<ImageSenderInfo> CREATOR = new Creator<ImageSenderInfo>() {
@@ -27,8 +25,8 @@ public class ImageSenderInfo implements Parcelable {
         })
         public ImageSenderInfo createFromParcel(Parcel in) {
             ImageSenderInfo instance = new ImageSenderInfo();
-            instance.sender = ((String) in.readValue((String.class.getClassLoader())));
-            instance.age = ((int) in.readValue((int.class.getClassLoader())));
+            instance.testName = ((String) in.readValue((String.class.getClassLoader())));
+
             return instance;
         }
 
@@ -40,8 +38,8 @@ public class ImageSenderInfo implements Parcelable {
 
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(sender);
-        dest.writeValue(age);
+        dest.writeValue(testName);
+
     }
 
     public int describeContents() {
