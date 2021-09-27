@@ -21,9 +21,6 @@
             android:adjustViewBounds="true"
             android:src="@drawable/jotno_logo"/>
 
-
-
-
     </LinearLayout>
 
     <TextView
@@ -75,8 +72,6 @@
             android:layout_margin="5dp"
             android:background="@color/white"/>
 
-
-
         <TextView
             android:id="@+id/alert_positive_btn_id"
             android:layout_width="0dp"
@@ -89,12 +84,7 @@
             android:padding="5dp"
             android:textColor="#08981B"/>
 
-
     </LinearLayout>
-
-
-
-
 
 
 </RelativeLayout>

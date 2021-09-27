@@ -38,8 +38,26 @@ public class Datum {
     @SerializedName("prescription_id")
     @Expose
     private Integer prescriptionId;
+
+    public Datum(Integer id, String appoinmentNo, String appoinmentDate, String total, String status, String paymentStatus, Patient patient, Doctor doctor, Integer prescriptionId, InitialTests initialTests) {
+        this.id = id;
+        this.appoinmentNo = appoinmentNo;
+        this.appoinmentDate = appoinmentDate;
+        this.total = total;
+        this.status = status;
+        this.paymentStatus = paymentStatus;
+        this.patient = patient;
+        this.doctor = doctor;
+        this.prescriptionId = prescriptionId;
+        this.initialTests = initialTests;
+    }
+
     @SerializedName("initial_tests")
     @Expose
+
+
+
+
     private InitialTests initialTests;
 
     public Integer getId() {

@@ -13,6 +13,7 @@ public class PermanentPatient {
     public static final  String userCityString = "city";
     public static final  String userDistrictString = "district";
     public static final  String userAddressString = "address";
+    public static final  String userImageString = "image";
 
 
 }

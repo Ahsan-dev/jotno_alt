@@ -3,10 +3,12 @@ package com.example.jotno.Retrofit;
 
 
 import com.example.jotno.Models.AppointmentResponse;
+import com.example.jotno.Models.CustomiseProfileResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.LoginUser;
 import com.example.jotno.Models.PrescriptionReportResponse;
 import com.example.jotno.Models.PrescriptionResponse;
+import com.example.jotno.Models.Prescriptions;
 import com.example.jotno.Models.RegisterResponse;
 import com.example.jotno.Models.ResponseModel;
 import com.example.jotno.Models.Tests;
@@ -108,6 +110,13 @@ public interface Api {
 
     );
 
+    @GET("prescription-list")
+    Call<Prescriptions> getAllPrescriptions(
+
+            @Query("id") int id
+
+    );
+
 
     @GET("prescription-report")
     Call<PrescriptionReportResponse> getPrescriptionReports(
@@ -116,6 +125,26 @@ public interface Api {
 
     );
 
+
+
+    @Multipart
+    @POST("patient-profile-update")
+    Call<CustomiseProfileResponse> updateProfile(
+
+            @Part("patient_id") RequestBody patient_id,
+            @Part("full_name") RequestBody full_name,
+            @Part("date_of_birth") RequestBody date_of_birth,
+            @Part("blood_group") RequestBody blood_group,
+            @Part("gender") RequestBody gender,
+            @Part("email") RequestBody email,
+            @Part("mobile") RequestBody mobile,
+            @Part("city") RequestBody city,
+            @Part("district") RequestBody district,
+            @Part("address") RequestBody address,
+            @Part MultipartBody.Part file
+
+
+    );
 
 
     @Multipart

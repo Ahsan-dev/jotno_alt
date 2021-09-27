@@ -5,22 +5,17 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class InitialTests {
+public class PrescriptionList {
 
     @SerializedName("data")
     @Expose
-    private List<Datum__1> data = null;
+    private List<PrescriptionsDatum> data = null;
 
-    public InitialTests(List<Datum__1> data) {
-        this.data = data;
-    }
-
-    public List<Datum__1> getData() {
+    public List<PrescriptionsDatum> getData() {
         return data;
     }
 
-    public void setData(List<Datum__1> data) {
+    public void setData(List<PrescriptionsDatum> data) {
         this.data = data;
     }
-
 }

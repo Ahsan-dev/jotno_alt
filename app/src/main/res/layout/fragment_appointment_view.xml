@@ -55,14 +55,12 @@
     </LinearLayout>
 
 
-
     <RelativeLayout
         android:id="@+id/view_appointment_relative"
-        android:layout_below="@id/view_appointment_main_option_tab_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
-        />
+        android:layout_below="@id/view_appointment_main_option_tab_linear"
+        android:layout_marginTop="15dp" />
 
 
 

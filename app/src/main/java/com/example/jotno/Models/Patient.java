@@ -69,6 +69,31 @@ public class Patient {
     @Expose
     private String updatedAt;
 
+
+    public Patient(Integer id, String patientId, String name, String email, String phone, String dateOfBirth, String bloodGroup, String gender, String address, String city, String district, String weight, String password, Object image, String isActive, String month, String year, String rememberToken, String createdAt, String updatedAt) {
+        this.id = id;
+        this.patientId = patientId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.dateOfBirth = dateOfBirth;
+        this.bloodGroup = bloodGroup;
+        this.gender = gender;
+        this.address = address;
+        this.city = city;
+        this.district = district;
+        this.weight = weight;
+        this.password = password;
+        this.image = image;
+        this.isActive = isActive;
+        this.month = month;
+        this.year = year;
+        this.rememberToken = rememberToken;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+
     public Integer getId() {
         return id;
     }

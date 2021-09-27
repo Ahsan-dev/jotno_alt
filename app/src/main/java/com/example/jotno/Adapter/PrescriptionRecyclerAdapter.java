@@ -1,25 +1,31 @@
 package com.example.jotno.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.jotno.Fragment.PrescriptAppointFragment;
 import com.example.jotno.Models.Prescriptions;
+import com.example.jotno.Models.PrescriptionsDatum;
 import com.example.jotno.R;
 import com.example.jotno.ViewHolder.PrescriptionItemViewHolder;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<PrescriptionItemViewHolder> {
 
-    private List<Prescriptions> prescriptionsList;
+    private List<PrescriptionsDatum> prescriptionsList;
     private int st = 0;
 
-    public PrescriptionRecyclerAdapter(List<Prescriptions> prescriptionsList) {
+    public PrescriptionRecyclerAdapter(List<PrescriptionsDatum> prescriptionsList) {
         this.prescriptionsList = prescriptionsList;
     }
 
@@ -33,7 +39,7 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
     @Override
     public void onBindViewHolder(@NonNull PrescriptionItemViewHolder holder, int position) {
 
-        Prescriptions prescriptions = prescriptionsList.get(position);
+        PrescriptionsDatum prescriptions = prescriptionsList.get(position);
 
         holder.itemView.setOnClickListener(v -> {
             if(st == 0){
@@ -48,15 +54,24 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
         });
 
         holder.prescriptionNoTxt.setText(prescriptions.getPrescriptionNo());
-        holder.appointmentNoTxt.setText("Appointment No:\n"+prescriptions.getAppointmentNo());
-        holder.dateTxt.setText(prescriptions.getDate());
-        holder.noteTxt.setText("Note:\n"+prescriptions.getNote());
+        holder.appointmentNoTxt.setText("Appointment No:\n"+prescriptions.getAppoinmentNo());
+        holder.dateTxt.setText(prescriptions.getCreatedAt());
+        holder.noteTxt.setText("Advice:\n"+prescriptions.getAdvice());
         holder.doctorsNameTxt.setText("Doctor's Name:\n"+prescriptions.getDoctorName());
 
 
         holder.viewPresBtn.setOnClickListener(v -> {
 
-            Toast.makeText(v.getContext(), "It will be viewed...", Toast.LENGTH_SHORT).show();
+            PrescriptAppointFragment fragment = new PrescriptAppointFragment();
+            FragmentManager fragmentManager = ((AppCompatActivity)v.getContext()).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Bundle bundles = new Bundle();
+            bundles.putInt("prescription_id",prescriptions.getId());
+            bundles.putString("iWant","prescriptions");
+            fragment.setArguments(bundles);
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         });
 

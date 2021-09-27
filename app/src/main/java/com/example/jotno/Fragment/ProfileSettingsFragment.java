@@ -1,12 +1,27 @@
 package com.example.jotno.Fragment;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+import static androidx.core.content.PermissionChecker.checkSelfPermission;
+
+import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
@@ -21,16 +36,28 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jotno.Activity.LoginActivity;
 import com.example.jotno.Activity.MainActivity;
+import com.example.jotno.Models.CustomiseEventModel;
+import com.example.jotno.Models.EventModel;
+import com.example.jotno.NetworkCall;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
+import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.paperdb.Paper;
 import okhttp3.ResponseBody;
@@ -44,15 +71,18 @@ public class ProfileSettingsFragment extends Fragment {
     private String[] bloodGrpArray, genderArray;
     private ArrayAdapter<String> bloodGrpAdapter, genderAdapter ;
     private EditText fullNameEdt, dobEdt,  emailEdt, mobileEdt, addressEdt, cityEdt, districtEdt;
-    private String fullName, dob, bloodGroup, gender, email, mobile, address, city, district, image;
+    private String fullName, dob, bloodGroup, gender, email, mobile, address, city, district, image = "";
     private DatePickerDialog dobPicker;
     private StringBuilder dobString;
     private int bDay, bMonth, bYear;
-    private CheckBox profile_settingsCheck;
-    private Button profile_settingsNowBtn;
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
+    private Button profile_settingsNowBtn, uploadImgBtn;
+    private ImageView uploadImageView;
+    private TextView uploadImgNameTxt;
     private Api api;
     private ProgressDialog loadingBar;
     private  View view;
+    private int patientId = -1;
 
 
     @Override
@@ -72,7 +102,9 @@ public class ProfileSettingsFragment extends Fragment {
         cityEdt = view.findViewById(R.id.profile_settings_city_edt);
         districtEdt = view.findViewById(R.id.profile_settings_district_edt);
         profile_settingsNowBtn = view.findViewById(R.id.profile_settings_profile_settings_now_btn_id);
-
+        uploadImgBtn = view.findViewById(R.id.profile_settings_upload_image_btn);
+        uploadImageView = view.findViewById(R.id.profile_settings_upload_image_view);
+        uploadImgNameTxt = view.findViewById(R.id.profile_settings_upload_image_name_txt);
 
 
 
@@ -82,14 +114,8 @@ public class ProfileSettingsFragment extends Fragment {
         Paper.init(view.getContext());
         loadingBar = new ProgressDialog(view.getContext());
 
+        patientId = Paper.book().read(PermanentPatient.userIdString);
 
-        fullNameEdt.setText(Paper.book().read(PermanentPatient.userNameString));
-        dobEdt.setText(Paper.book().read(PermanentPatient.userDateOfBirthString));
-        emailEdt.setText(Paper.book().read(PermanentPatient.userEmailString));
-        mobileEdt.setText(Paper.book().read(PermanentPatient.userMobileString));
-        addressEdt.setText(Paper.book().read(PermanentPatient.userAddressString));
-        cityEdt.setText(Paper.book().read(PermanentPatient.userCityString));
-        districtEdt.setText(Paper.book().read(PermanentPatient.userDistrictString));
 
 
         bloodGrpArray = getResources().getStringArray(R.array.blood_grp);
@@ -196,8 +222,8 @@ public class ProfileSettingsFragment extends Fragment {
 
 
 
-        genderSpinner.setSelection(genderAdapter.getPosition(Paper.book().read(PermanentPatient.userGenderString)));
-        bldGrpSpinner.setSelection(bloodGrpAdapter.getPosition(Paper.book().read(PermanentPatient.userBloodGrpString)));
+        loadAllFields();
+
 
         dobEdt.setOnClickListener(v -> {
             dobMaker();
@@ -211,7 +237,14 @@ public class ProfileSettingsFragment extends Fragment {
             loadingBar.show();
             validateFields();
 
+        });
 
+        uploadImgBtn.setOnClickListener(view1 -> {
+
+
+            if(checkAndRequestPermissions(view1.getContext())){
+                selectImage(view1.getContext());
+            }
 
         });
 
@@ -220,6 +253,165 @@ public class ProfileSettingsFragment extends Fragment {
         return view;
 
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(CustomiseEventModel event) throws ClassNotFoundException {
+
+
+        if (event.getEventTag().equals("customise_response")) {
+            loadingBar.dismiss();
+            Toast.makeText(view.getContext(), event.getMessage(), Toast.LENGTH_SHORT).show();
+            Paper.book().write(PermanentPatient.userNameString,event.getPatient().getName());
+            Paper.book().write(PermanentPatient.userDateOfBirthString,event.getPatient().getDateOfBirth());
+            Paper.book().write(PermanentPatient.userBloodGrpString,event.getPatient().getBloodGroup());
+            Paper.book().write(PermanentPatient.userGenderString,event.getPatient().getGender());
+            Paper.book().write(PermanentPatient.userEmailString,event.getPatient().getEmail());
+            Paper.book().write(PermanentPatient.userMobileString,event.getPatient().getPhone());
+            Paper.book().write(PermanentPatient.userCityString,event.getPatient().getCity());
+            Paper.book().write(PermanentPatient.userDistrictString,event.getPatient().getDistrict());
+            Paper.book().write(PermanentPatient.userAddressString,event.getPatient().getAddress());
+            Paper.book().write(PermanentPatient.userImageString,event.getPatient().getImage());
+
+            loadAllFields();
+
+
+        }
+        if (event.getEventTag().equals("customise_response_null")){
+            loadingBar.dismiss();
+            Toast.makeText(view.getContext(), event.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+        if (event.getEventTag().equals("customise_response_error")){
+            loadingBar.dismiss();
+            Toast.makeText(view.getContext(), event.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+
+    public boolean checkAndRequestPermissions(final Context context) {
+        int WExtstorePermission = checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int cameraPermission = checkSelfPermission(context, Manifest.permission.CAMERA);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+        }
+        if (WExtstorePermission != PackageManager.PERMISSION_GRANTED) {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            requestPermissions(listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_ID_MULTIPLE_PERMISSIONS:
+                if (ContextCompat.checkSelfPermission(view.getContext(),
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(view.getContext(), "FlagUp Requires Access to Camara.", Toast.LENGTH_SHORT).show();
+                } else if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(view.getContext(), "FlagUp Requires Access to Your Storage.", Toast.LENGTH_SHORT).show();
+                } else {
+                    selectImage(view.getContext());
+                }
+                break;
+        }
+    }
+
+
+    private void selectImage(Context context) {
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("Choose your profile picture");
+
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+
+                if (options[item].equals("Take Photo")) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (ContextCompat.checkSelfPermission(view.getContext(),Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                        {
+                            requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+                        }
+                        else
+                        {
+                            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                            startActivityForResult(cameraIntent, 0);
+                        }
+                    }
+
+                } else if (options[item].equals("Choose from Gallery")) {
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(pickPhoto , 1);
+
+                } else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                case 0:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+                        Uri cameraUri = data.getData();
+                        image = getPath(cameraUri);
+                        uploadImgNameTxt.setText(image.substring(image.lastIndexOf("/")+1));
+                        uploadImageView.setImageURI(cameraUri);
+
+                    }
+                    break;
+                case 1:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Uri selectedImage = data.getData();
+                        image = getPath(selectedImage);
+                        uploadImgNameTxt.setText(image.substring(image.lastIndexOf("/")+1));
+                        uploadImageView.setImageURI(selectedImage);
+
+
+                    }
+                    break;
+            }
+        }
+    }
+
+
+    private String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
+    }
+
 
     private void dobMaker() {
 
@@ -308,44 +500,27 @@ public class ProfileSettingsFragment extends Fragment {
             return;
         } else{
 
-            api.customiseProfile(fullName,dob,bloodGroup,gender,email,mobile,address,city,district,image)
-                    .enqueue(new Callback<ResponseBody>() {
-                        @Override
-                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                            if(response.isSuccessful()){
-//                                loadingBar.dismiss();
-//                                if(response.body().getStatus().equals("success")){
-//                                    Toast.makeText(view.getContext(),response.body().getStatus()+"\n Profile customization done.",Toast.LENGTH_SHORT).show();
-//
-//                                    Paper.book().write(PermanentPatient.userEmailString,response.body().getBody().getEmail());
-//
-//
-//                                }else{
-//                                    loadingBar.dismiss();
-//                                    Toast.makeText(view.getContext(),response.body().getStatus()+"\n Something wrong! Check again.",Toast.LENGTH_SHORT).show();
-//
-//                                }
-//
-//
-//                            }else{
-//                                loadingBar.dismiss();
-//                                Toast.makeText(view.getContext(),"Response not found!",Toast.LENGTH_SHORT).show();
-//
-//
-//                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            loadingBar.dismiss();
-                            Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
+            NetworkCall.profileSettingsUpload(patientId,fullName,dob,bloodGroup,gender,email,mobile,city,district,address,image);
 
         }
 
+
+    }
+
+
+    private void loadAllFields(){
+
+        fullNameEdt.setText(Paper.book().read(PermanentPatient.userNameString));
+        dobEdt.setText(Paper.book().read(PermanentPatient.userDateOfBirthString));
+        emailEdt.setText(Paper.book().read(PermanentPatient.userEmailString));
+        mobileEdt.setText(Paper.book().read(PermanentPatient.userMobileString));
+        addressEdt.setText(Paper.book().read(PermanentPatient.userAddressString));
+        cityEdt.setText(Paper.book().read(PermanentPatient.userCityString));
+        districtEdt.setText(Paper.book().read(PermanentPatient.userDistrictString));
+        Picasso.get().load((String) Paper.book().read(PermanentPatient.userImageString)).placeholder(R.drawable.person_image).into(uploadImageView);
+        uploadImgNameTxt.setText(Paper.book().read(PermanentPatient.userImageString));
+        genderSpinner.setSelection(genderAdapter.getPosition(Paper.book().read(PermanentPatient.userGenderString)));
+        bldGrpSpinner.setSelection(bloodGrpAdapter.getPosition(Paper.book().read(PermanentPatient.userBloodGrpString)));
 
     }
 

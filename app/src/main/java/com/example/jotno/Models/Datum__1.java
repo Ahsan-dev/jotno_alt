@@ -12,6 +12,11 @@ public class Datum__1 {
     @Expose
     private String value;
 
+    public Datum__1(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
+
     public String getName() {
         return name;
     }

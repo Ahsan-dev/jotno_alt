@@ -9,7 +9,7 @@
         android:id="@+id/prescription_fragment_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Prescription: P-123698"
+        android:text="your all Prescriptions"
         android:textSize="17sp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"/>

@@ -9,6 +9,10 @@ public class DaysDatum {
     @Expose
     private String name;
 
+    public DaysDatum(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

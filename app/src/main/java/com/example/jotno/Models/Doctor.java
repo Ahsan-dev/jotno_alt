@@ -42,6 +42,20 @@ public class Doctor {
     @Expose
     private Days days;
 
+    public Doctor(Integer id, String doctorId, String name, String designation, String chamber, String location, String phone, String email, String in, String out, Days days) {
+        this.id = id;
+        this.doctorId = doctorId;
+        this.name = name;
+        this.designation = designation;
+        this.chamber = chamber;
+        this.location = location;
+        this.phone = phone;
+        this.email = email;
+        this.in = in;
+        this.out = out;
+        this.days = days;
+    }
+
     public Integer getId() {
         return id;
     }

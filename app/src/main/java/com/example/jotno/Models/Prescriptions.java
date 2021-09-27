@@ -1,55 +1,21 @@
 package com.example.jotno.Models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Prescriptions {
 
-    private String prescriptionNo, date, appointmentNo, doctorName, note;
+    @SerializedName("prescription_list")
+    @Expose
+    private PrescriptionList prescriptionList;
 
-    public Prescriptions(String prescriptionNo, String date, String appointmentNo, String doctorName, String note) {
-        this.prescriptionNo = prescriptionNo;
-        this.date = date;
-        this.appointmentNo = appointmentNo;
-        this.doctorName = doctorName;
-        this.note = note;
+    public PrescriptionList getPrescriptionList() {
+        return prescriptionList;
+    }
+
+    public void setPrescriptionList(PrescriptionList prescriptionList) {
+        this.prescriptionList = prescriptionList;
     }
 
 
-    public String getPrescriptionNo() {
-        return prescriptionNo;
-    }
-
-    public void setPrescriptionNo(String prescriptionNo) {
-        this.prescriptionNo = prescriptionNo;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getAppointmentNo() {
-        return appointmentNo;
-    }
-
-    public void setAppointmentNo(String appointmentNo) {
-        this.appointmentNo = appointmentNo;
-    }
-
-    public String getDoctorName() {
-        return doctorName;
-    }
-
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 }

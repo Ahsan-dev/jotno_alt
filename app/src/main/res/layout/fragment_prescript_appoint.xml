@@ -24,6 +24,20 @@
 
             >
 
+            <Button
+                android:id="@+id/prescript_appointment_back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:textAllCaps="false"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                />
+
         <Button
             android:id="@+id/prescript_appointment_download_btn"
             android:layout_width="wrap_content"

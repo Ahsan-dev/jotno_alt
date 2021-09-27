@@ -11,6 +11,10 @@ public class Days {
     @Expose
     private List<DaysDatum> data = null;
 
+    public Days(List<DaysDatum> data) {
+        this.data = data;
+    }
+
     public List<DaysDatum> getData() {
         return data;
     }
