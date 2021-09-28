@@ -26,6 +26,11 @@ public class Doctor {
     @SerializedName("location")
     @Expose
     private String location;
+
+    @SerializedName("image")
+    @Expose
+    private String image;
+
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -42,13 +47,14 @@ public class Doctor {
     @Expose
     private Days days;
 
-    public Doctor(Integer id, String doctorId, String name, String designation, String chamber, String location, String phone, String email, String in, String out, Days days) {
+    public Doctor(Integer id, String doctorId, String name, String designation, String chamber, String location, String image, String phone, String email, String in, String out, Days days) {
         this.id = id;
         this.doctorId = doctorId;
         this.name = name;
         this.designation = designation;
         this.chamber = chamber;
         this.location = location;
+        this.image = image;
         this.phone = phone;
         this.email = email;
         this.in = in;
@@ -104,6 +110,14 @@ public class Doctor {
         this.location = location;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -143,5 +157,4 @@ public class Doctor {
     public void setDays(Days days) {
         this.days = days;
     }
-
 }

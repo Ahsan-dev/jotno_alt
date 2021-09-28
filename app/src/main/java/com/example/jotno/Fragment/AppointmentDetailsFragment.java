@@ -18,6 +18,7 @@ import com.example.jotno.Models.Datum;
 import com.example.jotno.Models.Datum__1;
 import com.example.jotno.PaperDB.AppointmentPermanent;
 import com.example.jotno.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +89,7 @@ public class AppointmentDetailsFragment extends Fragment implements View.OnClick
             doctorMobileTxt.setText(appoList.get(position).getDoctor().getPhone());
             doctorHospitalTxt.setText(appoList.get(position).getDoctor().getChamber());
             doctorAddressTxt.setText(appoList.get(position).getDoctor().getLocation());
+            Picasso.get().load(appoList.get(position).getDoctor().getImage()).placeholder(R.drawable.rehi).into(doctorImage);
 
             StringBuffer daysBuffer = new StringBuffer();
             int daysSize = appoList.get(position).getDoctor().getDays().getData().size();

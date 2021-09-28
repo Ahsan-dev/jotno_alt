@@ -275,6 +275,10 @@ public class ProfileSettingsFragment extends Fragment {
 
             loadAllFields();
 
+            EventBus.getDefault().post(new EventModel("nameSendToMain",event.getPatient().getName()));
+            EventBus.getDefault().post(new EventModel("imageSendToMain",event.getPatient().getImage()));
+
+
 
         }
         if (event.getEventTag().equals("customise_response_null")){

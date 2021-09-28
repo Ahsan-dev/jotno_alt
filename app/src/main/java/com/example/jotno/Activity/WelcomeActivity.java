@@ -165,6 +165,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (loadingBar != null)
+        {
+            loadingBar.dismiss(); loadingBar = null;
+        }
+    }
 }
+

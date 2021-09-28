@@ -55,6 +55,18 @@
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/view_appointment_no_prescription_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Prescription found!!"
+        android:textColor="@color/red"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+
+
     <RelativeLayout
         android:id="@+id/view_appointment_relative"
         android:layout_width="match_parent"

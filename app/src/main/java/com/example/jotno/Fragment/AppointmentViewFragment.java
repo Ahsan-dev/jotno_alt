@@ -28,6 +28,7 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
     private RelativeLayout mainRelativeScreen;
     private int position = -1;
     private List<Datum> appoList;
+    private TextView noPrescriptText;
 
 
     @Override
@@ -43,6 +44,7 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
         detailsTxtBtn = view.findViewById(R.id.view_appointment_appointment_details_text_id);
         prescriptionTxtBtn = view.findViewById(R.id.view_appointment_prescription_text_id);
         mainRelativeScreen = view.findViewById(R.id.view_appointment_relative);
+        noPrescriptText = view.findViewById(R.id.view_appointment_no_prescription_text_id);
 
 
         appointmentNo.setText("Appointment No : "+appoList.get(position).getAppoinmentNo());
@@ -73,10 +75,14 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
 
         if(view.getId() == R.id.view_appointment_appointment_details_text_id){
 
+
             detailsTxtBtn.setHintTextColor(view.getContext().getResources().getColor(R.color.white));
             detailsTxtBtn.setBackgroundDrawable(view.getContext().getDrawable(R.drawable.welcome_register_btn_back));
             prescriptionTxtBtn.setHintTextColor(view.getContext().getResources().getColor(R.color.black));
             prescriptionTxtBtn.setBackgroundDrawable(view.getContext().getDrawable(android.R.color.transparent));
+
+            noPrescriptText.setVisibility(View.GONE);
+            mainRelativeScreen.setVisibility(View.VISIBLE);
 
             AppointmentDetailsFragment fragment = new AppointmentDetailsFragment();
             FragmentManager fragmentManager = getParentFragmentManager();
@@ -97,15 +103,26 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
             prescriptionTxtBtn.setHintTextColor(view.getContext().getResources().getColor(R.color.white));
             prescriptionTxtBtn.setBackgroundDrawable(view.getContext().getDrawable(R.drawable.welcome_register_btn_back));
 
-            PrescriptAppointFragment fragment = new PrescriptAppointFragment();
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            Bundle bundles = new Bundle();
-            bundles.putInt("position",position);
-            fragment.setArguments(bundles);
-            fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            if(appoList.get(position).getPrescriptionId()==null){
+
+                noPrescriptText.setVisibility(View.VISIBLE);
+                mainRelativeScreen.setVisibility(View.GONE);
+
+            }
+            else{
+
+                PrescriptAppointFragment fragment = new PrescriptAppointFragment();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Bundle bundles = new Bundle();
+                bundles.putInt("position",position);
+                fragment.setArguments(bundles);
+                fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+
 
         }
 

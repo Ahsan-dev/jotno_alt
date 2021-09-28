@@ -17,6 +17,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -34,10 +35,17 @@ import com.example.jotno.Fragment.ContuctUsFragment;
 import com.example.jotno.Fragment.BMICalculatorFragment;
 import com.example.jotno.Fragment.DashboardFragment;
 import com.example.jotno.Fragment.ProfileSettingsFragment;
+import com.example.jotno.Models.CustomiseEventModel;
+import com.example.jotno.Models.EventModel;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends AppCompatActivity {
     private Button logoutBtn;
@@ -48,9 +56,12 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView toolTitle;
     private TextView drawerPatientNameTxt;
+    private ImageView drawerPatientImageView;
     private ImageButton toolCallusBtn;
     private RelativeLayout toolCallBtnBack, toolCallBtnBackBack;
     private String phone = "01715050507";
+    private Dialog dialog, exitDialog;
+    private String imageUrl;
 
 
 
@@ -59,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Paper.init(this);
+        dialog = new Dialog(this);
+        exitDialog = new Dialog(this);
 
         drawerBtn = findViewById(R.id.drawer_btn);
         toolbar = findViewById(R.id.main_toolbar_layout);
@@ -77,7 +91,13 @@ public class MainActivity extends AppCompatActivity {
 
         View header = drawerNavView.getHeaderView(0);
         drawerPatientNameTxt = (TextView) header.findViewById(R.id.nav_header_user_name_id);
+        drawerPatientImageView = header.findViewById(R.id.nav_header_pro_pic_img);
         drawerPatientNameTxt.setText(Paper.book().read(PermanentPatient.userNameString));
+        imageUrl = Paper.book().read(PermanentPatient.userImageString);
+
+        Log.d("imageUrl",Paper.book().read(PermanentPatient.userImageString));
+
+        Picasso.get().load(imageUrl).placeholder(R.drawable.rehi).into(drawerPatientImageView);
 
         drawerBtn.setOnClickListener(v -> {
                 drawer = findViewById(R.id.drawer_layout_id);
@@ -208,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_our_logout){
 
-                final Dialog dialog = new Dialog(this);
                 dialog.setCancelable(false);
                 dialog.setContentView(R.layout.dialog_layout);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -244,4 +263,86 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEvent(EventModel event) throws ClassNotFoundException {
+
+        if(event.isTagMatchWith("nameSendToMain")){
+
+            drawerPatientNameTxt.setText(event.getMessage());
+
+        }
+
+        if(event.isTagMatchWith("imageSendToMain")){
+
+            Picasso.get().load(event.getMessage()).placeholder(R.drawable.rehi).into(drawerPatientImageView);
+            //startActivity(new Intent(MainActivity.this,MainActivity.class));
+
+        }
+
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        exitDialog.setCancelable(false);
+        exitDialog.setContentView(R.layout.dialog_layout);
+        exitDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView message = (TextView) exitDialog.findViewById(R.id.alertDialogMessageId);
+        message.setText("Do you want to exit?");
+
+        TextView yesBtn = exitDialog.findViewById(R.id.alert_positive_btn_id);
+        TextView noBtn = exitDialog.findViewById(R.id.alert_negative_btn_id);
+
+
+
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finishAndRemoveTask();
+
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                exitDialog.cancel();
+
+            }
+        });
+
+        exitDialog.show();
+
+
+
+    }
+
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if ( exitDialog!=null && exitDialog.isShowing() ){
+            exitDialog.dismiss();
+        }
+    }
+
+
+
+
 }

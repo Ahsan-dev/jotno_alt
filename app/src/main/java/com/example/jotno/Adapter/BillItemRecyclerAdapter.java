@@ -1,28 +1,34 @@
 package com.example.jotno.Adapter;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.jotno.Fragment.PrescriptAppointFragment;
 import com.example.jotno.Models.Bills;
+import com.example.jotno.Models.PrescriptionsDatum;
 import com.example.jotno.R;
 import com.example.jotno.ViewHolder.BillItemViewHolder;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class BillItemRecyclerAdapter extends RecyclerView.Adapter<BillItemViewHolder> {
 
 
 
-    private List<Bills> billsList;
+    private List<PrescriptionsDatum> billsList;
     private int st = 0;
 
 
-    public BillItemRecyclerAdapter(List<Bills> billsList) {
+    public BillItemRecyclerAdapter(List<PrescriptionsDatum> billsList) {
         this.billsList = billsList;
     }
 
@@ -39,7 +45,7 @@ public class BillItemRecyclerAdapter extends RecyclerView.Adapter<BillItemViewHo
     @Override
     public void onBindViewHolder(@NonNull BillItemViewHolder holder, int position) {
 
-        Bills bills = billsList.get(position);
+        PrescriptionsDatum bills = billsList.get(position);
 
         holder.itemView.setOnClickListener(v -> {
             if(st == 0){
@@ -54,14 +60,23 @@ public class BillItemRecyclerAdapter extends RecyclerView.Adapter<BillItemViewHo
         });
 
         holder.prescriptionNoTxt.setText(bills.getPrescriptionNo());
-        holder.billTxt.setText(bills.getBill());
-        holder.billDateTxt.setText("Bill Date:\n"+bills.getBillDate());
+        holder.billTxt.setText(bills.getTotal());
+        holder.billDateTxt.setText("Bill Date:\n"+bills.getCreatedAt());
 
 
 
         holder.showBillBtn.setOnClickListener(v -> {
 
-            Toast.makeText(v.getContext(), "It will be viewed...", Toast.LENGTH_SHORT).show();
+            PrescriptAppointFragment fragment = new PrescriptAppointFragment();
+            FragmentManager fragmentManager = ((AppCompatActivity)v.getContext()).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            Bundle bundles = new Bundle();
+            bundles.putInt("prescription_id",bills.getId());
+            bundles.putString("iWant","bills");
+            fragment.setArguments(bundles);
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
 
         });
 

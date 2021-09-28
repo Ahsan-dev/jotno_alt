@@ -407,6 +407,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     Paper.book().write(PermanentPatient.userCityString,response.body().getBody().getCity());
                                     Paper.book().write(PermanentPatient.userDistrictString,response.body().getBody().getDistrict());
                                     Paper.book().write(PermanentPatient.userAddressString,response.body().getBody().getAddress());
+                                    Paper.book().write(PermanentPatient.userImageString," ");
 
                                     Intent homeIntent = new Intent(RegisterActivity.this,MainActivity.class);
                                     homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

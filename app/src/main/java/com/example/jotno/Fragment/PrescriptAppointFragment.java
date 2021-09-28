@@ -74,6 +74,7 @@ import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
+import com.squareup.picasso.Picasso;
 
 
 import org.greenrobot.eventbus.EventBus;
@@ -126,6 +127,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
     private Api api;
     private int position = -1;
     private List<Datum> appoList;
+    private ImageView doctorImageView;
     private TextView doctorNameTxt, doctorDesignationTxt, doctorMobileTxt, doctorEmailTxt, doctorAddressTxt, doctorHospitalTxt,  doctorAvailableTxt;
     private TextView patientNameTxt, patientLocationTxt, patientMobileTxt, patientEmailTxt, prescriptionNoTxt, statusTxt, invoiceDateTxt, amountTxt, totalBillTxt;
     private TextView patientIdTxt, patientPrescriptNameTxt, patientAgeTxt, patientGenderTxt, prescriptFooterTxt;
@@ -166,7 +168,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
 
 
-
+        //If appoList will be null then we have put 1 dummy element of the list
         if(appoList.size()==0){
 
             daysList = new ArrayList<>();
@@ -177,7 +179,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             appoList.add(new Datum(0,"gd","hdg","dhdh","dgh","hjdh",new Patient(
                     1,"","","","","","","","","","","","","","","","","","",""
             ),new Doctor(
-                    1,"","","","","","","","","",
+                    1,"","","","","","","","","","",
                     new Days(daysList)
             ),1,
                     new InitialTests(initTestList)
@@ -233,6 +235,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         doctorHospitalTxt = view.findViewById(R.id.prescript_appointment_doctor_hospital);
         doctorAvailableTxt = view.findViewById(R.id.prescript_appointment_doctor_time);
 
+
         addReportTestEdt = view.findViewById(R.id.prescript_appointment_add_report_test_name_edt);
         addReportResourceEdt = view.findViewById(R.id.prescript_appointment_add_report_resource_edt);
         addReportImgBtn = view.findViewById(R.id.prescript_appointment_add_report_image_btn);
@@ -242,6 +245,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         if(iWant.equals("prescriptions")){
 
             prescriptionId = getArguments().getInt("prescription_id");
+            downloadBtn.setVisibility(View.VISIBLE);
             billBtn.setVisibility(View.GONE);
             addReportBtn.setVisibility(View.GONE);
             reportBtn.setVisibility(View.GONE);
@@ -249,6 +253,19 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             addReportLinear.setVisibility(View.GONE);
             reportLinear.setVisibility(View.GONE);
             prescriptionLinear.setVisibility(View.VISIBLE);
+            backBtn.setVisibility(View.VISIBLE);
+
+        }else if(iWant.equals("bills")){
+
+            prescriptionId = getArguments().getInt("prescription_id");
+            downloadBtn.setVisibility(View.GONE);
+            billBtn.setVisibility(View.GONE);
+            addReportBtn.setVisibility(View.GONE);
+            reportBtn.setVisibility(View.GONE);
+            billLinear.setVisibility(View.VISIBLE);
+            addReportLinear.setVisibility(View.GONE);
+            reportLinear.setVisibility(View.GONE);
+            prescriptionLinear.setVisibility(View.GONE);
             backBtn.setVisibility(View.VISIBLE);
 
         }else{
@@ -266,7 +283,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             addReportTestEdt.setText(getArguments().getString("name"));
 
         }
-
 
 
         doctorNameTxt.setText(appoList.get(position).getDoctor().getName());
@@ -455,6 +471,15 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
+
+            }else{
+
+                BillsFragment fragment = new BillsFragment();
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
         });
@@ -673,6 +698,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                     }
                     break;
             }
+
         }
     }
 

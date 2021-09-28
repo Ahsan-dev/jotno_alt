@@ -26,6 +26,7 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
     private int st = 0;
 
     public PrescriptionRecyclerAdapter(List<PrescriptionsDatum> prescriptionsList) {
+
         this.prescriptionsList = prescriptionsList;
     }
 
@@ -79,6 +80,8 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
 
     @Override
     public int getItemCount() {
+
         return prescriptionsList.size();
+
     }
 }

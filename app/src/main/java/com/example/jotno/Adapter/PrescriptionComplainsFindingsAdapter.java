@@ -43,7 +43,6 @@ public class PrescriptionComplainsFindingsAdapter extends RecyclerView.Adapter<P
     @Override
     public void onBindViewHolder(@NonNull PrescriptionComplainsFindingsViewHolder holder, int position) {
 
-        Toast.makeText(context, "Adapter", Toast.LENGTH_SHORT).show();
 
         MainTest test = mainTestList.get(position);
 

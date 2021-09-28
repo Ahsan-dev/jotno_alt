@@ -24,6 +24,7 @@
         android:textColor="@color/deep_blue"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
+        android:textSize="13sp"
         />
     <TextView
         android:id="@+id/welcome_main_text2_id"
@@ -34,7 +35,7 @@
         android:text="Find The Best"
         android:textColor="@color/red"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="17sp"
         />
     <TextView
         android:id="@+id/welcome_main_text3_id"
@@ -45,7 +46,7 @@
         android:text="Medical Assistant Near By You."
         android:textColor="@color/deep_blue"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:textSize="15dp"
         />
     <TextView
         android:id="@+id/welcome_main_text_detail_id"
@@ -61,12 +62,14 @@
         />
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/welcome_main_text_detail_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@id/welcome_bottom_relative"
+        android:layout_below="@id/welcome_main_text_detail_id"
+        android:adjustViewBounds="true"
         android:src="@drawable/welcome_image"
-        android:adjustViewBounds="true"/>
+
+        />
 
 
     <RelativeLayout
@@ -78,21 +81,22 @@
         android:layout_alignParentBottom="true"
         android:layout_marginTop="50dp"
         >
+
         <Button
             android:id="@+id/welcome_register_now_btn_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/register_btn_text"
-            android:background="@drawable/welcome_register_btn_back"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="25dp"
-            android:textColor="@color/white"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/welcome_register_btn_back"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textSize="12sp"
+            android:text="@string/register_btn_text"
             android:textAllCaps="false"
-            />
+            android:textColor="@color/white" />
 
 
         <TextView

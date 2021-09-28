@@ -22,7 +22,7 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_main.xml" value="0.2125" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_register.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_view_appointment.xml" value="0.225" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_welcome.xml" value="0.18359375" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_welcome.xml" value="0.22" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_field_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/dialog_layout.xml" value="0.25" />
@@ -32,7 +32,7 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointments.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_change_pass.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_dashboard.xml" value="0.22" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.33" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.18" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescriptions.xml" value="0.21" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_profile_settings.xml" value="0.33" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_vew_appointment.xml" value="0.2" />

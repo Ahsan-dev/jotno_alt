@@ -15,6 +15,7 @@ import com.example.jotno.Adapter.PrescriptionRecyclerAdapter;
 import com.example.jotno.Models.Prescriptions;
 import com.example.jotno.Models.PrescriptionsDatum;
 import com.example.jotno.PaperDB.PermanentPatient;
+import com.example.jotno.PaperDB.PrescriptionsPermanent;
 import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.example.jotno.Retrofit.RetroClient;
@@ -60,6 +61,7 @@ public class PrescriptionsFragment extends Fragment {
                             prescriptionsList = new ArrayList<>();
                             assert response.body() != null;
                             prescriptionsList = response.body().getPrescriptionList().getData();
+                            Paper.book().write(PrescriptionsPermanent.prescriptionsListString,prescriptionsList);
                             prescriptionRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
                             prescriptionRecyclerAdapter = new PrescriptionRecyclerAdapter(prescriptionsList);
                             prescriptionRecycler.hasFixedSize();
