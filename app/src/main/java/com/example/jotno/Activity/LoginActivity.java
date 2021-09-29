@@ -239,7 +239,7 @@ public class LoginActivity extends AppCompatActivity {
                         Paper.book().write(PermanentPatient.userCityString,response.body().getBody().getCity());
                         Paper.book().write(PermanentPatient.userDistrictString,response.body().getBody().getDistrict());
                         Paper.book().write(PermanentPatient.userAddressString,response.body().getBody().getAddress());
-                        Paper.book().write(PermanentPatient.userImageString," ");
+                        Paper.book().write(PermanentPatient.userImageString,response.body().getBody().getImage());
 
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

@@ -10,6 +10,7 @@ import io.paperdb.Paper;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -62,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
     private String phone = "01715050507";
     private Dialog dialog, exitDialog;
     private String imageUrl;
+    public static Context contextOfApplication;
+
+
+    public static Context getContextOfApplication()
+    {
+        return contextOfApplication;
+    }
 
 
 
@@ -70,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        contextOfApplication = getApplicationContext();
 
         Paper.init(this);
         dialog = new Dialog(this);
@@ -95,9 +104,9 @@ public class MainActivity extends AppCompatActivity {
         drawerPatientNameTxt.setText(Paper.book().read(PermanentPatient.userNameString));
         imageUrl = Paper.book().read(PermanentPatient.userImageString);
 
-        Log.d("imageUrl",Paper.book().read(PermanentPatient.userImageString));
+        //Log.d("imageUrl",Paper.book().read(PermanentPatient.userImageString));
 
-        Picasso.get().load(imageUrl).placeholder(R.drawable.rehi).into(drawerPatientImageView);
+         Picasso.get().load(imageUrl).placeholder(R.drawable.rehi).into(drawerPatientImageView);
 
         drawerBtn.setOnClickListener(v -> {
                 drawer = findViewById(R.id.drawer_layout_id);

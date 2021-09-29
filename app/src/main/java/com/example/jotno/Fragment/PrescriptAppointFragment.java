@@ -24,6 +24,7 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -45,6 +46,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jotno.Activity.MainActivity;
 import com.example.jotno.Adapter.BillFieldItemRecyclerAdapter;
 import com.example.jotno.Adapter.PrescriptMedicinesItemRecyclerAdapter;
 import com.example.jotno.Adapter.PrescriptReportItemAdapter;
@@ -281,6 +283,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             addReportLinear.setVisibility(View.VISIBLE);
 
             addReportTestEdt.setText(getArguments().getString("name"));
+            addReportResourceEdt.setText(getArguments().getString("image"));
 
         }
 
@@ -634,6 +637,51 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         }
     }
 
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(view.getContext(),
+                        "com.example.jotno.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, 0);
+            }
+        }
+    }
+
+
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        }
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        imagePath = image.getAbsolutePath();
+        //addReportResourceEdt.setText(imagePath);
+        Log.d("camera_image",imagePath);
+        return image;
+    }
 
 
     private void selectImage(Context context) {
@@ -648,21 +696,15 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             public void onClick(DialogInterface dialog, int item) {
 
                 if (options[item].equals("Take Photo")) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (ContextCompat.checkSelfPermission(view.getContext(),Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                        {
-                            requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
-                        }
-                        else
-                        {
-                            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(cameraIntent, 0);
-                        }
-                    }
+
+                    dispatchTakePictureIntent();
 
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     startActivityForResult(pickPhoto , 1);
+
+
 
                 } else if (options[item].equals("Cancel")) {
                     dialog.dismiss();
@@ -680,16 +722,17 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
                 case 0:
-                    if (resultCode == RESULT_OK && data != null) {
-                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        Uri cameraUri = data.getData();
-                        imagePath = getPath(cameraUri);
+                    if (resultCode == RESULT_OK ) {
+//                        Log.d("takePhoto",data.getData().toString());
+//                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         addReportResourceEdt.setText(imagePath);
                         addReportResourceEdt.setEnabled(false);
+
                     }
                     break;
                 case 1:
-                    if (resultCode == RESULT_OK && data != null) {
+                    if (resultCode == RESULT_OK && data.getData()!=null) {
+                        Log.d("galleryPhoto",data.getData().toString());
                         Uri selectedImage = data.getData();
                         imagePath = getPath(selectedImage);
                         addReportResourceEdt.setText(imagePath);
@@ -704,11 +747,32 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
 
     private String getPath(Uri uri) {
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        return cursor.getString(column_index);
+//        String[] projection = { MediaStore.Images.Media.DATA };
+//        Cursor cursor = getActivity().managedQuery(uri, projection, null, null, null);
+//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//        cursor.moveToFirst();
+//        return cursor.getString(column_index);
+
+
+        String path = "";
+        Cursor cursor = null;
+        try {
+            Context applicationContext = MainActivity.getContextOfApplication();
+            applicationContext.getContentResolver();
+            String[] projection = { MediaStore.MediaColumns.DATA };
+            cursor = applicationContext.getContentResolver().query(uri, projection, null, null, null);
+            if (cursor == null || !cursor.moveToFirst()) {
+                path = "";
+            } else {
+                int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+                path = cursor.getString(columnIndex);
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return path;
     }
 
 

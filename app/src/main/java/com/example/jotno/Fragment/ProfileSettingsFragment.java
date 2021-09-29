@@ -14,16 +14,20 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -56,7 +60,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import io.paperdb.Paper;
@@ -71,11 +78,11 @@ public class ProfileSettingsFragment extends Fragment {
     private String[] bloodGrpArray, genderArray;
     private ArrayAdapter<String> bloodGrpAdapter, genderAdapter ;
     private EditText fullNameEdt, dobEdt,  emailEdt, mobileEdt, addressEdt, cityEdt, districtEdt;
-    private String fullName, dob, bloodGroup, gender, email, mobile, address, city, district, image = "";
+    private String fullName, dob, bloodGroup, gender, email, mobile, address, city, district, imagePath = "";
     private DatePickerDialog dobPicker;
     private StringBuilder dobString;
     private int bDay, bMonth, bYear;
-    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 102;
     private Button profile_settingsNowBtn, uploadImgBtn;
     private ImageView uploadImageView;
     private TextView uploadImgNameTxt;
@@ -341,6 +348,52 @@ public class ProfileSettingsFragment extends Fragment {
     }
 
 
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(view.getContext(),
+                        "com.example.jotno.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, 0);
+            }
+        }
+    }
+
+
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        }
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        imagePath = image.getAbsolutePath();
+        //addReportResourceEdt.setText(imagePath);
+        Log.d("camera_image",imagePath);
+        return image;
+    }
+
     private void selectImage(Context context) {
         final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
 
@@ -353,20 +406,12 @@ public class ProfileSettingsFragment extends Fragment {
             public void onClick(DialogInterface dialog, int item) {
 
                 if (options[item].equals("Take Photo")) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (ContextCompat.checkSelfPermission(view.getContext(),Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                        {
-                            requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
-                        }
-                        else
-                        {
-                            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(cameraIntent, 0);
-                        }
-                    }
+
+                    dispatchTakePictureIntent();
 
                 } else if (options[item].equals("Choose from Gallery")) {
                     Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     startActivityForResult(pickPhoto , 1);
 
                 } else if (options[item].equals("Cancel")) {
@@ -384,20 +429,19 @@ public class ProfileSettingsFragment extends Fragment {
         if (resultCode != RESULT_CANCELED) {
             switch (requestCode) {
                 case 0:
-                    if (resultCode == RESULT_OK && data != null) {
+                    if (resultCode == RESULT_OK ) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        Uri cameraUri = data.getData();
-                        image = getPath(cameraUri);
-                        uploadImgNameTxt.setText(image.substring(image.lastIndexOf("/")+1));
-                        uploadImageView.setImageURI(cameraUri);
+                        uploadImgNameTxt.setText(imagePath.substring(imagePath.lastIndexOf("/")+1));
+                        uploadImageView.setImageURI(data.getData());
+
 
                     }
                     break;
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
                         Uri selectedImage = data.getData();
-                        image = getPath(selectedImage);
-                        uploadImgNameTxt.setText(image.substring(image.lastIndexOf("/")+1));
+                        imagePath = getPath(selectedImage);
+                        uploadImgNameTxt.setText(imagePath.substring(imagePath.lastIndexOf("/")+1));
                         uploadImageView.setImageURI(selectedImage);
 
 
@@ -504,7 +548,7 @@ public class ProfileSettingsFragment extends Fragment {
             return;
         } else{
 
-            NetworkCall.profileSettingsUpload(patientId,fullName,dob,bloodGroup,gender,email,mobile,city,district,address,image);
+            NetworkCall.profileSettingsUpload(patientId,fullName,dob,bloodGroup,gender,email,mobile,city,district,address,imagePath);
 
         }
 

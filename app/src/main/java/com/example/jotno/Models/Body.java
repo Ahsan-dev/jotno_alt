@@ -5,57 +5,54 @@ import com.google.gson.annotations.SerializedName;
 
 public class Body {
 
-    @SerializedName("patient_id")
-    @Expose
-    private String patientId;
-    @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("email")
-    @Expose
-    private String email;
-    @SerializedName("phone")
-    @Expose
-    private String phone;
-    @SerializedName("date_of_birth")
-    @Expose
-    private String dateOfBirth;
-    @SerializedName("blood_group")
-    @Expose
-    private String bloodGroup;
-    @SerializedName("gender")
-    @Expose
-    private String gender;
-    @SerializedName("address")
-    @Expose
-    private String address;
-    @SerializedName("city")
-    @Expose
-    private String city;
-    @SerializedName("district")
-    @Expose
-    private String district;
-    @SerializedName("is_active")
-    @Expose
-    private Boolean isActive;
-    @SerializedName("month")
-    @Expose
-    private Integer month;
-    @SerializedName("year")
-    @Expose
-    private Integer year;
-    @SerializedName("password")
-    @Expose
-    private String password;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
     @SerializedName("id")
     @Expose
     private Integer id;
+    @SerializedName("patient_id ")
+    @Expose
+    private String patientId;
+    @SerializedName("name ")
+    @Expose
+    private String name;
+    @SerializedName("email ")
+    @Expose
+    private String email;
+    @SerializedName("phone ")
+    @Expose
+    private String phone;
+    @SerializedName("date_of_birth ")
+    @Expose
+    private String dateOfBirth;
+    @SerializedName("blood_group ")
+    @Expose
+    private String bloodGroup;
+    @SerializedName("gender ")
+    @Expose
+    private String gender;
+    @SerializedName("address ")
+    @Expose
+    private String address;
+    @SerializedName("city ")
+    @Expose
+    private String city;
+    @SerializedName("district ")
+    @Expose
+    private String district;
+    @SerializedName("image ")
+    @Expose
+    private String image;
+    @SerializedName("is_active ")
+    @Expose
+    private boolean is_active;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPatientId() {
         return patientId;
@@ -137,67 +134,27 @@ public class Body {
         this.district = district;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
+    public String getImage() {
+        return image;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public Integer getMonth() {
-        return month;
+    public boolean isIs_active() {
+        return is_active;
     }
 
-    public void setMonth(Integer month) {
-        this.month = month;
+    public void setIs_active(boolean is_active) {
+        this.is_active = is_active;
     }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
 
     @Override
     public String toString() {
         return "Body{" +
-                "patientId='" + patientId + '\'' +
+                "id=" + id +
+                ", patientId='" + patientId + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
@@ -207,13 +164,8 @@ public class Body {
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", district='" + district + '\'' +
-                ", isActive=" + isActive +
-                ", month=" + month +
-                ", year=" + year +
-                ", password='" + password + '\'' +
-                ", updatedAt='" + updatedAt + '\'' +
-                ", createdAt='" + createdAt + '\'' +
-                ", id=" + id +
+                ", image='" + image + '\'' +
+                ", is_active=" + is_active +
                 '}';
     }
 }
