@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -90,8 +91,28 @@ public class MainActivity extends AppCompatActivity {
         toolCallusBtn = findViewById(R.id.toolbar_call_btn);
         toolCallBtnBack = findViewById(R.id.tool_call_btn_back);
         toolCallBtnBackBack = findViewById(R.id.tool_call_btn_back_back);
-        toolTitle.setText("Dashboard");
+        toolTitle.setHint("Dashboard");
         setSupportActionBar(toolbar);
+
+
+        if(toolTitle.getHint().equals("Dashboard")){
+
+            toolTitle.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+
+                    toolTitle.setHintTextColor(getResources().getColor(R.color.light_red));
+
+                    return false;
+                }
+            });
+            toolTitle.setOnClickListener(view -> {
+
+                startActivity(new Intent(MainActivity.this,MainActivity.class));
+
+            });
+
+        }
 
         drawerNavView = findViewById(R.id.drawer_nav_view_id);
         drawerNavView.bringToFront();
@@ -152,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             if(item.getItemId()==R.id.drawer_nav_dashboard){
-                toolTitle.setText("Dashboard");
+                toolTitle.setHint("Dashboard");
                 fragment = null;
                 fragment = new DashboardFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -167,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(item.getItemId()==R.id.drawer_nav_profile_settings){
-                toolTitle.setText("Settings");
+                toolTitle.setHint("Settings");
                 fragment = null;
                 fragment = new ProfileSettingsFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -176,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(item.getItemId()==R.id.drawer_nav_change_password){
-                toolTitle.setText("Password");
+                toolTitle.setHint("Password");
                 fragment = null;
                 fragment = new ChangePassFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -186,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_bmi_calculator){
 
-                toolTitle.setText("BMI");
+                toolTitle.setHint("BMI");
                 fragment = null;
                 fragment = new BMICalculatorFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -196,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             if(item.getItemId()==R.id.drawer_nav_blog){
-                toolTitle.setText("Blog");
+                toolTitle.setHint("Blog");
                 Toast.makeText(this, "Blog fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -205,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_contact_us){
 
-                toolTitle.setText("Contact");
+                toolTitle.setHint("Contact");
                 fragment = null;
                 fragment = new ContuctUsFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
@@ -214,14 +235,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(item.getItemId()==R.id.drawer_nav_about_us){
-                toolTitle.setText("About");
+                toolTitle.setHint("About");
                 Toast.makeText(this, "About us fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
             if(item.getItemId()==R.id.drawer_nav_terms_and_conditions){
 
-                toolTitle.setText("Terms & Conditions");
+                toolTitle.setHint("Terms & Conditions");
                 Toast.makeText(this, "Terms and Conditions fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -229,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_our_policies){
 
-                toolTitle.setText("Policies");
+                toolTitle.setHint("Policies");
                 Toast.makeText(this, "Our Policies fragment", Toast.LENGTH_SHORT).show();
                 drawer.closeDrawer(GravityCompat.START);
 

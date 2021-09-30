@@ -82,7 +82,7 @@ public class ProfileSettingsFragment extends Fragment {
     private DatePickerDialog dobPicker;
     private StringBuilder dobString;
     private int bDay, bMonth, bYear;
-    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 102;
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
     private Button profile_settingsNowBtn, uploadImgBtn;
     private ImageView uploadImageView;
     private TextView uploadImgNameTxt;
@@ -349,9 +349,9 @@ public class ProfileSettingsFragment extends Fragment {
 
 
     private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePictureIntent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
-        if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+        if (takePictureIntent2.resolveActivity(getActivity().getPackageManager()) != null) {
             // Create the File where the photo should go
             File photoFile = null;
             try {
@@ -362,11 +362,11 @@ public class ProfileSettingsFragment extends Fragment {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(view.getContext(),
+                Uri photoURI2 = FileProvider.getUriForFile(view.getContext(),
                         "com.example.jotno.fileprovider",
                         photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePictureIntent, 0);
+                takePictureIntent2.putExtra(MediaStore.EXTRA_OUTPUT, photoURI2);
+                startActivityForResult(takePictureIntent2, 2);
             }
         }
     }
@@ -390,7 +390,7 @@ public class ProfileSettingsFragment extends Fragment {
         // Save a file: path for use with ACTION_VIEW intents
         imagePath = image.getAbsolutePath();
         //addReportResourceEdt.setText(imagePath);
-        Log.d("camera_image",imagePath);
+        //Log.d("camera_image",imagePath);
         return image;
     }
 
@@ -426,15 +426,20 @@ public class ProfileSettingsFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("onActivityResult","OnActivityResult");
         if (resultCode != RESULT_CANCELED) {
+            Log.d("not cancelled","yeah");
             switch (requestCode) {
-                case 0:
+                case 2:
+                    Log.d("case","2");
                     if (resultCode == RESULT_OK ) {
-                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+
                         uploadImgNameTxt.setText(imagePath.substring(imagePath.lastIndexOf("/")+1));
-                        uploadImageView.setImageURI(data.getData());
+                        uploadImageView.setImageURI(Uri.fromFile(new File(imagePath)));;
 
 
+                    }else{
+                        Log.d("result_ok","no");
                     }
                     break;
                 case 1:

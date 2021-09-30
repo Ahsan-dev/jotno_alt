@@ -1,5 +1,6 @@
 package com.example.jotno.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
@@ -124,7 +127,17 @@ public class MedicinesActivity extends AppCompatActivity {
     public void reloadMedicine(View view){
 
         medicinesViewModel.deleteAll();
-        medicinesViewModel.insertMedicines();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                medicinesViewModel.insertMedicines();
+
+            }
+        },1000);
+
+
 
 
         medicinesViewModel.getMedicines().observe(this, medicines -> {
@@ -167,7 +180,7 @@ public class MedicinesActivity extends AppCompatActivity {
             }
             Paper.book().write(AlarmPaper.morningMessage,morningMessage);
 
-            setNotification(12,5,morningMessage,10);
+            setNotification(10,31,morningMessage,15);
 
         }
 
@@ -185,7 +198,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(12,7,noonMessage,11);
+            setNotification(14,33,noonMessage,16);
 
         }
 
@@ -202,7 +215,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.nightMessage,nightMessage);
 
-            setNotification(12,8,nightMessage,12);
+            setNotification(23,35,nightMessage,17);
 
         }
 
@@ -217,11 +230,11 @@ public class MedicinesActivity extends AppCompatActivity {
 
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 1);
+        calendar.set(Calendar.MILLISECOND, 1);
 
 
-        Calendar cur = Calendar.getInstance();
+
 
 //        if (cur.after(calendar)) {
 //            calendar.add(Calendar.DATE, 1);

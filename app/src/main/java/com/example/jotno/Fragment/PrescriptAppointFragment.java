@@ -9,6 +9,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -146,6 +147,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
     private String action = "upload";
     private int report_id = -1;
     private String iWant = "this";
+    private ProgressDialog loadingBar;
 
 
 
@@ -157,6 +159,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_prescript_appoint, container, false);
+        loadingBar = new ProgressDialog(view.getContext());
 
         action = String.valueOf(getArguments().getString("action"));
 
@@ -283,7 +286,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             addReportLinear.setVisibility(View.VISIBLE);
 
             addReportTestEdt.setText(getArguments().getString("name"));
-            addReportResourceEdt.setText(getArguments().getString("image"));
+            //addReportResourceEdt.setText(getArguments().getString("image"));
 
         }
 
@@ -448,12 +451,17 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
             }else{
 
+                loadingBar.setTitle(action.equals("upload")?"Uploading Report....":"Updating Report....");
+                loadingBar.setMessage("Plz wait, while we are checking the credentials");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+
                 if(action.equals("upload"))
 
                     NetworkCall.fileUpload2(imagePath,testName,prescriptionId);
 
                 else {
-                    report_id = getArguments().getInt("id", -1);
+
                     NetworkCall.fileUpload3(imagePath, testName, report_id);
                 }
 
@@ -523,12 +531,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                     }
                 });
 
-
-
-
-
-
-
     }
 
 
@@ -579,8 +581,9 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(EventModel event) throws ClassNotFoundException {
         if (event.isTagMatchWith("response")) {
+            loadingBar.dismiss();
             String responseMessage = event.getMessage();
-            Toast.makeText(view.getContext(), "Message: "+responseMessage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), "Message: "+responseMessage.substring(responseMessage.lastIndexOf(":")+2,responseMessage.lastIndexOf("}")-2), Toast.LENGTH_SHORT).show();
             addReportTestEdt.setText("");
             addReportResourceEdt.setText("");
         }

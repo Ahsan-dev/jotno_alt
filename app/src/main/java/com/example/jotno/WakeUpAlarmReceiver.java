@@ -28,9 +28,9 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 
-        Paper.init(context);
-
-        MedicinesActivity activity = new MedicinesActivity();
+//        Paper.init(context);
+//
+//        MedicinesActivity activity = new MedicinesActivity();
 
 //        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
 //
@@ -74,8 +74,7 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
 //                    "com.example.jotno.MedicinesActivity");
 //            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            context.startActivity(i);
-            Toast.makeText(context, "BOOT xxxxxxxxxxx", Toast.LENGTH_SHORT).show();
-            Log.i("myboot","boot compleated inside");
+            setNotification(17,50,"Reboot",10,context);
 
         }
 

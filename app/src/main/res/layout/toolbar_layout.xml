@@ -26,9 +26,9 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/abril_fatface"
             android:gravity="center"
-            android:text="Title"
+            android:hint="Title"
             android:textSize="17sp"
-            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textStyle="bold" />
         <RelativeLayout
             android:id="@+id/tool_call_btn_back_back"

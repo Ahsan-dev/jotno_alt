@@ -17,8 +17,15 @@
 
     </string>
 
+
+
+
     <string name="login_btn_text">
         <b><u>Login</u></b>
+    </string>
+
+    <string name="dashboard_text">
+        <u>Dashboard</u>
     </string>
 
     <string name="register_text_btn_text">

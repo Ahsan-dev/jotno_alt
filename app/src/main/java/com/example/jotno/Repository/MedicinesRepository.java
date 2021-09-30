@@ -118,6 +118,7 @@ public class MedicinesRepository {
         medicineRemoteList.add(new MedicineRemote("Napa","1+1+1"));
         medicineRemoteList.add(new MedicineRemote("Amodis","1+1+1"));
         medicineRemoteList.add(new MedicineRemote("Clonatril","0+0+1"));
+        medicineRemoteList.add(new MedicineRemote("Ace","1+0+1"));
 
 
 

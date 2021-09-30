@@ -1,5 +1,6 @@
 package com.example.jotno;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
@@ -144,7 +145,7 @@ public class NetworkCall {
         });
     }
 
-    public static void fileUpload3(String filePath, String imageSenderInfo,int id) {
+    public static void fileUpload3(String filePath, String imageSenderInfo,  int id) {
 
         Api apiInterface = RetroClient.getClient().create(Api.class);
         Logger.addLogAdapter(new AndroidLogAdapter());
@@ -171,8 +172,6 @@ public class NetworkCall {
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 Logger.d("Response: " + response);
 
-
-
                 if(response.isSuccessful()){
                     try {
                         EventBus.getDefault().post(new EventModel("response", response.body().string()));
@@ -197,7 +196,7 @@ public class NetworkCall {
     }
 
 
-    public static void deleteReport(int id){
+    public static void deleteReport(int id , Context context){
 
         Api apiInterface = RetroClient.getClient().create(Api.class);
         Logger.addLogAdapter(new AndroidLogAdapter());

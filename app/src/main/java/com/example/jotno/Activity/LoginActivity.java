@@ -117,8 +117,8 @@ public class LoginActivity extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             EditText emailEdt = dialog.findViewById(R.id.forget_pass_email_edt);
             Button sendBtn = dialog.findViewById(R.id.forget_pass_send_btn);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setCancelable(true);
 
             sendBtn.setOnClickListener(view1 -> {
 
@@ -127,6 +127,9 @@ public class LoginActivity extends AppCompatActivity {
                 if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
 
                     emailEdt.setError("Enter valid email address");
+                    emailEdt.requestFocus();
+                    return;
+
                 }else{
 
                     api.forgetPassword(email)

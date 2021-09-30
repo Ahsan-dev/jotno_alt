@@ -1,6 +1,8 @@
 package com.example.jotno.Adapter;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -34,6 +36,8 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
 
     private List<ReportDatum> prescriptReportList;
     private int s = 0;
+    private Context context;
+    private ProgressDialog loadingBar;
 
     public PrescriptReportItemAdapter(List<ReportDatum> prescriptReportList) {
         this.prescriptReportList = prescriptReportList;
@@ -43,6 +47,7 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
     @NonNull
     @Override
     public PrescriptReportItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
         return new PrescriptReportItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.prescript_report_item_layout,parent,false));
     }
 
@@ -54,7 +59,7 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
         holder.tesNameTxt.setText(report.getName());
         Picasso.get().load(report.getImage()).placeholder(R.drawable.exclamation).into(holder.reportImage);
 
-
+        loadingBar = new ProgressDialog(context);
 
         holder.itemView.setOnClickListener(view -> {
 
@@ -97,6 +102,7 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
 
         holder.editReportBtn.setOnClickListener(view -> {
 
+
             PrescriptAppointFragment fragment = new PrescriptAppointFragment();
             FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -112,11 +118,22 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 
+
+
         });
 
         holder.deleteReportBtn.setOnClickListener(view -> {
 
-            NetworkCall.deleteReport(report.getId());
+
+
+            loadingBar.setTitle("Deleting the report...");
+            loadingBar.setMessage("Plz wait, while we are checking the credentials");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+
+            NetworkCall.deleteReport(report.getId(),context);
+
+            loadingBar.dismiss();
 
         });
 

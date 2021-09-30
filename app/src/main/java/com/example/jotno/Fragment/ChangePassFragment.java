@@ -196,7 +196,14 @@ public class ChangePassFragment extends Fragment {
             confirmPassEdt.requestFocus();
             return;
 
-        } {
+        }
+         else {
+
+
+            loadingBar.setTitle("Changing Password....");
+            loadingBar.setMessage("Plz wait, while we are checking the credentials");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
 
             api.resetPassword(Paper.book().read(PermanentPatient.userIdString),oldPassword,newPassword,confirmPass)
                     .enqueue(new Callback<ResponseBody>() {
@@ -205,13 +212,18 @@ public class ChangePassFragment extends Fragment {
                             if(response.isSuccessful()){
 
                                 try {
-                                    Toast.makeText(view.getContext(), response.body().string(), Toast.LENGTH_SHORT).show();
+                                    loadingBar.dismiss();
+                                    oldPassEdt.setText("");
+                                    newPassEdt.setText("");
+                                    confirmPassEdt.setText("");
+                                    String text = response.body().string();
+                                    Toast.makeText(view.getContext(), text.substring(text.lastIndexOf(":")+2,text.lastIndexOf("}")-2), Toast.LENGTH_SHORT).show();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
 
                             }else{
-
+                                loadingBar.dismiss();
                                 Toast.makeText(view.getContext(), "Response not found!!!", Toast.LENGTH_SHORT).show();
 
                             }
@@ -219,6 +231,7 @@ public class ChangePassFragment extends Fragment {
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            loadingBar.dismiss();
                             Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
