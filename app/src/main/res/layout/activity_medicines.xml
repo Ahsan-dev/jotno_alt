@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MedicinesActivity">
 
+    <include
+        android:id="@+id/medicines_activity_toolbar"
+        layout="@layout/toolbar_layout_back_btn"/>
 
     <TextView
         android:id="@+id/reload_medicine_text_btn"
+        android:layout_below="@id/medicines_activity_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Reload Medicines"
@@ -21,6 +25,7 @@
         />
     <TextView
         android:id="@+id/set_alarm_text_btn"
+        android:layout_below="@id/medicines_activity_toolbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Notify Me"

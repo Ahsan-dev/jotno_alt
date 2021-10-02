@@ -61,20 +61,19 @@
 
                         <TextView
                             android:id="@+id/contact_us_get_in_touch_location_txt"
-                            android:layout_below="@id/contact_us_get_in_touch_detail_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Suite No. D-5, 3rd Floor, Mukti Bhaban 2 No. Comrade Moni Singh Sarak 21/1 Purana Paltan, Dhaka-1000, Bangladesh"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="20sp"
+                            android:layout_below="@id/contact_us_get_in_touch_detail_txt"
                             android:layout_centerHorizontal="true"
-                            android:drawableLeft="@drawable/location_icon"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="20dp"
+                            android:drawableLeft="@drawable/location_icon_white"
                             android:drawablePadding="10dp"
-                            />
+                            android:text="Suite No. D-5, 3rd Floor, Mukti Bhaban 2 No. Comrade Moni Singh Sarak 21/1 Purana Paltan, Dhaka-1000, Bangladesh"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/contact_us_get_in_touch_email_txt"

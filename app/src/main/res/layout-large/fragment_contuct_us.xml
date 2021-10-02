@@ -19,17 +19,17 @@
                     android:id="@+id/contact_us_get_in_touch_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
 
                     >
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/red"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="30dp"
                         >
 
                         <TextView
@@ -40,58 +40,56 @@
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             android:layout_margin="20dp"
-                            android:textSize="20sp"
+                            android:textSize="40sp"
                             android:layout_centerHorizontal="true"
                             />
+
                         <TextView
                             android:id="@+id/contact_us_get_in_touch_detail_txt"
-                            android:layout_below="@id/contact_us_get_in_touch_title_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="We're open for any suggestion or just to have a chat"
-                            android:textStyle="italic"
-                            android:textColor="@color/white"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="20sp"
-                            android:gravity="center"
+                            android:layout_below="@id/contact_us_get_in_touch_title_txt"
                             android:layout_centerHorizontal="true"
-                            />
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginRight="20dp"
+                            android:gravity="center"
+                            android:text="We're open for any suggestion or just to have a chat"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:textStyle="italic" />
 
                         <TextView
                             android:id="@+id/contact_us_get_in_touch_location_txt"
-                            android:layout_below="@id/contact_us_get_in_touch_detail_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Suite No. D-5, 3rd Floor, Mukti Bhaban 2 No. Comrade Moni Singh Sarak 21/1 Purana Paltan, Dhaka-1000, Bangladesh"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="20sp"
+                            android:layout_below="@id/contact_us_get_in_touch_detail_txt"
                             android:layout_centerHorizontal="true"
-                            android:drawableLeft="@drawable/location_icon"
-                            android:drawablePadding="10dp"
-                            />
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginRight="30dp"
+                            android:drawableLeft="@drawable/location_icon_white"
+                            android:drawablePadding="30dp"
+                            android:text="Suite No. D-5, 3rd Floor, Mukti Bhaban 2 No. Comrade Moni Singh Sarak 21/1 Purana Paltan, Dhaka-1000, Bangladesh"
+                            android:textColor="@color/white"
+                            android:textSize="35sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/contact_us_get_in_touch_email_txt"
-                            android:layout_below="@+id/contact_us_get_in_touch_location_txt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="info@jotno.com"
-                            android:textStyle="bold"
-                            android:textColor="@color/white"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="20sp"
+                            android:layout_below="@+id/contact_us_get_in_touch_location_txt"
                             android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="30dp"
                             android:drawableLeft="@drawable/mail_icon"
-                            android:drawablePadding="10dp"
-                            />
+                            android:drawablePadding="30dp"
+                            android:text="info@jotno.com"
+                            android:textColor="@color/white"
+                            android:textSize="35sp"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/contact_us_get_in_touch_mobile_txt"
@@ -103,11 +101,11 @@
                             android:textColor="@color/white"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:layout_marginTop="10dp"
-                            android:textSize="20sp"
+                            android:layout_marginTop="20dp"
+                            android:textSize="35sp"
                             android:layout_centerHorizontal="true"
                             android:drawableLeft="@drawable/phone_icon"
-                            android:drawablePadding="10dp"
+                            android:drawablePadding="30dp"
                             />
 
 
@@ -121,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Message Us:"
-                    android:textSize="17sp"
+                    android:textSize="35sp"
                     android:textStyle="bold"
                     android:layout_margin="20dp"
                     android:textColor="@color/black"/>
@@ -132,9 +130,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@drawable/register_edt_fields"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="15dp"
+                    android:padding="5dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,6 +141,7 @@
                         android:text="Full Name"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:textSize="35sp"
                         android:textColor="@color/light_red"
                         />
                     <EditText
@@ -149,6 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Your full name"
+                        android:textSize="30sp"
                         android:backgroundTint="@android:color/transparent"
                         android:textColorHint="@color/purple_200"
                         android:textColor="@color/black"
@@ -167,9 +168,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@drawable/register_edt_fields"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
@@ -177,6 +180,7 @@
                         android:text="Email"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:textSize="35sp"
                         android:textColor="@color/light_red"
                         />
                     <EditText
@@ -190,6 +194,7 @@
                         android:textColor="@color/black"
                         android:paddingBottom="5dp"
                         android:paddingTop="0dp"
+                        android:textSize="30sp"
                         android:paddingLeft="10dp"
                         />
 
@@ -203,14 +208,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@drawable/register_edt_fields"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Message Subject"
+                        android:textSize="35sp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/light_red"
@@ -224,6 +232,7 @@
                         android:textColorHint="@color/purple_200"
                         android:textColor="@color/black"
                         android:paddingBottom="5dp"
+                        android:textSize="30sp"
                         android:paddingTop="0dp"
                         android:paddingLeft="10dp"
                         />
@@ -238,15 +247,18 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:background="@drawable/register_edt_fields"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:padding="5dp"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Message"
-                        android:layout_marginLeft="10dp"
+                        android:textSize="35sp"
+                        android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:textColor="@color/light_red"
                         />
@@ -265,7 +277,7 @@
                         android:lines="10"
                         android:inputType="textMultiLine"
                         android:isScrollContainer="true"
-                        android:textSize="14sp"
+                        android:textSize="30sp"
                         android:maxLength="400"
                         android:paddingBottom="10dp"
                         android:gravity="start"
@@ -281,14 +293,14 @@
 
                 <Button
                     android:id="@+id/contact_us_send_message_btn_id"
-                    android:layout_below="@id/contact_us_message_linear"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Send Message"
+                    android:layout_below="@id/contact_us_message_linear"
                     android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="40dp"
+                    android:text="Send Message"
                     android:textAllCaps="false"
-                    android:layout_marginBottom="20dp"
-                    />
+                    android:textSize="35sp" />
 
 
 

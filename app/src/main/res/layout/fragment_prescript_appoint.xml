@@ -353,7 +353,7 @@
                         android:orientation="horizontal"
                         android:weightSum="2"
                         android:layout_marginBottom="20dp"
-                        android:paddingTop="5dp"
+
 
                         >
 
@@ -361,43 +361,42 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:orientation="vertical"
                             android:background="#F8F6F6"
-                            >
+                            android:padding="3dp"
+                            android:orientation="vertical">
 
                             <androidx.recyclerview.widget.RecyclerView
 
                                 android:id="@+id/prescript_appointment_advice_findings_recycler"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
                                 android:layout_marginStart="10dp"
-                                android:scrollbars="none"
-                                android:nestedScrollingEnabled="false"
+                                android:layout_marginTop="10dp"
                                 android:fitsSystemWindows="true"
+                                android:nestedScrollingEnabled="false"
+                                android:scrollbars="none"
 
                                 />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Advice:"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"
-                                android:layout_marginTop="10dp"
                                 android:layout_marginLeft="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="Advice:"
+                                android:textColor="@color/black"
                                 android:textSize="13sp"
-                                />
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:id="@+id/prescript_appointment_advice_text_id"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="10dp"
                                 android:text="Advice:"
                                 android:textColor="@color/black"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginLeft="20dp"
-                                android:textSize="10sp"
-                                />
+                                android:textSize="10sp" />
 
 
                         </LinearLayout>

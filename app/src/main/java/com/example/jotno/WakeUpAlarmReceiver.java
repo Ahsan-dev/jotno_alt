@@ -6,12 +6,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.jotno.Activity.DailyReceiver;
 import com.example.jotno.Activity.MainActivity;
 import com.example.jotno.Activity.MedicinesActivity;
 import com.example.jotno.PaperDB.AlarmPaper;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 import java.util.List;
@@ -74,7 +76,7 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
 //                    "com.example.jotno.MedicinesActivity");
 //            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            context.startActivity(i);
-            setNotification(17,50,"Reboot",10,context);
+            setNotification(12,25,"Reboot",10,context);
 
         }
 
@@ -84,28 +86,29 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
 
     private void setNotification(int hour, int minute, String message, int id, Context context){
 
-        Calendar calendar = Calendar.getInstance();
+        Toast.makeText(context, "Reboot Completed !!!", Toast.LENGTH_SHORT).show();
 
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-
         Calendar cur = Calendar.getInstance();
 
-//        if (cur.after(calendar)) {
-//            calendar.add(Calendar.DATE, 1);
-//        }
+        if (Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
         Intent myIntent = new Intent(context, DailyReceiver.class);
         myIntent.putExtra(DailyReceiver.MESSAGE,message);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                context, id, myIntent, PendingIntent.FLAG_ONE_SHOT);
+                context, id, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
 
     }
 

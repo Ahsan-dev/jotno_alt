@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import io.paperdb.Paper;
-
+import androidx.appcompat.widget.Toolbar;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,7 +15,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 
 import com.example.jotno.Adapter.MedicineItemAdapter;
 import com.example.jotno.PaperDB.AlarmPaper;
@@ -37,7 +39,9 @@ public class MedicinesActivity extends AppCompatActivity {
     private AlarmManager alarmManager;
     private Context context;
     private String morningMessage = "Hello", noonMessage = "Hello", nightMessage = "Hello";
-
+    private ImageView backBtn;
+    private TextView toolTitle;
+    private Toolbar toolbar;
     private int morningCount, noonCount, nightCount;
     private List<String> morningList, noonList, nightList;
 
@@ -48,6 +52,12 @@ public class MedicinesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicines);
 
+        toolbar = findViewById(R.id.medicines_activity_toolbar);
+        toolTitle = findViewById(R.id.toolbar2_title_txt);
+        backBtn = findViewById(R.id.toolbar2_title_img);
+        toolTitle.setText("Your Medicines");
+        setSupportActionBar(toolbar);
+
         Paper.init(this);
 
         medicinesViewModel = new ViewModelProvider(this).get(MedicinesViewModel.class);
@@ -57,6 +67,12 @@ public class MedicinesActivity extends AppCompatActivity {
         medicineList = new ArrayList<>();
 
         medicineRecycler = findViewById(R.id.medicines_recycler_id);
+
+        backBtn.setOnClickListener(view -> {
+
+            startActivity(new Intent(MedicinesActivity.this,MainActivity.class));
+
+        });
 
 
     }
@@ -180,7 +196,7 @@ public class MedicinesActivity extends AppCompatActivity {
             }
             Paper.book().write(AlarmPaper.morningMessage,morningMessage);
 
-            setNotification(10,31,morningMessage,15);
+            setNotification(12,26,morningMessage,15);
 
         }
 
@@ -198,7 +214,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(14,33,noonMessage,16);
+            setNotification(12,28,noonMessage,16);
 
         }
 
@@ -215,7 +231,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.nightMessage,nightMessage);
 
-            setNotification(23,35,nightMessage,17);
+            setNotification(12,30,nightMessage,17);
 
         }
 
@@ -228,25 +244,25 @@ public class MedicinesActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
+
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 1);
         calendar.set(Calendar.MILLISECOND, 1);
 
 
+        if (Calendar.getInstance().after(calendar)) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
 
-
-//        if (cur.after(calendar)) {
-//            calendar.add(Calendar.DATE, 1);
-//        }
 
         Intent myIntent = new Intent(this, DailyReceiver.class);
         myIntent.putExtra(DailyReceiver.MESSAGE,message);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                this, id, myIntent, PendingIntent.FLAG_ONE_SHOT);
+                this, id, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
 
     }
