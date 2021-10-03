@@ -127,7 +127,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Log.d("imageUrl",Paper.book().read(PermanentPatient.userImageString));
 
-         Picasso.get().load(imageUrl).placeholder(R.drawable.rehi).into(drawerPatientImageView);
+//        if(imageUrl.equals(null)){
+//
+//            Picasso.get().load(R.drawable.rehi).into(drawerPatientImageView);
+//
+//        }else
+            Picasso.get().load(imageUrl).placeholder(R.drawable.rehi).into(drawerPatientImageView);
 
         drawerBtn.setOnClickListener(v -> {
                 drawer = findViewById(R.id.drawer_layout_id);

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_nav_dashboard"
+            android:icon="@drawable/dashboard_icon"
+            android:title="Dashboard"
+            android:tooltipText="Dashboard"
+
+            />
+        <item
+            android:id="@+id/drawer_nav_medicines"
+            android:icon="@drawable/ic_pills"
+            android:title="Medicine Routine"
+            android:tooltipText="Medicine Routine"
+
+            />
+        <item
+            android:id="@+id/drawer_nav_profile_settings"
+            android:icon="@drawable/profile_settings"
+            android:title="Profile Settings"
+            android:tooltipText="Profile Settings"
+
+            />
+        <item
+            android:id="@+id/drawer_nav_change_password"
+            android:icon="@drawable/change_password"
+            android:title="Change Password"
+            android:tooltipText="Change Password"
+
+            />
+        <item
+            android:id="@+id/drawer_nav_bmi_calculator"
+            android:icon="@drawable/ic_bmi_calculator"
+            android:title="BMI Calculator"
+            android:tooltipText="BMI Calculator"
+
+
+            />
+
+
+
+        <item android:title="More">
+
+            <menu>
+                <item
+                    android:id="@+id/drawer_nav_blog"
+                    android:icon="@drawable/blog_icon"
+                    android:title="Blog"
+                    android:tooltipText="Blog"
+
+                    />
+                <item
+                    android:id="@+id/drawer_nav_contact_us"
+                    android:icon="@drawable/contact_us"
+                    android:title="Contact Us"
+                    android:tooltipText="Contact Us"
+
+                    />
+                <item
+                    android:id="@+id/drawer_nav_about_us"
+                    android:icon="@drawable/about_us_icon"
+                    android:title="About Us"
+                    android:tooltipText="About Us"
+
+                    />
+                <item
+                    android:id="@+id/drawer_nav_our_policies"
+                    android:icon="@drawable/our_policies_icon"
+                    android:title="Our Policies"
+                    android:tooltipText="Our Policies"
+
+                    />
+                <item
+                    android:id="@+id/drawer_nav_terms_and_conditions"
+                    android:icon="@drawable/terms_and_conditions_icon"
+                    android:title="Terms and conditions"
+                    android:tooltipText="Terms and conditions"
+
+                    />
+
+            </menu>
+
+
+        </item>
+
+        <item
+            android:id="@+id/drawer_nav_our_logout"
+            android:icon="@drawable/logout_icon"
+            android:title="Log Out"
+            android:tooltipText="Log Out"
+
+            />
+
+
+
+    </group>
+
+</menu>

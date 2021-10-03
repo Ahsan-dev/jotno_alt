@@ -58,15 +58,27 @@ public class PrescriptionsFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Prescriptions> call, Response<Prescriptions> response) {
                         if(response.isSuccessful()){
-                            prescriptionsList = new ArrayList<>();
+
                             assert response.body() != null;
-                            prescriptionsList = response.body().getPrescriptionList().getData();
-                            Paper.book().write(PrescriptionsPermanent.prescriptionsListString,prescriptionsList);
-                            prescriptionRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-                            prescriptionRecyclerAdapter = new PrescriptionRecyclerAdapter(prescriptionsList);
-                            prescriptionRecycler.hasFixedSize();
-                            prescriptionRecyclerAdapter.notifyDataSetChanged();
-                            prescriptionRecycler.setAdapter(prescriptionRecyclerAdapter);
+                            if(response.body().getStatus().equals("error")){
+
+                                Toast.makeText(view.getContext(), "No Prescription found!!!", Toast.LENGTH_SHORT).show();
+
+                            }else{
+
+                                prescriptionsList = new ArrayList<>();
+//                            assert response.body() != null;
+                                prescriptionsList = response.body().getBody().getData();
+                                Paper.book().write(PrescriptionsPermanent.prescriptionsListString,prescriptionsList);
+                                prescriptionRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                                prescriptionRecyclerAdapter = new PrescriptionRecyclerAdapter(prescriptionsList);
+                                prescriptionRecycler.hasFixedSize();
+                                prescriptionRecyclerAdapter.notifyDataSetChanged();
+                                prescriptionRecycler.setAdapter(prescriptionRecyclerAdapter);
+
+                            }
+
+
 
 
                         }else{

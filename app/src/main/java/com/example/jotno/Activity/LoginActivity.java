@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.jotno.Models.LoginUser;
-import com.example.jotno.Models.RegisterResponse;
+import com.example.jotno.Models.LoginResponse;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.PaperDB.Prevalent;
 import com.example.jotno.R;
@@ -219,11 +219,11 @@ public class LoginActivity extends AppCompatActivity {
         user.setEmail(email);
         user.setPassword(password);
 
-        Call<RegisterResponse> loginCall = api.loginUser(user);
+        Call<LoginResponse> loginCall = api.loginUser(user);
 
-        loginCall.enqueue(new Callback<RegisterResponse>() {
+        loginCall.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
 
                 if(response.isSuccessful()){
                     if(response.body().getStatus().equals("success")){
@@ -266,7 +266,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
                 loadingBar.dismiss();
                 Toast.makeText(LoginActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 

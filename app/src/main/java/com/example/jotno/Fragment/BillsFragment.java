@@ -62,13 +62,23 @@ public class BillsFragment extends Fragment {
                     public void onResponse(Call<Prescriptions> call, Response<Prescriptions> response) {
                         if(response.isSuccessful()){
 
-                            billList = response.body().getPrescriptionList().getData();
-                            Paper.book().write(PrescriptionsPermanent.prescriptionsListString,billList);
-                            billsRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
-                            billItemRecyclerAdapter = new BillItemRecyclerAdapter(billList);
-                            billsRecycler.hasFixedSize();
-                            billItemRecyclerAdapter.notifyDataSetChanged();
-                            billsRecycler.setAdapter(billItemRecyclerAdapter);
+                            if(response.body().getStatus().equals("error")){
+
+                                Toast.makeText(view.getContext(), "No bill found!!!", Toast.LENGTH_SHORT).show();
+
+                            }else{
+
+                                billList = response.body().getBody().getData();
+                                Paper.book().write(PrescriptionsPermanent.prescriptionsListString,billList);
+                                billsRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
+                                billItemRecyclerAdapter = new BillItemRecyclerAdapter(billList);
+                                billsRecycler.hasFixedSize();
+                                billItemRecyclerAdapter.notifyDataSetChanged();
+                                billsRecycler.setAdapter(billItemRecyclerAdapter);
+
+                            }
+
+
 
 
                         }else{

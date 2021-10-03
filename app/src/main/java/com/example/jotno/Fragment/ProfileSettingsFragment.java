@@ -570,7 +570,8 @@ public class ProfileSettingsFragment extends Fragment {
         addressEdt.setText(Paper.book().read(PermanentPatient.userAddressString));
         cityEdt.setText(Paper.book().read(PermanentPatient.userCityString));
         districtEdt.setText(Paper.book().read(PermanentPatient.userDistrictString));
-        Picasso.get().load((String) Paper.book().read(PermanentPatient.userImageString)).placeholder(R.drawable.person_image).into(uploadImageView);
+        String imageUrl = Paper.book().read(PermanentPatient.userImageString);
+        Picasso.get().load(imageUrl).placeholder(R.drawable.person_image).into(uploadImageView);
         uploadImgNameTxt.setText(Paper.book().read(PermanentPatient.userImageString));
         genderSpinner.setSelection(genderAdapter.getPosition(Paper.book().read(PermanentPatient.userGenderString)));
         bldGrpSpinner.setSelection(bloodGrpAdapter.getPosition(Paper.book().read(PermanentPatient.userBloodGrpString)));

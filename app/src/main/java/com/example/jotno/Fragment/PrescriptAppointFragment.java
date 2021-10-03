@@ -170,6 +170,8 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
         appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
 
+        Log.d("size_appo", String.valueOf(appoList.size()));
+
 
 
 
@@ -180,6 +182,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             daysList.add(new DaysDatum("j"));
             initTestList = new ArrayList<>();
             initTestList.add(new Datum__1("j","gh"));
+            position = 0;
 
             appoList.add(new Datum(0,"gd","hdg","dhdh","dgh","hjdh",new Patient(
                     1,"","","","","","","","","","","","","","","","","","",""
@@ -231,7 +234,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         patientAgeTxt = view.findViewById(R.id.prescript_appointment_patient_age_txt);
         patientGenderTxt = view.findViewById(R.id.prescript_appointment_patient_gender_txt);
 
-        prescriptFooterTxt.setText(appoList.get(position).getDoctor().getChamber()+", "+appoList.get(position).getDoctor().getLocation());
 
         doctorNameTxt = view.findViewById(R.id.prescript_appointment_doctor_name);
         doctorDesignationTxt = view.findViewById(R.id.prescript_appointment_doctor_designation);
@@ -275,6 +277,24 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
         }else{
             prescriptionId = appoList.get(position).getPrescriptionId();
+            doctorNameTxt.setText(appoList.get(position).getDoctor().getName());
+            doctorDesignationTxt.setText(appoList.get(position).getDoctor().getDesignation());
+            doctorMobileTxt.setText(appoList.get(position).getDoctor().getPhone());
+            doctorAddressTxt.setText(appoList.get(position).getDoctor().getLocation());
+            doctorHospitalTxt.setText(appoList.get(position).getDoctor().getChamber());
+            doctorAvailableTxt.setText(appoList.get(position).getDoctor().getIn()+" to "+appoList.get(position).getDoctor().getOut());
+            prescriptFooterTxt.setText(appoList.get(position).getDoctor().getChamber()+", "+appoList.get(position).getDoctor().getLocation());
+            patientIdTxt.setText(appoList.get(position).getPatient().getPatientId());
+            patientPrescriptNameTxt.setText(appoList.get(position).getPatient().getName());
+
+
+            patientGenderTxt.setText(appoList.get(position).getPatient().getGender());
+
+            patientNameTxt.setText(appoList.get(position).getPatient().getName());
+            patientLocationTxt.setText(appoList.get(position).getPatient().getAddress());
+            patientMobileTxt.setText(appoList.get(position).getPatient().getPhone());
+            patientEmailTxt.setText(appoList.get(position).getPatient().getEmail());
+
         }
 
         if(action.equals("edit")){
@@ -291,23 +311,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         }
 
 
-        doctorNameTxt.setText(appoList.get(position).getDoctor().getName());
-        doctorDesignationTxt.setText(appoList.get(position).getDoctor().getDesignation());
-        doctorMobileTxt.setText(appoList.get(position).getDoctor().getPhone());
-        doctorAddressTxt.setText(appoList.get(position).getDoctor().getLocation());
-        doctorHospitalTxt.setText(appoList.get(position).getDoctor().getChamber());
-        doctorAvailableTxt.setText(appoList.get(position).getDoctor().getIn()+" to "+appoList.get(position).getDoctor().getOut());
 
-        patientIdTxt.setText(appoList.get(position).getPatient().getPatientId());
-        patientPrescriptNameTxt.setText(appoList.get(position).getPatient().getName());
-
-
-        patientGenderTxt.setText(appoList.get(position).getPatient().getGender());
-
-        patientNameTxt.setText(appoList.get(position).getPatient().getName());
-        patientLocationTxt.setText(appoList.get(position).getPatient().getAddress());
-        patientMobileTxt.setText(appoList.get(position).getPatient().getPhone());
-        patientEmailTxt.setText(appoList.get(position).getPatient().getEmail());
 
         String status = appoList.get(position).getPaymentStatus();
         if(status.equals("Paid")){
@@ -344,6 +348,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
                         if(response.isSuccessful()){
 
+                            assert response.body() != null;
                             prescriptionId = response.body().getPrescription().getId();
                             //Prescription No
                             prescriptionNo = response.body().getPrescription().getPrescriptionNo();

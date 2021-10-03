@@ -1,8 +1,14 @@
 package com.example.jotno.ViewModel;
 
 import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.example.jotno.Activity.MedicinesActivity;
+import com.example.jotno.Models.AlMedicineBody;
 import com.example.jotno.Models.MedicineRemote;
+import com.example.jotno.PaperDB.RemoteMedicinesSP;
 import com.example.jotno.Repository.MedicinesRepository;
 import com.example.jotno.Room.Entity.Medicine;
 
@@ -15,11 +21,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import io.paperdb.Paper;
+
 public class MedicinesViewModel extends AndroidViewModel {
 
     private MedicinesRepository medicinesRepository;
     private LiveData<List<Medicine>> listLiveData;
-    private List<MedicineRemote> remoteMedicinesList;
+    private List<AlMedicineBody> remoteMedicinesList;
     private List<Medicine> giveMedicines;
     private LiveData<String> morningMedicineCountString, noonMedicineCountString, nightMedicineCountString;
     private LiveData<List<String>> morningMedicinesList, noonMedicinesList, nightMedicinesList;
@@ -30,7 +38,10 @@ public class MedicinesViewModel extends AndroidViewModel {
 
         medicinesRepository = new MedicinesRepository(application);
         listLiveData = medicinesRepository.getAllMedicines();
-        remoteMedicinesList = medicinesRepository.getAllMedicinesFromRemote();
+        medicinesRepository.getAllMedicinesFromRemote();
+
+        Paper.init(application.getApplicationContext());
+
 
         morningMedicineCountString = medicinesRepository.getMorningMedicinesCount();
         noonMedicineCountString = medicinesRepository.getNoonMedicinesCount();
@@ -91,16 +102,20 @@ public class MedicinesViewModel extends AndroidViewModel {
     }
 
     public void insertMedicines(){
-
+        remoteMedicinesList = new ArrayList<>();
+        remoteMedicinesList = Paper.book().read(RemoteMedicinesSP.remoteMedicinesListString);
         giveMedicines = new ArrayList<>();
         for(int i=0;i<remoteMedicinesList.size();i++){
 
+
             giveMedicines.add(new Medicine(
-                    remoteMedicinesList.get(i).getMedicine(),
-                    String.valueOf(remoteMedicinesList.get(i).getInstruction().charAt(0)),
-                    String.valueOf(remoteMedicinesList.get(i).getInstruction().charAt(2)),
-                    String.valueOf(remoteMedicinesList.get(i).getInstruction().charAt(4))
+                    remoteMedicinesList.get(i).getName(),
+                    String.valueOf(remoteMedicinesList.get(i).getTiming().charAt(0)),
+                    String.valueOf(remoteMedicinesList.get(i).getTiming().charAt(2)),
+                    String.valueOf(remoteMedicinesList.get(i).getTiming().charAt(4))
             ));
+
+            Log.d("give_medicines", String.valueOf(giveMedicines.size()));
 
         }
 

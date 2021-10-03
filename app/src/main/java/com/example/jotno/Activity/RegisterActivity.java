@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -260,10 +261,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         registerNowBtn.setOnClickListener(v -> {
-            loadingBar.setTitle("Registering your Account....");
-            loadingBar.setMessage("Plz wait, while we are registering you to our platform.");
-            loadingBar.setCanceledOnTouchOutside(false);
-            loadingBar.show();
+
             validateFields();
 
 
@@ -387,6 +385,11 @@ public class RegisterActivity extends AppCompatActivity {
 
         } else{
 
+            loadingBar.setTitle("Registering your Account....");
+            loadingBar.setMessage("Plz wait, while we are registering you to our platform.");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+
             api.registerUser(fullName,dob,bloodGroup,gender,email,mobile,address,city,district,password,confirmPass)
                     .enqueue(new Callback<RegisterResponse>() {
                         @Override
@@ -397,6 +400,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(RegisterActivity.this,response.body().getStatus()+"\n Registration Successfully done.",Toast.LENGTH_SHORT).show();
 
                                     Paper.book().write(PermanentPatient.userIdString,response.body().getBody().getId());
+                                    Log.d("patient_id",response.body().getBody().getPatientId());
                                     Paper.book().write(PermanentPatient.patientIdString,response.body().getBody().getPatientId());
                                     Paper.book().write(PermanentPatient.userNameString,response.body().getBody().getName());
                                     Paper.book().write(PermanentPatient.userDateOfBirthString,response.body().getBody().getDateOfBirth());
@@ -407,7 +411,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     Paper.book().write(PermanentPatient.userCityString,response.body().getBody().getCity());
                                     Paper.book().write(PermanentPatient.userDistrictString,response.body().getBody().getDistrict());
                                     Paper.book().write(PermanentPatient.userAddressString,response.body().getBody().getAddress());
-                                    Paper.book().write(PermanentPatient.userImageString," ");
+                                    Paper.book().write(PermanentPatient.userImageString,"https://icons-for-free.com/iconfiles/png/512/person-1324760545186718018.png");
 
                                     Intent homeIntent = new Intent(RegisterActivity.this,MainActivity.class);
                                     homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);

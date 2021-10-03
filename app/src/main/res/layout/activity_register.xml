@@ -406,7 +406,6 @@
                         android:inputType="textPassword"
                         android:backgroundTint="@android:color/transparent"
                         android:textColorHint="@color/purple_200"
-                        android:textColor="@color/white"
                         android:paddingBottom="5dp"
                         android:paddingTop="0dp"
                         android:paddingLeft="10dp"

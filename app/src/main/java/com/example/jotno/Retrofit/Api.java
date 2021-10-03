@@ -2,9 +2,11 @@ package com.example.jotno.Retrofit;
 
 
 
+import com.example.jotno.Models.AllMedicines;
 import com.example.jotno.Models.AppointmentResponse;
 import com.example.jotno.Models.CustomiseProfileResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
+import com.example.jotno.Models.LoginResponse;
 import com.example.jotno.Models.LoginUser;
 import com.example.jotno.Models.PrescriptionReportResponse;
 import com.example.jotno.Models.PrescriptionResponse;
@@ -68,7 +70,7 @@ public interface Api {
 
 
     @POST("login")
-    Call<RegisterResponse> loginUser(@Body LoginUser userCredentials);
+    Call<LoginResponse> loginUser(@Body LoginUser userCredentials);
 
     @FormUrlEncoded
     @POST("appoinment-get")
@@ -114,6 +116,13 @@ public interface Api {
     Call<Prescriptions> getAllPrescriptions(
 
             @Query("id") int id
+
+    );
+
+    @GET("medicine-all")
+    Call<AllMedicines> getAllMedicines(
+
+            @Query("patient_id") int patient_id
 
     );
 

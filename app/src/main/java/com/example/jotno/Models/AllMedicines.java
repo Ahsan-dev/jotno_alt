@@ -3,23 +3,16 @@ package com.example.jotno.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Prescriptions {
+import java.util.List;
+
+public class AllMedicines {
 
     @SerializedName("status")
     @Expose
     private String status;
-
-    @SerializedName("body")
+    @SerializedName("medicine")
     @Expose
-    private PrescriptionList body;
-
-    public PrescriptionList getBody() {
-        return body;
-    }
-
-    public void setBody(PrescriptionList body) {
-        this.body = body;
-    }
+    private List<AlMedicineBody> medicine = null;
 
     public String getStatus() {
         return status;
@@ -28,4 +21,13 @@ public class Prescriptions {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public List<AlMedicineBody> getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(List<AlMedicineBody> medicine) {
+        this.medicine = medicine;
+    }
+
 }

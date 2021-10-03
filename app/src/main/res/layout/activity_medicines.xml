@@ -117,7 +117,7 @@
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="false"
                     android:layout_marginTop="8dp"
-                    android:paddingBottom="80dp"
+                    android:paddingBottom="10dp"
                     />
 
 
