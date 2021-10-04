@@ -38,9 +38,13 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
     private int s = 0;
     private Context context;
     private ProgressDialog loadingBar;
+    private int positions = -1;
 
-    public PrescriptReportItemAdapter(List<ReportDatum> prescriptReportList) {
+
+
+    public PrescriptReportItemAdapter(List<ReportDatum> prescriptReportList,int position) {
         this.prescriptReportList = prescriptReportList;
+        this.positions = position;
 
     }
 
@@ -110,6 +114,7 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
             Bundle bundles = new Bundle();
             bundles.putInt("id",report.getId());
             bundles.putString("action","edit");
+            bundles.putInt("position",positions);
             bundles.putString("name",report.getName());
             bundles.putString("image",report.getImage());
             fragment.setArguments(bundles);

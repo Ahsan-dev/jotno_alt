@@ -17,10 +17,13 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.jotno.Adapter.MedicineItemAdapter;
 import com.example.jotno.PaperDB.AlarmPaper;
+import com.example.jotno.PaperDB.PermanentPatient;
+import com.example.jotno.PaperDB.Test;
 import com.example.jotno.R;
 import com.example.jotno.Room.Entity.Medicine;
 import com.example.jotno.ViewModel.MedicinesViewModel;
@@ -44,6 +47,7 @@ public class MedicinesActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private int morningCount, noonCount, nightCount;
     private List<String> morningList, noonList, nightList;
+    String test = "not booted";
 
 
 
@@ -75,6 +79,8 @@ public class MedicinesActivity extends AppCompatActivity {
         });
 
 
+        test = Paper.book().read(Test.testString);
+        Toast.makeText(MedicinesActivity.this, test, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -186,7 +192,7 @@ public class MedicinesActivity extends AppCompatActivity {
         if(morningCount>0){
 
             morningMessage = "";
-            morningMessage = "Hello Mr. X You have "+morningCount+" medicine at morning\n";
+            morningMessage = "Hello "+Paper.book().read(PermanentPatient.userNameString)+" You have "+morningCount+" medicine at morning\n";
             for(int i=0;i<morningList.size();i++){
 
                 morningMessage += morningList.get(i).toString();
@@ -203,7 +209,7 @@ public class MedicinesActivity extends AppCompatActivity {
         if(noonCount>0){
 
             noonMessage = "";
-            noonMessage = "Hello Mr. X You have "+noonCount+" medicine at noon\n";
+            noonMessage = "Hello "+Paper.book().read(PermanentPatient.userNameString)+" You have "+noonCount+" medicine at noon\n";
             for(int i=0;i<noonList.size();i++){
 
                 noonMessage += noonList.get(i).toString();
@@ -214,14 +220,14 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(14,0,noonMessage,16);
+            setNotification(14,30,noonMessage,16);
 
         }
 
         if(nightCount>0){
 
             nightMessage = "";
-            nightMessage = "Hello Mr. X You have "+nightCount+" medicine at night\n";
+            nightMessage = "Hello "+Paper.book().read(PermanentPatient.userNameString)+" You have "+nightCount+" medicine at night\n";
             for(int i=0;i<nightList.size();i++){
 
                 nightMessage += nightList.get(i).toString();
@@ -258,6 +264,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
         Intent myIntent = new Intent(this, DailyReceiver.class);
         myIntent.putExtra(DailyReceiver.MESSAGE,message);
+        myIntent.putExtra(DailyReceiver.ID,id);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 this, id, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);

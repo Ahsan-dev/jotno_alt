@@ -39,7 +39,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
     private Button todayBtn, allBtn;
     private ExtendedFloatingActionButton getAppointmentBtn;
     private RecyclerView appointmentRecycler;
-    private List<Datum> appointmentList;
+    private List<Datum> appointmentList, todayAppointmentList;
     private AppointmentsRecyclerAdapter appoAdapter;
     private ProgressDialog loadingBar;
     private Api api;
@@ -76,6 +76,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
                         if(response.isSuccessful()){
 
                             appointmentList = response.body().getBody().getData();
+                            Paper.book().delete(AppointmentPermanent.appointmentListString);
                             Paper.book().write(AppointmentPermanent.appointmentListString,appointmentList);
                             appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
                             appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -130,6 +131,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
                             if(response.isSuccessful()){
 
                                 appointmentList = response.body().getBody().getData();
+                                Paper.book().delete(AppointmentPermanent.appointmentListString);
                                 Paper.book().write(AppointmentPermanent.appointmentListString,appointmentList);
                                 appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
                                 appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -176,6 +178,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
                             if(response.isSuccessful()){
 
                                 appointmentList = response.body().getBody().getData();
+                                Paper.book().delete(AppointmentPermanent.appointmentListString);
                                 Paper.book().write(AppointmentPermanent.appointmentListString,appointmentList);
                                 appoAdapter = new AppointmentsRecyclerAdapter(appointmentList);
                                 appointmentRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));

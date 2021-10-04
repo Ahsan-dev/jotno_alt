@@ -69,6 +69,7 @@ public class PrescriptionsFragment extends Fragment {
                                 prescriptionsList = new ArrayList<>();
 //                            assert response.body() != null;
                                 prescriptionsList = response.body().getBody().getData();
+
                                 Paper.book().write(PrescriptionsPermanent.prescriptionsListString,prescriptionsList);
                                 prescriptionRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
                                 prescriptionRecyclerAdapter = new PrescriptionRecyclerAdapter(prescriptionsList);

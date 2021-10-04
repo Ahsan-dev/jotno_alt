@@ -168,9 +168,12 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         api = RetroClient.getClient().create(Api.class);
         position = getArguments().getInt("position",0);
 
+        appoList = new ArrayList<>();
+
         appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
 
-        Log.d("size_appo", String.valueOf(appoList.size()));
+
+
 
 
 
@@ -182,9 +185,9 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             daysList.add(new DaysDatum("j"));
             initTestList = new ArrayList<>();
             initTestList.add(new Datum__1("j","gh"));
-            position = 0;
 
-            appoList.add(new Datum(0,"gd","hdg","dhdh","dgh","hjdh",new Patient(
+
+            appoList.add(new Datum(1,"gd","hdg","dhdh","dgh","hjdh",new Patient(
                     1,"","","","","","","","","","","","","","","","","","",""
             ),new Doctor(
                     1,"","","","","","","","","","",
@@ -194,6 +197,10 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                     ));
 
         }
+
+        prescriptionId = appoList.get(position).getPrescriptionId();
+        Log.d("position", String.valueOf(position));
+        Log.d("prescriptionId",String.valueOf(prescriptionId));
 
         downloadBtn = view.findViewById(R.id.prescript_appointment_download_btn);
         billBtn = view.findViewById(R.id.prescript_appointment_bill_btn);
@@ -276,7 +283,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             backBtn.setVisibility(View.VISIBLE);
 
         }else{
-            prescriptionId = appoList.get(position).getPrescriptionId();
+
             doctorNameTxt.setText(appoList.get(position).getDoctor().getName());
             doctorDesignationTxt.setText(appoList.get(position).getDoctor().getDesignation());
             doctorMobileTxt.setText(appoList.get(position).getDoctor().getPhone());
@@ -304,7 +311,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             billLinear.setVisibility(View.GONE);
             reportLinear.setVisibility(View.GONE);
             addReportLinear.setVisibility(View.VISIBLE);
-
+            backBtn.setVisibility(View.VISIBLE);
             addReportTestEdt.setText(getArguments().getString("name"));
             //addReportResourceEdt.setText(getArguments().getString("image"));
 
@@ -488,6 +495,18 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                 fragmentTransaction.commit();
 
 
+            }else if(action.equals("edit")){
+
+                prescriptionLinear.setVisibility(View.GONE);
+                billLinear.setVisibility(View.GONE);
+                reportLinear.setVisibility(View.VISIBLE);
+                addReportLinear.setVisibility(View.GONE);
+                backBtn.setVisibility(View.GONE);
+                appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
+                prescriptionId = appoList.get(position).getPrescriptionId();
+
+                showReportApi();
+
             }else{
 
                 BillsFragment fragment = new BillsFragment();
@@ -514,7 +533,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                         if(response.isSuccessful()){
 
                             prescriptReportList = response.body().getBody().getData();
-                            prescriptReportItemAdapter = new PrescriptReportItemAdapter(prescriptReportList);
+                            prescriptReportItemAdapter = new PrescriptReportItemAdapter(prescriptReportList,position);
                             prescriptReportRecycler.setHasFixedSize(true);
                             prescriptReportRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
                             prescriptReportRecycler.setAdapter(prescriptReportItemAdapter);
@@ -563,6 +582,9 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             billLinear.setVisibility(View.GONE);
             reportLinear.setVisibility(View.VISIBLE);
             addReportLinear.setVisibility(View.GONE);
+
+            appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
+            prescriptionId = appoList.get(position).getPrescriptionId();
 
             showReportApi();
 

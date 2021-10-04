@@ -1,18 +1,24 @@
 package com.example.jotno;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
 
 import com.example.jotno.Activity.DailyReceiver;
 import com.example.jotno.Activity.MainActivity;
 import com.example.jotno.Activity.MedicinesActivity;
 import com.example.jotno.PaperDB.AlarmPaper;
+import com.example.jotno.PaperDB.Test;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
@@ -29,59 +35,65 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        Paper.init(context);
 
-//        Paper.init(context);
-//
-//        MedicinesActivity activity = new MedicinesActivity();
-
-//        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-//
-//            morningCount = Paper.book().read(AlarmPaper.morningCount);
-//            noonCount = Paper.book().read(AlarmPaper.noonCount);
-//            nightCount = Paper.book().read(AlarmPaper.nightCount);
-//            morningList = Paper.book().read(AlarmPaper.morningList);
-//            noonList = Paper.book().read(AlarmPaper.noonList);
-//            nightList = Paper.book().read(AlarmPaper.nightList);
-//            morningMsg = Paper.book().read(AlarmPaper.morningMessage);
-//            noonMsg = Paper.book().read(AlarmPaper.noonMessage);
-//            nightMsg = Paper.book().read(AlarmPaper.nightMessage);
-//
-//
-//            if (morningCount > 0) {
-//
-//
-//                setNotification(12, 5, morningMsg, 10, context);
-//
-//            }
-//
-//            if (noonCount > 0) {
-//
-//                setNotification(12, 7, noonMsg, 11, context);
-//
-//            }
-//
-//            if (nightCount > 0) {
-//
-//
-//                setNotification(12, 8, nightMsg, 12, context);
-//
-//            }
-//        }
-
-      // activity.setNotification();
+        morningCount = Paper.book().read(AlarmPaper.morningCount);
+        noonCount = Paper.book().read(AlarmPaper.noonCount);
+        nightCount = Paper.book().read(AlarmPaper.nightCount);
+        morningList = Paper.book().read(AlarmPaper.morningList);
+        noonList = Paper.book().read(AlarmPaper.noonList);
+        nightList = Paper.book().read(AlarmPaper.nightList);
+        morningMsg = Paper.book().read(AlarmPaper.morningMessage);
+        noonMsg = Paper.book().read(AlarmPaper.noonMessage);
+        nightMsg = Paper.book().read(AlarmPaper.nightMessage);
 
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-//            Intent i = new Intent();
-//            i.setClassName("com.example.jotno",
-//                    "com.example.jotno.MedicinesActivity");
-//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            context.startActivity(i);
-            setNotification(12,25,"Reboot",10,context);
 
+            if (morningCount > 0) {
+
+                setNotification(9, 40, morningMsg, 10, context);
+
+            }
+
+            if (noonCount > 0) {
+
+                setNotification(14, 30, noonMsg, 11, context);
+
+            }
+
+            if (nightCount > 0) {
+
+
+                setNotification(21, 30, nightMsg, 12, context);
+
+            }
         }
 
+//      // activity.setNotification();
+//
+//        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+////            Intent i = new Intent();
+////            i.setClassName("com.example.jotno",
+////                    "com.example.jotno.MedicinesActivity");
+////            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+////            context.startActivity(i);
+////
+////            createNotificationChannel(context);
+////            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, String.valueOf(1000));
+//            setNotification(15, 29, nightMsg, 1, context);
+//            Paper.book().delete(Test.testString);
+//            Paper.book().write(Test.testString,"Booted");
+//
+//        }else{
+//
+//            Paper.book().delete(Test.testString);
+//            Paper.book().write(Test.testString,"Not Booted");
+//        }
 
     }
+
+
+
 
 
     private void setNotification(int hour, int minute, String message, int id, Context context){
@@ -90,11 +102,11 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
 
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
+//        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 1);
+        calendar.set(Calendar.MILLISECOND, 1);
 
         Calendar cur = Calendar.getInstance();
 
@@ -104,8 +116,8 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
 
         Intent myIntent = new Intent(context, DailyReceiver.class);
         myIntent.putExtra(DailyReceiver.MESSAGE,message);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                context, id, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        myIntent.putExtra(DailyReceiver.ID,id);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         assert alarmManager != null;
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
