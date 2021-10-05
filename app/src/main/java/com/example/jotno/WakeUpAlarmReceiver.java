@@ -47,26 +47,34 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
         noonMsg = Paper.book().read(AlarmPaper.noonMessage);
         nightMsg = Paper.book().read(AlarmPaper.nightMessage);
 
-        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+        if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")||intent.getAction().equals("android.intent.action.QUICKBOOT_POWERON")) {
+
+            Paper.book().delete(Test.testString);
+            Paper.book().write(Test.testString,"Booted");
 
             if (morningCount > 0) {
 
-                setNotification(9, 40, morningMsg, 10, context);
+                setNotification(14, 40, morningMsg, 10, context);
 
             }
 
             if (noonCount > 0) {
 
-                setNotification(14, 30, noonMsg, 11, context);
+                setNotification(14, 41, noonMsg, 11, context);
 
             }
 
             if (nightCount > 0) {
 
 
-                setNotification(21, 30, nightMsg, 12, context);
+                setNotification(14, 43, nightMsg, 12, context);
 
             }
+
+        }else{
+
+            Paper.book().delete(Test.testString);
+            Paper.book().write(Test.testString,"Not Booted");
         }
 
 //      // activity.setNotification();
@@ -102,7 +110,7 @@ public class WakeUpAlarmReceiver extends BroadcastReceiver {
 
 
         Calendar calendar = Calendar.getInstance();
-//        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 1);

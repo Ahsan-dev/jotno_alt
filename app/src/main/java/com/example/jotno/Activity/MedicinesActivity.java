@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -47,7 +48,7 @@ public class MedicinesActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private int morningCount, noonCount, nightCount;
     private List<String> morningList, noonList, nightList;
-    String test = "not booted";
+    String test = "test";
 
 
 
@@ -78,14 +79,16 @@ public class MedicinesActivity extends AppCompatActivity {
 
         });
 
-
-        test = Paper.book().read(Test.testString);
+        test = Paper.book().read(Test.testString)+"Btths";
         Toast.makeText(MedicinesActivity.this, test, Toast.LENGTH_SHORT).show();
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         medicinesViewModel.getMedicines().observe(this,medicines -> {
 
             medicineList = medicines;
@@ -139,10 +142,6 @@ public class MedicinesActivity extends AppCompatActivity {
             Paper.book().write(AlarmPaper.nightList,nightList);
 
         });
-
-
-
-
 
     }
 
@@ -202,7 +201,7 @@ public class MedicinesActivity extends AppCompatActivity {
             }
             Paper.book().write(AlarmPaper.morningMessage,morningMessage);
 
-            setNotification(9,30,morningMessage,15);
+            setNotification(18,2,morningMessage,15);
 
         }
 
@@ -220,7 +219,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(14,30,noonMessage,16);
+            setNotification(20,5,noonMessage,16);
 
         }
 
@@ -237,20 +236,16 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.nightMessage,nightMessage);
 
-            setNotification(21,30,nightMessage,17);
+            setNotification(9,50,nightMessage,17);
 
         }
-
-
-
-
     }
 
     private void setNotification(int hour, int minute, String message, int id){
 
         Calendar calendar = Calendar.getInstance();
 
-
+        calendar.set(Calendar.DAY_OF_MONTH,calendar.get(Calendar.DAY_OF_MONTH));
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, 1);

@@ -170,14 +170,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
         appoList = new ArrayList<>();
 
-        appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
-
-
-
-
-
-
-
         //If appoList will be null then we have put 1 dummy element of the list
         if(appoList.size()==0){
 
@@ -197,10 +189,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                     ));
 
         }
-
-        prescriptionId = appoList.get(position).getPrescriptionId();
-        Log.d("position", String.valueOf(position));
-        Log.d("prescriptionId",String.valueOf(prescriptionId));
 
         downloadBtn = view.findViewById(R.id.prescript_appointment_download_btn);
         billBtn = view.findViewById(R.id.prescript_appointment_bill_btn);
@@ -284,6 +272,9 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
         }else{
 
+            appoList = Paper.book().read(AppointmentPermanent.appointmentListString);
+            prescriptionId = appoList.get(position).getPrescriptionId();
+
             doctorNameTxt.setText(appoList.get(position).getDoctor().getName());
             doctorDesignationTxt.setText(appoList.get(position).getDoctor().getDesignation());
             doctorMobileTxt.setText(appoList.get(position).getDoctor().getPhone());
@@ -291,16 +282,15 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             doctorHospitalTxt.setText(appoList.get(position).getDoctor().getChamber());
             doctorAvailableTxt.setText(appoList.get(position).getDoctor().getIn()+" to "+appoList.get(position).getDoctor().getOut());
             prescriptFooterTxt.setText(appoList.get(position).getDoctor().getChamber()+", "+appoList.get(position).getDoctor().getLocation());
+
             patientIdTxt.setText(appoList.get(position).getPatient().getPatientId());
             patientPrescriptNameTxt.setText(appoList.get(position).getPatient().getName());
-
-
             patientGenderTxt.setText(appoList.get(position).getPatient().getGender());
-
             patientNameTxt.setText(appoList.get(position).getPatient().getName());
             patientLocationTxt.setText(appoList.get(position).getPatient().getAddress());
             patientMobileTxt.setText(appoList.get(position).getPatient().getPhone());
             patientEmailTxt.setText(appoList.get(position).getPatient().getEmail());
+
 
         }
 
@@ -316,9 +306,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             //addReportResourceEdt.setText(getArguments().getString("image"));
 
         }
-
-
-
 
         String status = appoList.get(position).getPaymentStatus();
         if(status.equals("Paid")){
@@ -361,10 +348,33 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                             prescriptionNo = response.body().getPrescription().getPrescriptionNo();
                             prescriptionNoTxt.setText(prescriptionNo);
 
+
+
                             age = response.body().getAge();
                             patientAgeTxt.setText(age);
 
                             adviceTxt.setText(response.body().getPrescription().getAdvice());
+
+
+
+                                doctorNameTxt.setText(response.body().getPrescription().getDoctor().getName());
+                                doctorDesignationTxt.setText(response.body().getPrescription().getDoctor().getDesignation());
+                                doctorMobileTxt.setText(response.body().getPrescription().getDoctor().getPhone());
+                                doctorAddressTxt.setText(response.body().getPrescription().getDoctor().getLocation());
+                                doctorHospitalTxt.setText(response.body().getPrescription().getDoctor().getChamber());
+                                doctorAvailableTxt.setText(response.body().getPrescription().getDoctor().getIn()+" to "+response.body().getPrescription().getDoctor().getOut());
+                                prescriptFooterTxt.setText(response.body().getPrescription().getDoctor().getChamber()+", "+response.body().getPrescription().getDoctor().getLocation());
+
+                                patientIdTxt.setText(response.body().getPrescription().getPatient().getPatientId());
+                                patientPrescriptNameTxt.setText(response.body().getPrescription().getPatient().getName());
+                                patientGenderTxt.setText(response.body().getPrescription().getPatient().getGender());
+                                patientNameTxt.setText(response.body().getPrescription().getPatient().getName());
+                                patientLocationTxt.setText(response.body().getPrescription().getPatient().getAddress());
+                                patientMobileTxt.setText(response.body().getPrescription().getPatient().getPhone());
+                                patientEmailTxt.setText(response.body().getPrescription().getPatient().getEmail());
+
+
+
 
                             //Initial Tests
                             testsList = response.body().getInitialTests();
@@ -383,7 +393,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                             prescriptMedicinesItemRecyclerAdapter.notifyDataSetChanged();
 
                             //Main Tests or Prescription Left Side
-
                             mainTestList = response.body().getMainTest();
                             prescriptionComplainsFindingsAdapter = new PrescriptionComplainsFindingsAdapter(mainTestList);
                             prescriptLeftSideRecycler.setHasFixedSize(true);
@@ -598,11 +607,10 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
             reportLinear.setVisibility(View.GONE);
             addReportLinear.setVisibility(View.VISIBLE);
             action = "upload";
+            addReportTestEdt.setText("");
 
         }
     }
-
-
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -743,7 +751,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
         });
         builder.show();
     }
-
 
 
     @Override

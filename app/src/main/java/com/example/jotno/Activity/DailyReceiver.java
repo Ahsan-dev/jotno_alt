@@ -28,6 +28,9 @@ public class DailyReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
+        NotificationManager notificationManager2 = (NotificationManager) context
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+
         String CHANNEL_ID = "my_channel_01";
         CharSequence name = "my_channel";
         String Description = "This is my channel";
@@ -56,16 +59,34 @@ public class DailyReceiver extends BroadcastReceiver {
         Notification.Builder mNotifyBuilder = null;  // Declair VIBRATOR Permission in AndroidManifest.xml
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             mNotifyBuilder = new Notification.Builder(
-                    context,CHANNEL_ID).setSmallIcon(R.mipmap.ic_launcher)
+                    context,CHANNEL_ID)
                     .setSmallIcon(R.mipmap.jotno_icon)
                     .setContentTitle("Jotno Notification")
                     .setContentText(intent.getStringExtra(MESSAGE)).setSound(alarmSound)
                     .setAutoCancel(true).setWhen(when)
-                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
+//                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.jotno_icon))
                     .setContentIntent(pendingIntent)
                     .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+            notificationManager.notify(intent.getIntExtra(ID,-1), mNotifyBuilder.build());
+        }else{
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                    .setSmallIcon(R.mipmap.jotno_icon)
+                    .setContentTitle("Jotno Notification")
+                    .setContentText(intent.getStringExtra(MESSAGE))
+                    .setPriority(NotificationCompat.PRIORITY_HIGH)
+                    .setAutoCancel(true).setWhen(when)
+//                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.jotno_icon))
+                    .setContentIntent(pendingIntent)
+                    .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+                    .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000});
+
+
+            notificationManager2.notify(intent.getIntExtra(ID,-1), builder.build());
+
+
         }
-        notificationManager.notify(intent.getIntExtra(ID,-1), mNotifyBuilder.build());
+
     }
 
 }
