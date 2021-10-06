@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.jotno.Models.BannerDatum;
 import com.example.jotno.Models.SliderItem;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 import com.squareup.picasso.Picasso;
@@ -17,9 +18,9 @@ public class WelcomeSliderAdapter extends
         SliderViewAdapter<WelcomeSliderAdapter.SliderAdapterVH> {
 
     private Context context;
-    private List<SliderItem> mSliderItems ;
+    private List<BannerDatum> mSliderItems ;
 
-    public WelcomeSliderAdapter(Context context, List<SliderItem> mSliderItems) {
+    public WelcomeSliderAdapter(Context context, List<BannerDatum> mSliderItems) {
         this.context = context;
         this.mSliderItems = mSliderItems;
     }
@@ -35,9 +36,9 @@ public class WelcomeSliderAdapter extends
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
 
-        SliderItem sliderItem = mSliderItems.get(position);
+        BannerDatum sliderItem = mSliderItems.get(position);
 
-        Picasso.get().load(sliderItem.getImageResource()).into(viewHolder.sliderItemImage);
+        Picasso.get().load(sliderItem.getImage()).placeholder(R.drawable.jotno_logo).into(viewHolder.sliderItemImage);
 
 
 

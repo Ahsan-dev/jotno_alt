@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,7 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
     private int position = -1;
     private List<Datum> appoList;
     private TextView noPrescriptText;
+    private ImageView backBtn;
 
 
     @Override
@@ -45,6 +47,7 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
         prescriptionTxtBtn = view.findViewById(R.id.view_appointment_prescription_text_id);
         mainRelativeScreen = view.findViewById(R.id.view_appointment_relative);
         noPrescriptText = view.findViewById(R.id.view_appointment_no_prescription_text_id);
+        backBtn = view.findViewById(R.id.view_appointment_appointment_back_btn);
 
 
         appointmentNo.setText("Appointment No : "+appoList.get(position).getAppoinmentNo());
@@ -56,6 +59,17 @@ public class AppointmentViewFragment extends Fragment implements View.OnClickLis
         detailsTxtBtn.setBackgroundDrawable(view.getContext().getDrawable(R.drawable.welcome_register_btn_back));
         prescriptionTxtBtn.setHintTextColor(view.getContext().getResources().getColor(R.color.black));
         prescriptionTxtBtn.setBackgroundDrawable(view.getContext().getDrawable(android.R.color.transparent));
+
+        backBtn.setOnClickListener(view1 -> {
+
+            AppointmentsFragment fragment = new AppointmentsFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
 
         AppointmentDetailsFragment fragment = new AppointmentDetailsFragment();
         FragmentManager fragmentManager = getParentFragmentManager();

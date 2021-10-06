@@ -18,11 +18,11 @@
             android:id="@+id/prescription_item_first_row_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
+            android:weightSum="7">
             <TextView
                 android:id="@+id/prescription_item_prescription_no_id"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="prescription No"
                 android:textSize="13sp"
@@ -34,7 +34,7 @@
             <TextView
                 android:id="@+id/prescription_item_prescription_date_id"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Date"
                 android:textSize="13sp"
@@ -42,6 +42,12 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 />
+            <ImageView
+                android:id="@+id/prescription_item_prescription_expand_btn_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/left_triangle_icon"/>
 
         </LinearLayout>
         <LinearLayout

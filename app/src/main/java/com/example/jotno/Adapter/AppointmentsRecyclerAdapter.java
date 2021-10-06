@@ -67,9 +67,11 @@ public class AppointmentsRecyclerAdapter extends RecyclerView.Adapter<Appointmen
         holder.itemView.setOnClickListener(v -> {
             if(st == 0){
                 holder.secondLayout.setVisibility(View.GONE);
+                holder.expandBtn.setImageDrawable(context.getResources().getDrawable(R.drawable.left_triangle_icon));
                 st = 1;
             }else{
                 holder.secondLayout.setVisibility(View.VISIBLE);
+                holder.expandBtn.setImageDrawable(context.getResources().getDrawable(R.drawable.down_triange_icon));
                 st = 0;
             }
 

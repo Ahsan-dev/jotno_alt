@@ -65,7 +65,7 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/activity_welcome.xml" value="0.22" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/appointment_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_field_item_layout.xml" value="0.30625" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_item_layout.xml" value="0.30625" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_item_layout.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bloodgrp_spinner_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/calculation_result_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/dialog_layout.xml" value="0.25" />
@@ -89,7 +89,7 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescriction_complains_findings_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescript_report_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescript_tests_recycler_item_layout.xml" value="0.225" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescription_item_layout.xml" value="0.30625" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescription_item_layout.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/prescription_medicines_recycler_item_layout.xml" value="0.225" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/single_text_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/slider_item_layout.xml" value="0.20416666666666666" />

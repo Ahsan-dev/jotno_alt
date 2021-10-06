@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.jotno.Activity.LoginActivity;
 import com.example.jotno.Activity.WelcomeActivity;
+import com.example.jotno.Models.BannerDatum;
+import com.example.jotno.Models.BannerResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.SliderItem;
 import com.example.jotno.PaperDB.PermanentPatient;
@@ -45,7 +47,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private Fragment fragment;
     private ProgressDialog loadingBar;
     private Api api;
-    private List<SliderItem> imageList;
+    private List<BannerDatum> imageList;
     private SliderView sliderView;
 
 
@@ -72,27 +74,39 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
 
         imageList = new ArrayList<>();
 
-        imageList.add(new SliderItem(R.drawable.imgslider3));
-        imageList.add(new SliderItem(R.drawable.imgslider4));
-        imageList.add(new SliderItem(R.drawable.imgslider7));
-        imageList.add(new SliderItem(R.drawable.imgslider5));
-        imageList.add(new SliderItem(R.drawable.imgslider3));
-        imageList.add(new SliderItem(R.drawable.imgslider8));
+        api.getAllBanners()
+                .enqueue(new Callback<BannerResponse>() {
+                    @Override
+                    public void onResponse(Call<BannerResponse> call, Response<BannerResponse> response) {
+                        if(response.isSuccessful()){
+
+                            imageList = new ArrayList<>();
+                            imageList = response.body().getBody().getData();
+                            WelcomeSliderAdapter adapter = new WelcomeSliderAdapter(view.getContext(),imageList);
+                            //sliderView.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+                            sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+                            sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
+                            //sliderView.setIndicatorSelectedColor(Color.BLACK);
+                            //sliderView.setIndicatorUnselectedColor(Color.GRAY);
+                            sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
+                            sliderView.startAutoCycle();
+                            sliderView.setSliderAdapter(adapter);
+
+                        }else{
+                            Toast.makeText(view.getContext(), "Response is null!!!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BannerResponse> call, Throwable t) {
+
+                        Toast.makeText(view.getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
 
-        WelcomeSliderAdapter adapter = new WelcomeSliderAdapter(view.getContext(),imageList);
 
-
-
-        //sliderView.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
-        sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
-        //sliderView.setIndicatorSelectedColor(Color.BLACK);
-        //sliderView.setIndicatorUnselectedColor(Color.GRAY);
-        sliderView.setScrollTimeInSec(4); //set scroll delay in seconds :
-        sliderView.startAutoCycle();
-
-        sliderView.setSliderAdapter(adapter);
 
 
 

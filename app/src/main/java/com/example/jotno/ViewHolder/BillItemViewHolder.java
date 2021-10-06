@@ -2,6 +2,7 @@ package com.example.jotno.ViewHolder;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class BillItemViewHolder extends RecyclerView.ViewHolder {
     public TextView prescriptionNoTxt, billTxt, billDateTxt;
     public LinearLayout billLayout;
     public Button showBillBtn;
+    public ImageView billExpandImage;
 
     public BillItemViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -24,6 +26,7 @@ public class BillItemViewHolder extends RecyclerView.ViewHolder {
         billDateTxt = itemView.findViewById(R.id.bill_item_date_txt_id);
         billLayout = itemView.findViewById(R.id.bill_item_second_row_id);
         showBillBtn = itemView.findViewById(R.id.bill_item_view_btn_id);
+        billExpandImage = itemView.findViewById(R.id.bill_item_bill_expand_btn_id);
 
     }
 }

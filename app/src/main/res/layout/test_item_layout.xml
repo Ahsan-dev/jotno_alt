@@ -17,11 +17,11 @@
             android:id="@+id/test_item_first_row_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
+            android:weightSum="7">
             <TextView
                 android:id="@+id/test_item_prescription_no_id"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Prescription No"
                 android:textSize="13sp"
@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/test_item_test_name_id"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Test Name"
                 android:textSize="13sp"
@@ -41,6 +41,13 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 />
+            <ImageView
+                android:id="@+id/test_item_test_expand_btn_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/left_triangle_icon"/>
+
 
         </LinearLayout>
 

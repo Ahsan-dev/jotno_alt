@@ -17,11 +17,11 @@
             android:id="@+id/appointment_item_first_row_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="2">
+            android:weightSum="7">
             <TextView
                 android:id="@+id/appointment_item_appointment_no_id"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:text="Appointment No"
                 android:textSize="13sp"
@@ -33,14 +33,20 @@
             <TextView
                 android:id="@+id/appointment_item_appointment_status_id"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
-                android:text="Action"
+                android:text="Status"
                 android:textSize="13sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:gravity="center"
                 />
+            <ImageView
+                android:id="@+id/appointment_item_appointment_expand_btn_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/left_triangle_icon"/>
 
         </LinearLayout>
 

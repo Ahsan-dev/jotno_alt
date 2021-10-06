@@ -1,6 +1,7 @@
 package com.example.jotno.Adapter;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ public class TestItemRecyclerAdapter extends RecyclerView.Adapter<TestItemViewHo
 
     private List<TestsDatum> testsList;
     private int st = 0;
-
+    private Context context;
 
     public TestItemRecyclerAdapter(List<TestsDatum> testsList) {
         this.testsList = testsList;
@@ -35,7 +36,7 @@ public class TestItemRecyclerAdapter extends RecyclerView.Adapter<TestItemViewHo
     @NonNull
     @Override
     public TestItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.test_item_layout,parent,false);
 
         return new TestItemViewHolder(view);
@@ -49,9 +50,11 @@ public class TestItemRecyclerAdapter extends RecyclerView.Adapter<TestItemViewHo
         holder.itemView.setOnClickListener(v -> {
             if(st == 0){
                 holder.hideLayout.setVisibility(View.GONE);
+                holder.testExpand.setImageDrawable(context.getResources().getDrawable(R.drawable.left_triangle_icon));
                 st = 1;
             }else{
                 holder.hideLayout.setVisibility(View.VISIBLE);
+                holder.testExpand.setImageDrawable(context.getResources().getDrawable(R.drawable.down_triange_icon));
                 st = 0;
             }
 

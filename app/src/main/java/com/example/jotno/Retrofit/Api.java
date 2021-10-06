@@ -4,6 +4,7 @@ package com.example.jotno.Retrofit;
 
 import com.example.jotno.Models.AllMedicines;
 import com.example.jotno.Models.AppointmentResponse;
+import com.example.jotno.Models.BannerResponse;
 import com.example.jotno.Models.CustomiseProfileResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.LoginResponse;
@@ -103,6 +104,9 @@ public interface Api {
             @Query("id") int id
 
     );
+
+    @GET("banner")
+    Call<BannerResponse> getAllBanners();
 
 
     @GET("prescription-get")

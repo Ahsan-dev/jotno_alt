@@ -1,5 +1,6 @@
 package com.example.jotno.Adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,7 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
 
     private List<PrescriptionsDatum> prescriptionsList;
     private int st = 0;
+    private Context context;
 
     public PrescriptionRecyclerAdapter(List<PrescriptionsDatum> prescriptionsList) {
 
@@ -33,6 +35,7 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
     @NonNull
     @Override
     public PrescriptionItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.prescription_item_layout,parent,false);
         return new PrescriptionItemViewHolder(view);
     }
@@ -45,9 +48,11 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
         holder.itemView.setOnClickListener(v -> {
             if(st == 0){
                 holder.showLinear.setVisibility(View.GONE);
+                holder.prescriptExpandImg.setImageDrawable(context.getResources().getDrawable(R.drawable.left_triangle_icon));
                 st = 1;
             }else{
                 holder.showLinear.setVisibility(View.VISIBLE);
+                holder.prescriptExpandImg.setImageDrawable(context.getResources().getDrawable(R.drawable.down_triange_icon));
                 st = 0;
             }
 

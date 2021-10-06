@@ -26,6 +26,13 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         >
+
+        <ImageView
+            android:id="@+id/view_appointment_appointment_back_btn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_back" />
+
         <TextView
             android:id="@+id/view_appointment_appointment_details_text_id"
             android:layout_width="wrap_content"
@@ -37,6 +44,8 @@
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center_vertical"
             android:textColorHint="@color/white"/>
         <TextView
             android:id="@+id/view_appointment_prescription_text_id"
@@ -49,6 +58,7 @@
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:textColor="@color/black"/>
 
