@@ -3,12 +3,15 @@ package com.example.jotno.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.jotno.Adapter.PrescriptionRecyclerAdapter;
@@ -38,6 +41,8 @@ public class PrescriptionsFragment extends Fragment {
     private PrescriptionRecyclerAdapter prescriptionRecyclerAdapter;
     private Api api;
     private int patientId = -1;
+    private ImageView backBtn;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +51,7 @@ public class PrescriptionsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_prescriptions, container, false);
 
         prescriptionRecycler = view.findViewById(R.id.prescriptions_fragment_prescriptions_recycler_id);
+        backBtn = view.findViewById(R.id.prescriptions_back_btn);
 
         Paper.init(view.getContext());
         patientId = Paper.book().read(PermanentPatient.userIdString);
@@ -94,6 +100,16 @@ public class PrescriptionsFragment extends Fragment {
 
                     }
                 });
+
+        backBtn.setOnClickListener(view1 -> {
+
+            DashboardFragment fragment = new DashboardFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        });
 
 
 

@@ -5,12 +5,25 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.PrescriptionsFragment">
+
+    <ImageView
+        android:id="@+id/prescriptions_back_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/ic_back"
+        android:layout_gravity="start|center_vertical"
+
+        />
+
     <TextView
         android:id="@+id/prescription_fragment_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="your all Prescriptions"
         android:textSize="17sp"
+        android:layout_marginTop="5dp"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"/>
 
@@ -18,7 +31,9 @@
         android:id="@+id/prescriptions_prescriptions_relative_id"
         android:layout_below="@+id/prescription_fragment_title_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        >
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

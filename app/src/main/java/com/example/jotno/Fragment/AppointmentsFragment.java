@@ -4,6 +4,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.jotno.Adapter.AppointmentsRecyclerAdapter;
@@ -43,6 +46,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
     private AppointmentsRecyclerAdapter appoAdapter;
     private ProgressDialog loadingBar;
     private Api api;
+    private ImageView backBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +63,7 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
         allBtn = view.findViewById(R.id.appointments_all_option_btn_id);
         getAppointmentBtn = view.findViewById(R.id.appointments_get_appointment_btn_id);
         appointmentRecycler = view.findViewById(R.id.appointments_fragment_appointments_recycler_id);
+        backBtn = view.findViewById(R.id.appointments_back_btn);
 
         todayBtn.setBackgroundColor(getResources().getColor(R.color.red));
         todayBtn.setTextColor(getResources().getColor(android.R.color.white));
@@ -106,11 +111,24 @@ public class AppointmentsFragment extends Fragment implements View.OnClickListen
         allBtn.setOnClickListener(this);
         getAppointmentBtn.setOnClickListener(this);
 
+        backBtn.setOnClickListener(view1 -> {
+
+            DashboardFragment fragment = new DashboardFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
+        });
+
 
 
         return view;
 
     }
+
+
 
     @Override
     public void onClick(View v) {

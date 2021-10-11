@@ -201,7 +201,7 @@ public class MedicinesActivity extends AppCompatActivity {
             }
             Paper.book().write(AlarmPaper.morningMessage,morningMessage);
 
-            setNotification(12,50,morningMessage,15);
+            setNotification(9,50,morningMessage,15);
 
         }
 
@@ -219,7 +219,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(14,35,noonMessage,16);
+            setNotification(14,45,noonMessage,16);
 
         }
 
@@ -236,7 +236,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.nightMessage,nightMessage);
 
-            setNotification(8,30,nightMessage,17);
+            setNotification(21,47,nightMessage,17);
 
         }
     }

@@ -3,12 +3,15 @@ package com.example.jotno.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.jotno.Adapter.TestItemRecyclerAdapter;
@@ -36,6 +39,7 @@ public class TestsFragment extends Fragment {
     private List<TestsDatum> testList;
     private TestItemRecyclerAdapter testItemRecyclerAdapter;
     private Api api;
+    private ImageView backBtn;
 
 
     @Override
@@ -46,6 +50,7 @@ public class TestsFragment extends Fragment {
 
         api = RetroClient.getClient().create(Api.class);
         testsRecycler = view.findViewById(R.id.tests_fragment_tests_recycler_id);
+        backBtn = view.findViewById(R.id.tests_back_btn);
 
         testList = new ArrayList<>();
 
@@ -85,6 +90,16 @@ public class TestsFragment extends Fragment {
 
                     }
                 });
+
+        backBtn.setOnClickListener(view1 -> {
+
+            DashboardFragment fragment = new DashboardFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        });
 
         return view;
 

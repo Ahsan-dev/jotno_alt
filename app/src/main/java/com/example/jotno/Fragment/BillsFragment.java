@@ -3,12 +3,15 @@ package com.example.jotno.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.jotno.Adapter.BillItemRecyclerAdapter;
@@ -39,6 +42,7 @@ public class BillsFragment extends Fragment {
     private BillItemRecyclerAdapter billItemRecyclerAdapter;
     private Api api;
     private int patientId = -1;
+    private ImageView backBtn;
 
 
     @Override
@@ -48,6 +52,7 @@ public class BillsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_bills, container, false);
 
         billsRecycler = view.findViewById(R.id.bill_fragment_bill_recycler_id);
+        backBtn = view.findViewById(R.id.bills_back_btn);
 
         Paper.init(view.getContext());
         patientId = Paper.book().read(PermanentPatient.userIdString);
@@ -94,6 +99,17 @@ public class BillsFragment extends Fragment {
 
                     }
                 });
+
+
+        backBtn.setOnClickListener(view1 -> {
+
+            DashboardFragment fragment = new DashboardFragment();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        });
 
 
 
