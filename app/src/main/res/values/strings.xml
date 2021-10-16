@@ -18,8 +18,6 @@
     </string>
 
 
-
-
     <string name="login_btn_text">
         <b><u>Login</u></b>
     </string>
@@ -89,5 +87,8 @@
         <item>Others</item>
 
     </string-array>
+
+
+    <string name="html_our_policy">  <h2>Title</h2><br/><p>Description here</p><br/> <img src='https://jotno.beautyclinicbd.com/images/home/1632993292QWfWyq7VP1pz.jpg' alt=''> </string>
 
 </resources>

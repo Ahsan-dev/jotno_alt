@@ -80,7 +80,7 @@
                     android:id="@+id/drawer_nav_terms_and_conditions"
                     android:icon="@drawable/terms_and_conditions_icon"
                     android:title="Terms and conditions"
-                    android:tooltipText="Terms and conditions"
+                    android:tooltipText="Terms &amp; Conditions"
 
                     />
 

@@ -119,7 +119,7 @@ public class PrescriptReportItemAdapter extends RecyclerView.Adapter<PrescriptRe
             bundles.putString("image",report.getImage());
             fragment.setArguments(bundles);
 
-            fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+            fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
 

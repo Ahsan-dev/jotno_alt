@@ -69,7 +69,7 @@
                 <item
                     android:id="@+id/drawer_nav_terms_and_conditions"
                     android:icon="@drawable/terms_and_conditions_icon"
-                    android:title="Terms and conditions"
+                    android:title="Terms &amp; Conditions"
 
                     />
 

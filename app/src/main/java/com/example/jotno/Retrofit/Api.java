@@ -5,6 +5,7 @@ package com.example.jotno.Retrofit;
 import com.example.jotno.Models.AllMedicines;
 import com.example.jotno.Models.AppointmentResponse;
 import com.example.jotno.Models.BannerResponse;
+import com.example.jotno.Models.ContentResponse;
 import com.example.jotno.Models.CustomiseProfileResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
 import com.example.jotno.Models.LoginResponse;
@@ -32,6 +33,10 @@ import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface Api {
+
+    @GET("content")
+    Call<ContentResponse> getAllContents();
+
 
     @FormUrlEncoded
     @POST("register")

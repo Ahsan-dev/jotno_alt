@@ -40,7 +40,7 @@
                             android:textStyle="bold"
                             android:textColor="@color/white"
                             android:layout_margin="20dp"
-                            android:textSize="20sp"
+                            android:textSize="15sp"
                             android:layout_centerHorizontal="true"
                             />
                         <TextView
@@ -54,7 +54,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
-                            android:textSize="20sp"
+                            android:textSize="13sp"
                             android:gravity="center"
                             android:layout_centerHorizontal="true"
                             />
@@ -64,7 +64,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/contact_us_get_in_touch_detail_txt"
-                            android:layout_centerHorizontal="true"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginRight="20dp"
@@ -72,7 +71,7 @@
                             android:drawablePadding="10dp"
                             android:text="Suite No. D-5, 3rd Floor, Mukti Bhaban 2 No. Comrade Moni Singh Sarak 21/1 Purana Paltan, Dhaka-1000, Bangladesh"
                             android:textColor="@color/white"
-                            android:textSize="20sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -86,8 +85,7 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
-                            android:textSize="20sp"
-                            android:layout_centerHorizontal="true"
+                            android:textSize="12sp"
                             android:drawableLeft="@drawable/mail_icon"
                             android:drawablePadding="10dp"
                             />
@@ -103,11 +101,38 @@
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginTop="10dp"
-                            android:textSize="20sp"
-                            android:layout_centerHorizontal="true"
+                            android:textSize="12sp"
                             android:drawableLeft="@drawable/phone_icon"
                             android:drawablePadding="10dp"
                             />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/contact_us_get_in_touch_mobile_txt"
+                            android:layout_marginTop="10dp"
+                            >
+                            <ImageView
+                                android:id="@+id/contact_us_get_in_touch_fb_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_facebook_icon"
+                                android:layout_marginLeft="20dp"/>
+                            <ImageView
+                                android:id="@+id/contact_us_get_in_touch_twitter_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_twitter_icon"
+                                android:layout_marginLeft="5dp"
+                                />
+                            <ImageView
+                                android:id="@+id/contact_us_get_in_touch_linkedin_icon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_linkedin_icon"
+                                android:layout_marginLeft="5dp"
+                                />
+                        </LinearLayout>
 
 
                     </RelativeLayout>
@@ -116,14 +141,17 @@
 
                 <TextView
                     android:id="@+id/contact_us_message_us_text"
-                    android:layout_below="@id/contact_us_get_in_touch_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/contact_us_get_in_touch_card"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
                     android:text="Message Us:"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
-                    android:layout_margin="20dp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
                 <LinearLayout
                     android:id="@+id/contact_us_full_name_linear"
                     android:layout_below="@id/contact_us_message_us_text"
@@ -141,6 +169,7 @@
                         android:text="Full Name"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:textSize="13sp"
                         android:textColor="@color/light_red"
                         />
                     <EditText
@@ -153,6 +182,7 @@
                         android:textColor="@color/black"
                         android:paddingBottom="5dp"
                         android:paddingTop="0dp"
+                        android:textSize="12sp"
                         android:paddingLeft="10dp"
                         />
 
@@ -176,6 +206,7 @@
                         android:text="Email"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:textSize="13sp"
                         android:textColor="@color/light_red"
                         />
                     <EditText
@@ -189,6 +220,7 @@
                         android:textColor="@color/black"
                         android:paddingBottom="5dp"
                         android:paddingTop="0dp"
+                        android:textSize="12sp"
                         android:paddingLeft="10dp"
                         />
 
@@ -212,6 +244,7 @@
                         android:text="Message Subject"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:textSize="13sp"
                         android:textColor="@color/light_red"
                         />
                     <EditText
@@ -223,6 +256,7 @@
                         android:textColorHint="@color/purple_200"
                         android:textColor="@color/black"
                         android:paddingBottom="5dp"
+                        android:textSize="12sp"
                         android:paddingTop="0dp"
                         android:paddingLeft="10dp"
                         />
@@ -247,6 +281,7 @@
                         android:text="Message"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
+                        android:textSize="13sp"
                         android:textColor="@color/light_red"
                         />
                     <EditText
@@ -255,16 +290,16 @@
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:layout_marginBottom="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
                         android:layout_marginTop="10dp"
                         android:ems="10"
-                        android:hint="Write Something about You"
+                        android:hint="Write your message here..."
                         android:imeOptions="actionDone"
                         android:lines="10"
                         android:inputType="textMultiLine"
                         android:isScrollContainer="true"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:maxLength="400"
                         android:paddingBottom="10dp"
                         android:gravity="start"
@@ -286,10 +321,10 @@
                     android:text="Send Message"
                     android:layout_centerHorizontal="true"
                     android:textAllCaps="false"
+                    android:textSize="12sp"
+                    android:minHeight="0dp"
                     android:layout_marginBottom="20dp"
                     />
-
-
 
             </RelativeLayout>
         </LinearLayout>

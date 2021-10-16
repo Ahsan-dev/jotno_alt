@@ -26,8 +26,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jotno.Models.ContentResponse;
 import com.example.jotno.Models.LoginUser;
 import com.example.jotno.Models.LoginResponse;
+import com.example.jotno.PaperDB.PermanentApp;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.PaperDB.Prevalent;
 import com.example.jotno.R;
@@ -66,6 +68,9 @@ public class LoginActivity extends AppCompatActivity {
 
         loadingBar = new ProgressDialog(this);
         Paper.init(this);
+
+
+
 
         passEdt.setOnTouchListener(new View.OnTouchListener() {
             @Override

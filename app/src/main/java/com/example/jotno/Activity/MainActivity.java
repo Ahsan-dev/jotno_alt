@@ -32,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jotno.AboutUsFragment;
 import com.example.jotno.Fragment.ChangePassFragment;
 import com.example.jotno.Fragment.ContuctUsFragment;
 import com.example.jotno.Fragment.BMICalculatorFragment;
@@ -39,8 +40,10 @@ import com.example.jotno.Fragment.DashboardFragment;
 import com.example.jotno.Fragment.ProfileSettingsFragment;
 import com.example.jotno.Models.CustomiseEventModel;
 import com.example.jotno.Models.EventModel;
+import com.example.jotno.OurPolicyFragment;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
+import com.example.jotno.TermsAndConditionsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
@@ -241,14 +244,18 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_about_us){
                 toolTitle.setHint("About");
-                Toast.makeText(this, "About us fragment", Toast.LENGTH_SHORT).show();
+                fragment = null;
+                fragment = new AboutUsFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
             if(item.getItemId()==R.id.drawer_nav_terms_and_conditions){
 
                 toolTitle.setHint("Terms & Conditions");
-                Toast.makeText(this, "Terms and Conditions fragment", Toast.LENGTH_SHORT).show();
+                fragment = null;
+                fragment = new TermsAndConditionsFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
@@ -256,7 +263,9 @@ public class MainActivity extends AppCompatActivity {
             if(item.getItemId()==R.id.drawer_nav_our_policies){
 
                 toolTitle.setHint("Policies");
-                Toast.makeText(this, "Our Policies fragment", Toast.LENGTH_SHORT).show();
+                fragment = null;
+                fragment = new OurPolicyFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
                 drawer.closeDrawer(GravityCompat.START);
 
             }
@@ -364,8 +373,6 @@ public class MainActivity extends AppCompatActivity {
 
         exitDialog.show();
 
-
-
     }
 
 
@@ -376,8 +383,5 @@ public class MainActivity extends AppCompatActivity {
             exitDialog.dismiss();
         }
     }
-
-
-
 
 }

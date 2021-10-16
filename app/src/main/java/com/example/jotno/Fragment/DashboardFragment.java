@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
     private Fragment fragment;
     private ProgressDialog loadingBar;
     private Api api;
-    private List<BannerDatum> imageList;
+    private List<BannerDatum> imageListUrl;
     private SliderView sliderView;
 
 
@@ -72,7 +73,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
         sliderView = view.findViewById(R.id.imageSlider);
 
 
-        imageList = new ArrayList<>();
+        imageListUrl = new ArrayList<>();
 
         api.getAllBanners()
                 .enqueue(new Callback<BannerResponse>() {
@@ -80,9 +81,10 @@ public class DashboardFragment extends Fragment implements View.OnClickListener 
                     public void onResponse(Call<BannerResponse> call, Response<BannerResponse> response) {
                         if(response.isSuccessful()){
 
-                            imageList = new ArrayList<>();
-                            imageList = response.body().getBody().getData();
-                            WelcomeSliderAdapter adapter = new WelcomeSliderAdapter(view.getContext(),imageList);
+
+                            imageListUrl = response.body().getBody().getData();
+                            Log.d("size_url",String.valueOf(response.body().getBody().getData().size()));
+                            WelcomeSliderAdapter adapter = new WelcomeSliderAdapter(view.getContext(),imageListUrl);
                             //sliderView.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
                             sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
                             sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);

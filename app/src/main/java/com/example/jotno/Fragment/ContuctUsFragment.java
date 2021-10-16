@@ -1,5 +1,7 @@
 package com.example.jotno.Fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,11 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jotno.PaperDB.PermanentApp;
 import com.example.jotno.R;
+import com.example.jotno.Retrofit.Api;
 
 import java.util.regex.Pattern;
+
+import io.paperdb.Paper;
 
 
 public class ContuctUsFragment extends Fragment {
@@ -24,6 +32,9 @@ public class ContuctUsFragment extends Fragment {
     private EditText detailsEdt, fullnameEdt, emailEdt, subjectEdt;
     private String fullName, email, subject, details;
     private Button sendMsgBtn;
+    private TextView locationTxt, emailTxt, mobileTxt;
+    private ImageView fbIcon, twitterIcon, linkedinIcon;
+    private Api api;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +47,41 @@ public class ContuctUsFragment extends Fragment {
         subjectEdt = view.findViewById(R.id.contact_us_subject_edt);
         detailsEdt = view.findViewById(R.id.contact_us_message_edt);
         sendMsgBtn = view.findViewById(R.id.contact_us_send_message_btn_id);
+
+        locationTxt = view.findViewById(R.id.contact_us_get_in_touch_location_txt);
+        emailTxt = view.findViewById(R.id.contact_us_get_in_touch_email_txt);
+        mobileTxt = view.findViewById(R.id.contact_us_get_in_touch_mobile_txt);
+        fbIcon = view.findViewById(R.id.contact_us_get_in_touch_fb_icon);
+        twitterIcon = view.findViewById(R.id.contact_us_get_in_touch_twitter_icon);
+        linkedinIcon = view.findViewById(R.id.contact_us_get_in_touch_linkedin_icon);
+
+
+        locationTxt.setText(Paper.book().read(PermanentApp.contactUsAddressString));
+        emailTxt.setText(Paper.book().read(PermanentApp.contactUsEmailString));
+        mobileTxt.setText(Paper.book().read(PermanentApp.contactUsMobileString));
+
+        fbIcon.setOnClickListener(view1 -> {
+
+            Intent fbIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Paper.book().read(PermanentApp.contactUsFacebookUrlString)));
+            startActivity(fbIntent);
+
+        });
+
+        twitterIcon.setOnClickListener(view1 -> {
+
+            Intent fbIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Paper.book().read(PermanentApp.contactUsTwitterUrlString)));
+            startActivity(fbIntent);
+
+        });
+
+        linkedinIcon.setOnClickListener(view1 -> {
+
+            Intent fbIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Paper.book().read(PermanentApp.contactUsLinkedinString)));
+            startActivity(fbIntent);
+
+        });
+
+
 
 
         detailsEdt.setOnTouchListener(new View.OnTouchListener() {

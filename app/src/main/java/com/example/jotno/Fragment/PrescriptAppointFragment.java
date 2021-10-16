@@ -499,7 +499,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                 PrescriptionsFragment fragment = new PrescriptionsFragment();
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
+                fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 

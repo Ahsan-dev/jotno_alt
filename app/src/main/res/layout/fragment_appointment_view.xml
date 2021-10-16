@@ -76,7 +76,6 @@
         />
 
 
-
     <RelativeLayout
         android:id="@+id/view_appointment_relative"
         android:layout_width="match_parent"
