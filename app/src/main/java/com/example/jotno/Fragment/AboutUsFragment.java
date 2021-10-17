@@ -1,4 +1,4 @@
-package com.example.jotno;
+package com.example.jotno.Fragment;
 
 import android.os.Bundle;
 
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.jotno.PaperDB.PermanentApp;
+import com.example.jotno.R;
 import com.example.jotno.Retrofit.Api;
 import com.squareup.picasso.Picasso;
 

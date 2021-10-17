@@ -27,6 +27,18 @@ public class Prescription {
     @SerializedName("patient")
     @Expose
     private Patient patient;
+    @SerializedName("charge")
+    @Expose
+    private String charge;
+    @SerializedName("total")
+    @Expose
+    private String total;
+    @SerializedName("payment_status")
+    @Expose
+    private String payment_status;
+    @SerializedName("created_at")
+    @Expose
+    private String created_at;
 
     public Integer getId() {
         return id;
@@ -76,4 +88,35 @@ public class Prescription {
         this.patient = patient;
     }
 
+    public String getCharge() {
+        return charge;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getPayment_status() {
+        return payment_status;
+    }
+
+    public void setPayment_status(String payment_status) {
+        this.payment_status = payment_status;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
 }

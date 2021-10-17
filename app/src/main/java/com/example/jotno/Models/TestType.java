@@ -15,6 +15,11 @@ public class TestType {
     @Expose
     private String price;
 
+    public TestType(String name, String price) {
+        this.name = name;
+        this.price = price;
+    }
+
     public String getName() {
         return name;
     }
@@ -30,6 +35,8 @@ public class TestType {
     public void setPrice(String price) {
         this.price = price;
     }
+
+
 
 
 }

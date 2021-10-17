@@ -66,7 +66,8 @@ public class BillItemRecyclerAdapter extends RecyclerView.Adapter<BillItemViewHo
         });
 
         holder.prescriptionNoTxt.setText(bills.getPrescriptionNo());
-        holder.billTxt.setText(bills.getTotal());
+        int total = Integer.parseInt(bills.getTotal())+Integer.parseInt(bills.getCharge());
+        holder.billTxt.setText(String.valueOf(total));
         holder.billDateTxt.setText("Bill Date:\n"+bills.getCreatedAt());
 
 
@@ -79,6 +80,7 @@ public class BillItemRecyclerAdapter extends RecyclerView.Adapter<BillItemViewHo
             Bundle bundles = new Bundle();
             bundles.putInt("prescription_id",bills.getId());
             bundles.putString("iWant","bills");
+            bundles.putInt("total",total);
             fragment.setArguments(bundles);
             fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
             fragmentTransaction.addToBackStack(null);

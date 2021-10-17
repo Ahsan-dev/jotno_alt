@@ -148,6 +148,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
     private int report_id = -1;
     private String iWant = "this";
     private ProgressDialog loadingBar;
+    int amount = 0;
 
 
 
@@ -307,19 +308,6 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
         }
 
-        String status = appoList.get(position).getPaymentStatus();
-        if(status.equals("Paid")){
-            statusTxt.setTextColor(view.getContext().getResources().getColor(R.color.green));
-        }else{
-            statusTxt.setTextColor(view.getContext().getResources().getColor(R.color.red));
-        }
-
-        statusTxt.setText(status);
-
-
-        amountTxt.setText(appoList.get(position).getTotal());
-        totalBillTxt.setText(appoList.get(position).getTotal());
-
 
 
         testsRecycler = view.findViewById(R.id.prescript_appointment_tests_recycler);
@@ -348,7 +336,16 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                             prescriptionNo = response.body().getPrescription().getPrescriptionNo();
                             prescriptionNoTxt.setText(prescriptionNo);
 
+                            String status = response.body().getPrescription().getPayment_status();
+                            if(status.equals("Paid")){
+                                statusTxt.setTextColor(view.getContext().getResources().getColor(R.color.green));
+                            }else{
+                                statusTxt.setTextColor(view.getContext().getResources().getColor(R.color.red));
+                            }
 
+                            statusTxt.setText(status);
+                            invoiceDateTxt.setText(response.body().getPrescription().getCreated_at());
+                            amountTxt.setText(response.body().getPrescription().getTotal());
 
                             age = response.body().getAge();
                             patientAgeTxt.setText(age);
@@ -406,9 +403,19 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
 
                             for(int i=0;i<mainTestSize;i++){
 
-                                if(response.body().getMainTest().get(i).getTestType().equals("Examination Finding")){
+                                if(response.body().getMainTest().get(i).getTestType().equals("Clinical Diagnosis")){
 
                                     billsList = response.body().getMainTest().get(i).getTestTypeList();
+                                    billsList.add(new TestType("Charge",response.body().getPrescription().getCharge()));
+
+                                    if(iWant.equals("bills")||iWant.equals("prescriptions")){
+                                        totalBillTxt.setText(String.valueOf(getArguments().getInt("total",0)));
+                                    }else{
+                                        amount = Integer.parseInt(appoList.get(position).getTotal());
+                                        int total = amount+Integer.parseInt(response.body().getPrescription().getCharge());
+                                        totalBillTxt.setText(String.valueOf(total));
+                                    }
+
                                     billFieldItemRecyclerAdapter = new BillFieldItemRecyclerAdapter(billsList);
                                     billsRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
                                     billsRecycler.hasFixedSize();
@@ -499,7 +506,7 @@ public class PrescriptAppointFragment extends Fragment implements View.OnClickLi
                 PrescriptionsFragment fragment = new PrescriptionsFragment();
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.view_appointment_relative, fragment);
+                fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 

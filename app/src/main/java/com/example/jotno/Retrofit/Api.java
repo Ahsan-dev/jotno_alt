@@ -5,6 +5,7 @@ package com.example.jotno.Retrofit;
 import com.example.jotno.Models.AllMedicines;
 import com.example.jotno.Models.AppointmentResponse;
 import com.example.jotno.Models.BannerResponse;
+import com.example.jotno.Models.BlogResponse;
 import com.example.jotno.Models.ContentResponse;
 import com.example.jotno.Models.CustomiseProfileResponse;
 import com.example.jotno.Models.GetAppointmentResponse;
@@ -217,13 +218,8 @@ public interface Api {
 
 
 
-
-
-
-//
-//
-//    @GET("getpostfeed")
-//    Call<List<GetPostFeed>> getPostFeed();
+    @GET("all-blog")
+    Call<BlogResponse> getAllBlogs();
 //
 //    @POST("writepost")
 //    Call<ResponseBody> writePost(@Body WritePost postRequired);

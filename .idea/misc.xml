@@ -29,10 +29,12 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/appointment_item_layout.xml" value="0.153125" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/bill_field_item_layout.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/bill_item_layout.xml" value="0.153125" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/blog_recycler_item_layout.xml" value="0.33" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/bloodgrp_spinner_item_layout.xml" value="0.153125" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/calculation_result_layout.xml" value="0.153125" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/dialog_layout.xml" value="0.1" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/forget_password_layout.xml" value="0.18" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/fragment_about_us.xml" value="0.49" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/fragment_appointment_details.xml" value="0.18" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/fragment_appointment_view.xml" value="0.153125" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout-large/fragment_appointments.xml" value="0.18" />
@@ -69,26 +71,28 @@
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/appointment_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_field_item_layout.xml" value="0.30625" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bill_item_layout.xml" value="0.2" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/blog_recycler_item_layout.xml" value="0.5" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/blog_recycler_item_layout.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/bloodgrp_spinner_item_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/calculation_result_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/dialog_layout.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/forget_password_layout.xml" value="0.25" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_about_us.xml" value="0.5" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_about_us.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointment_details.xml" value="0.22" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointment_view.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_appointments.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_b_m_i_calculator.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_bills.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_blog.xml" value="0.49" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_blog.xml" value="0.2" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_blog_details_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_change_pass.xml" value="0.25" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_contuct_us.xml" value="0.33" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_dashboard.xml" value="0.22" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_our_policy.xml" value="0.29" />
-        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.18" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescript_appoint.xml" value="0.33" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_prescriptions.xml" value="0.21" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_profile_settings.xml" value="0.22" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_terms_and_conditions.xml" value="0.29" />
+        <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_terms_conditions.xml" value="0.3275" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_tests.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/fragment_vew_appointment.xml" value="0.2" />
         <entry key="..\:/Users/ZAMAN-IT/StudioProjects/Jotno/app/src/main/res/layout/image_view_dialog_layout.xml" value="0.22" />

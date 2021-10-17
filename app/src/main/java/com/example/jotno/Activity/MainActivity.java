@@ -18,7 +18,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,19 +31,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.jotno.AboutUsFragment;
+import com.example.jotno.Fragment.AboutUsFragment;
+import com.example.jotno.Fragment.BlogFragment;
 import com.example.jotno.Fragment.ChangePassFragment;
 import com.example.jotno.Fragment.ContuctUsFragment;
 import com.example.jotno.Fragment.BMICalculatorFragment;
 import com.example.jotno.Fragment.DashboardFragment;
 import com.example.jotno.Fragment.ProfileSettingsFragment;
-import com.example.jotno.Models.CustomiseEventModel;
 import com.example.jotno.Models.EventModel;
-import com.example.jotno.OurPolicyFragment;
+import com.example.jotno.Fragment.OurPolicyFragment;
 import com.example.jotno.PaperDB.PermanentPatient;
 import com.example.jotno.R;
-import com.example.jotno.TermsAndConditionsFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.jotno.Fragment.TermsConditionsFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -226,7 +224,9 @@ public class MainActivity extends AppCompatActivity {
 
             if(item.getItemId()==R.id.drawer_nav_blog){
                 toolTitle.setHint("Blog");
-                Toast.makeText(this, "Blog fragment", Toast.LENGTH_SHORT).show();
+                fragment = null;
+                fragment = new BlogFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
                 drawer.closeDrawer(GravityCompat.START);
 
 
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
                 toolTitle.setHint("Terms & Conditions");
                 fragment = null;
-                fragment = new TermsAndConditionsFragment();
+                fragment = new TermsConditionsFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_relative_layout,fragment).commit();
                 drawer.closeDrawer(GravityCompat.START);
 

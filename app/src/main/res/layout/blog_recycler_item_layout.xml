@@ -18,9 +18,11 @@
         <ImageView
             android:id="@+id/blog_recycler_item_image_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:src="@drawable/imgslider3"
-            android:adjustViewBounds="true"/>
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            />
 
         <TextView
             android:id="@+id/blog_recycler_item_title_txt_id"

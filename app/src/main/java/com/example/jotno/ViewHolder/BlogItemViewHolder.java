@@ -15,7 +15,7 @@ public class BlogItemViewHolder extends RecyclerView.ViewHolder {
 
     public ImageView blogItemImg;
     public CircleImageView blogProPicImg;
-    public TextView blogTitleTxt, blogDetailsTxt, blogDateTxt;
+    public TextView blogCreatedByName, blogTitleTxt, blogDetailsTxt, blogDateTxt;
 
     public BlogItemViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -25,6 +25,7 @@ public class BlogItemViewHolder extends RecyclerView.ViewHolder {
         blogTitleTxt = itemView.findViewById(R.id.blog_recycler_item_title_txt_id);
         blogDetailsTxt = itemView.findViewById(R.id.blog_recycler_item_post_details_id);
         blogDateTxt = itemView.findViewById(R.id.blog_recycler_item_date_id);
+        blogCreatedByName = itemView.findViewById(R.id.blog_recycler_item_profile_name_id);
 
     }
 }

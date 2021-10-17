@@ -64,6 +64,7 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
         holder.dateTxt.setText(prescriptions.getCreatedAt());
         holder.noteTxt.setText("Advice:\n"+prescriptions.getAdvice());
         holder.doctorsNameTxt.setText("Doctor's Name:\n"+prescriptions.getDoctorName());
+        int total = Integer.parseInt(prescriptions.getTotal())+Integer.parseInt(prescriptions.getCharge());
 
 
         holder.viewPresBtn.setOnClickListener(v -> {
@@ -74,6 +75,7 @@ public class PrescriptionRecyclerAdapter extends RecyclerView.Adapter<Prescripti
             Bundle bundles = new Bundle();
             bundles.putInt("prescription_id",prescriptions.getId());
             bundles.putString("iWant","prescriptions");
+            bundles.putInt("total",total);
             fragment.setArguments(bundles);
             fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
             fragmentTransaction.addToBackStack(null);

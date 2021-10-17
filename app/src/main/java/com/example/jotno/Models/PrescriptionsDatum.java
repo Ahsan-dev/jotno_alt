@@ -23,6 +23,9 @@ public class PrescriptionsDatum {
     @SerializedName("total")
     @Expose
     private String total;
+    @SerializedName("charge")
+    @Expose
+    private String charge;
     @SerializedName("advice")
     @Expose
     private String advice;
@@ -74,6 +77,16 @@ public class PrescriptionsDatum {
     public void setTotal(String total) {
         this.total = total;
     }
+
+    public String getCharge() {
+        return charge;
+    }
+
+    public void setCharge(String charge) {
+        this.charge = charge;
+    }
+
+
 
     public String getAdvice() {
         return advice;
