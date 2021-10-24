@@ -75,7 +75,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
         backBtn.setOnClickListener(view -> {
 
-            startActivity(new Intent(MedicinesActivity.this,MainActivity.class));
+            startActivity(new Intent(MedicinesActivity.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
 
         });
 
@@ -201,7 +201,7 @@ public class MedicinesActivity extends AppCompatActivity {
             }
             Paper.book().write(AlarmPaper.morningMessage,morningMessage);
 
-            setNotification(9,50,morningMessage,15);
+            setNotification(15,50,morningMessage,15);
 
         }
 
@@ -219,7 +219,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.noonMessage,noonMessage);
 
-            setNotification(14,45,noonMessage,16);
+            setNotification(15,55,noonMessage,16);
 
         }
 
@@ -236,7 +236,7 @@ public class MedicinesActivity extends AppCompatActivity {
 
             Paper.book().write(AlarmPaper.nightMessage,nightMessage);
 
-            setNotification(21,47,nightMessage,17);
+            setNotification(16,20,nightMessage,17);
 
         }
     }
@@ -269,4 +269,10 @@ public class MedicinesActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+
+        startActivity(new Intent(MedicinesActivity.this,MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK));
+
+    }
 }

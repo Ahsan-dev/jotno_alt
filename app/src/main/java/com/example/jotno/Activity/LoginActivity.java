@@ -189,8 +189,8 @@ public class LoginActivity extends AppCompatActivity {
 //        passEdt.setText("");
 
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailEdt.setError("Enter your email with proper format");
+        if(TextUtils.isEmpty(email)){
+            emailEdt.setError("Enter your email or mobile number");
             emailEdt.requestFocus();
             return;
         }

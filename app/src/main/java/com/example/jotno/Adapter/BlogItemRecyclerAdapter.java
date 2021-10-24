@@ -53,7 +53,7 @@ public class BlogItemRecyclerAdapter extends RecyclerView.Adapter<BlogItemViewHo
             FragmentManager fragmentManager = ((AppCompatActivity)view.getContext()).getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             Bundle bundles = new Bundle();
-            bundles.putInt("blog_id",blog.getId());
+            bundles.putInt("position",position);
             fragment.setArguments(bundles);
             fragmentTransaction.replace(R.id.fragment_relative_layout, fragment);
             fragmentTransaction.addToBackStack(null);

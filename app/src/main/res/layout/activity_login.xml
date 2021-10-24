@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Email Address"
+            android:text="Email Address/Mobile"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:textSize="12sp"
@@ -53,8 +53,7 @@
             android:id="@+id/login_email_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your email address"
-            android:inputType="textEmailAddress"
+            android:hint="Enter your email address or mobile number"
             android:backgroundTint="@android:color/transparent"
             android:textColorHint="@color/purple_200"
             android:textColor="@color/black"
