@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="15dp"
+    app:cardElevation="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/bill_item_first_row_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="7">
+            <TextView
+                android:id="@+id/bill_item_prescription_no_id"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Prescription No"
+                android:textSize="35sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:id="@+id/bill_item_bill_amount_id"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="Bill"
+                android:textSize="35sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+            <ImageView
+                android:id="@+id/bill_item_bill_expand_btn_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:src="@drawable/left_triangle_icon"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bill_item_second_row_id"
+            android:layout_below="@id/bill_item_first_row_id"
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            >
+            <TextView
+                android:id="@+id/bill_item_date_txt_id"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Bill Date:\n 15/10/2021"
+                android:textSize="13sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <Button
+                    android:id="@+id/bill_item_view_btn_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:drawableEnd="@drawable/visibility"
+                    android:layout_margin="10dp"
+
+
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

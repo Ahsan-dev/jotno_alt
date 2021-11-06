@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="25dp"
+    android:background="@color/light_gray"
+
+    >
+    <LinearLayout
+        android:id="@+id/alertImageLinear"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        >
+        <ImageButton
+            android:id="@+id/image_view_dialog_cancel_image_btn_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cancel_icon"
+            android:layout_gravity="end"
+            android:layout_margin="5dp"
+            android:background="@android:color/transparent"/>
+        <ImageView
+            android:id="@+id/image_view_dialog_image_view_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/jotno_logo"/>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.BillsFragment">
+
+    <ImageView
+        android:id="@+id/bills_back_btn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_back"
+        android:layout_gravity="start|center_vertical"
+
+        />
+
+    <TextView
+        android:id="@+id/bill_fragment_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your all bill:"
+        android:textSize="40sp"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"/>
+
+    <RelativeLayout
+        android:id="@+id/bill_bill_relative_id"
+        android:layout_below="@+id/bill_fragment_title_text"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="30dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:weightSum="7">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:text="Prescription No"
+                        android:textSize="35sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:layout_height="wrap_content"
+                        android:text="Bill"
+                        android:textSize="35sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/light_red"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/bill_fragment_bill_recycler_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    android:layout_marginTop="10dp"
+                    android:paddingBottom="50dp"
+                    />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

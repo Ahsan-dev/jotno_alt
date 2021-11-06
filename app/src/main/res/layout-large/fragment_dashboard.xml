@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment.DashboardFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="100dp"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/image_slider_cardview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="30dp"
+                        app:cardCornerRadius="6dp">
+
+                        <com.smarteist.autoimageslider.SliderView
+                            android:id="@+id/imageSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            app:sliderAnimationDuration="600"
+                            app:sliderAutoCycleDirection="back_and_forth"
+                            app:sliderAutoCycleEnabled="true"
+                            app:sliderIndicatorAnimationDuration="600"
+                            app:sliderIndicatorGravity="center_horizontal|bottom"
+                            app:sliderIndicatorMargin="15dp"
+                            app:sliderIndicatorOrientation="horizontal"
+                            app:sliderIndicatorPadding="3dp"
+                            app:sliderIndicatorRadius="1dp"
+                            app:sliderIndicatorSelectedColor="#F38080"
+                            app:sliderIndicatorUnselectedColor="#FFF"
+                            app:sliderScrollTimeInSec="1"
+                            app:sliderStartAutoCycle="true" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:background="@drawable/dashboard_white_back"
+                        android:orientation="vertical"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:padding="10dp"
+                            android:weightSum="2">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_appoints_card_id"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp"
+
+                                >
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp">
+
+                                    <ImageView
+                                        android:id="@+id/dashboard_appoints_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/appointments_icon" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/dashboard_appoints_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:text="Appointments"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="11sp" />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_prescriptions_card_id"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp">
+
+                                    <ImageView
+                                        android:id="@+id/dashboard_prescriptions_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/ic_prescription" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/dashboard_prescriptions_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:text="Prescriptions"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="11sp" />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:padding="10dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_tests_card_id"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp"
+
+                                >
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp">
+
+                                    <ImageView
+                                        android:id="@+id/dashboard_test_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/testing_icon" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/dashboard_test_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:text="All tests"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="11sp" />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/dashboard_bills_card_id"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="1"
+                                app:cardBackgroundColor="@color/light_gray"
+                                app:cardCornerRadius="20dp">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:padding="10dp">
+
+                                    <ImageView
+                                        android:id="@+id/dashboard_bills_icon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerHorizontal="true"
+                                        android:adjustViewBounds="true"
+                                        android:src="@drawable/invoice_icon" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@id/dashboard_bills_icon"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
+                                        android:text="Bills"
+                                        android:textColor="@android:color/black"
+                                        android:textSize="11sp" />
+
+                                </RelativeLayout>
+
+
+                            </androidx.cardview.widget.CardView>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
+        android:id="@+id/dashboard_get_appointment_btn_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="45dp"
+        android:textSize="35sp"
+        android:paddingLeft="30dp"
+        android:text=" Get Appointment"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
+</RelativeLayout>

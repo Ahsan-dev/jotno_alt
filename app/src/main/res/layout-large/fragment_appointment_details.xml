@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.AppointmentDetailsFragment">
+
+
+    <LinearLayout
+        android:id="@+id/appointment_details_tab_txt_btns_linear"
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/red"
+        >
+        <TextView
+            android:id="@+id/appointment_details_summary_txt_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Summary"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/appointment_details_doctor_txt_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Doctor"
+            android:textSize="35sp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/appointment_details_Tests_txt_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="35sp"
+            android:layout_height="wrap_content"
+            android:text="Tests"
+            android:gravity="center"/>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/appointment_details_main_screen"
+        android:layout_below="@id/appointment_details_tab_txt_btns_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/appointment_details_summary_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+                    <TextView
+                        android:id="@+id/appointment_details_appointment_date_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Appointment Date: 12/02/2021"
+                        android:layout_marginTop="20dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/appointment_details_appointment_bill_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Bill: 2400"
+                        android:layout_marginTop="10dp"
+                        android:textSize="30sp"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/appointment_details_appointment_status_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="30sp"
+                        android:text="Appointment Status: Complete"
+                        android:textColor="@color/black"/>
+                    <TextView
+                        android:id="@+id/appointment_details_appointment_payment_status_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:textSize="30sp"
+                        android:text="Payment Status: Complete"
+                        android:textColor="@color/black"/>
+
+
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/appointment_details_doctor_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:paddingBottom="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/appointment_details_doctor_image"
+                        android:layout_width="250dp"
+                        android:layout_height="250dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/rehi"
+                        android:adjustViewBounds="true"
+                        android:layout_marginTop="40dp"/>
+                    <LinearLayout
+                        android:id="@+id/appointment_details_doctor_name_id_deg_linear"
+                        android:layout_below="@id/appointment_details_doctor_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_centerHorizontal="true"
+                        >
+
+                        <TextView
+                            android:id="@+id/appointment_details_doctor_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Doctor's Name"
+                            android:textSize="30sp"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="15dp"/>
+
+                        <TextView
+                            android:id="@+id/appointment_details_doctor_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30sp"
+                            android:text="D-256987"
+                            />
+
+                        <TextView
+                            android:id="@+id/appointment_details_doctor_designation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cardiologist"
+                            android:textSize="30sp"
+                            android:textColor="@color/purple_200"
+                            />
+
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/appointment_details_doctor_mobile"
+                        android:layout_below="@id/appointment_details_doctor_name_id_deg_linear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="40dp"
+                        android:text="0177856665*"
+                        android:textSize="30sp"
+                        android:drawableLeft="@drawable/call_icon"
+                        android:drawablePadding="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/appointment_details_no_doctor"
+                        android:layout_below="@id/appointment_details_doctor_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="40dp"
+                        android:text="No Doctor assigned yet"
+                        android:textColor="@color/red"
+                        android:textSize="35sp"
+                        android:drawablePadding="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:visibility="gone"
+                        android:gravity="center_horizontal"/>
+
+                    <TextView
+                        android:id="@+id/appointment_details_doctor_email"
+                        android:layout_below="@id/appointment_details_no_doctor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="6dp"
+                        android:text="doctors-email@example.com"
+                        android:textSize="30sp"
+                        android:drawableLeft="@drawable/email_icon"
+                        android:drawablePadding="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/appointment_details_doctor_hospital"
+                        android:layout_below="@id/appointment_details_doctor_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:textSize="30sp"
+                        android:layout_marginTop="6dp"
+                        android:text="Doctor's Hospital"
+                        android:drawableLeft="@drawable/hospital_icon"
+                        android:drawablePadding="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/appointment_details_doctor_address"
+                        android:layout_below="@id/appointment_details_doctor_hospital"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="6dp"
+                        android:textSize="30sp"
+                        android:text="Doctor's Address"
+                        android:drawableLeft="@drawable/location_icon"
+                        android:drawablePadding="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center_vertical"/>
+
+                    <TextView
+                        android:id="@+id/appointment_details_doctor_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/appointment_details_doctor_address"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="6dp"
+                        android:textSize="30sp"
+                        android:drawableLeft="@drawable/time_icon"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:text="8.30 am to 10.30 am, SUN, MON, TUE" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/appointment_details_tests_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/appointment_details_doctor_relative"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+
+                    >
+
+                    <ListView
+                        android:id="@+id/appointment_details_tests_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dividerHeight="0dp"
+                        android:divider="@android:color/transparent"
+                        />
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>

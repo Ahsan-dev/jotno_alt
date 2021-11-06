@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.ChangePassFragment"
+    android:gravity="center"
+    >
+
+
+    <TextView
+        android:id="@+id/change_pass_title_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Change your password here"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/change_pass_all_fields_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/change_pass_title_text_id"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/change_pass_old_password_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/register_edt_fields"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Old Password"
+                android:textColor="@color/light_red"
+                android:textSize="35sp" />
+
+            <EditText
+                android:id="@+id/change_pass_old_password_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@android:color/transparent"
+                android:drawableRight="@drawable/visibility_24"
+                android:hint="Old Password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingTop="0dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/purple_200"
+                android:textIsSelectable="false"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/register_edt_fields"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:text="New Password"
+                android:textColor="@color/light_red"
+                android:textSize="35sp" />
+
+            <EditText
+                android:id="@+id/change_pass_new_password_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:drawableRight="@drawable/visibility_24"
+                android:hint="new password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingTop="0dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/purple_200"
+                android:textIsSelectable="false"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/change_pass_confirm_password_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/register_edt_fields"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:text="Confirm New Password"
+                android:textColor="@color/light_red"
+                android:textSize="35sp" />
+
+            <EditText
+                android:id="@+id/change_pass_confirm_password_edt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:drawableRight="@drawable/visibility_24"
+                android:hint="confirm password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:paddingTop="0dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/purple_200"
+                android:textIsSelectable="false"
+                android:textSize="30sp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/change_pass_change_pass_now_btn_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:layout_below="@+id/change_pass_all_fields_linear"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/register_register_btn_back"
+        android:elevation="8dp"
+        android:text="Submit Change"
+        android:textAllCaps="false"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

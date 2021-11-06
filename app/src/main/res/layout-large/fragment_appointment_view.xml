@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.AppointmentViewFragment">
+
+    <TextView
+        android:id="@+id/view_appointment_appointment_no_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Appointment No: A-569874"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/view_appointment_main_option_tab_linear"
+        android:layout_below="@id/view_appointment_appointment_no_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        >
+
+        <ImageView
+            android:id="@+id/view_appointment_appointment_back_btn"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/view_appointment_appointment_details_text_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Details"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:background="@drawable/welcome_register_btn_back"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="150dp"
+            android:textColorHint="@color/white"/>
+        <TextView
+            android:id="@+id/view_appointment_prescription_text_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Prescription"
+            android:textColorHint="@color/black"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:layout_gravity="center_vertical"
+            android:textSize="35sp"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/view_appointment_no_prescription_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Prescription found!!"
+        android:textColor="@color/red"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+
+
+    <RelativeLayout
+        android:id="@+id/view_appointment_relative"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view_appointment_main_option_tab_linear"
+        android:layout_marginTop="15dp" />
+
+
+
+
+</RelativeLayout>
